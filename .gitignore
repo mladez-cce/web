@@ -1,0 +1,23 @@
+[Tt]humbs.db
+[Dd]esktop.ini
+*.DS_store
+.DS_store?
+._*
+.Trashes
+.idea
+
+/config/config.local.neon
+/mango.local.yaml
+/mango.local.json
+/.mango-snippet.html
+/node_modules
+/npm-debug.log
+/yarn.lock
+
+# WordPress
+/public/*
+!/public/wp-content
+/public/wp-content/*
+!/public/wp-content/mu-plugins
+
+/vendor
