@@ -6,7 +6,9 @@
 		"build": "mango build",
 		"serve": "php -S 0.0.0.0:8000 -t public",
 		"prettier": "prettier --write \"theme/scripts/**/*.{js,jsx,ts,tsx}\"",
-		"upgrade-interactive": "npm-check --update"
+		"upgrade-interactive": "npm-check --update",
+		"build-styles": "node-sass --importer=node_modules/node-sass-tilde-importer theme/styles/index.scss public/assets/styles/index.css",
+    "watch-styles": "node-sass --importer=node_modules/node-sass-tilde-importer --output-style expanded --source-map true --source-map-contents true --precision 6 --watch theme/styles/index.scss public/assets/styles/index.css"
 	},
 	"dependencies": {
 		"@mangoweb/sass-base": "^0.0.5",
@@ -27,6 +29,8 @@
 	},
 	"devDependencies": {
 		"concurrently": "^4.1.1",
+		"node-sass": "^4.13.0",
+		"node-sass-tilde-importer": "^1.0.2",
 		"prettier": "^1.18.2",
 		"typescript": "^3.5.3"
 	}
