@@ -17,6 +17,7 @@
 # WordPress
 /public/*
 !/public/wp-content
+!/public/wp-config.php
 /public/wp-content/*
 !/public/wp-content/mu-plugins
 

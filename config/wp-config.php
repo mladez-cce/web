@@ -1,6 +1,9 @@
 <?php
+//
+// DO NOT CHANGE THE CONFIGURATION HERE. Use config.local.neon instead.
+//
 
-$App = require __DIR__.'/config/bootstrap.php';
+$App = require __DIR__ . '/bootstrap.php';
 
 $databaseParams = $App->parameters['database'];
 $wpParams = $App->parameters['wp'] ?? [];
@@ -78,4 +81,4 @@ if (!defined('ABSPATH')) {
 	define('ABSPATH', dirname(__FILE__).'/public/');
 }
 
-require_once ABSPATH.'wp-settings.php';
+require_once ABSPATH . 'wp-settings.php';
