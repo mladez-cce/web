@@ -1,6 +1,5 @@
 parameters:
 	livereload: on
-	showExamples: on
 	dangerouslyDisablePasswords: off
 
 	database:
