@@ -9,6 +9,10 @@ parameters:
 		username: root
 		password:
 
+	# Authentication Unique Keys and Salts for WordPress
+	#
+	# Use bin/create-local-config.sh to create a new local config with these keys automatically generated for you.
+	# You can change these at any point in time to invalidate all existing cookies. This will force all users to have to log in again.
 	wp:
 		AUTH_KEY:         "YFo9OsdGdc CHANGE ON PRODUCTION YFo9OsdGdd"
 		SECURE_AUTH_KEY:  "rgoJjobcfb CHANGE ON PRODUCTION rgoJjobcfc"

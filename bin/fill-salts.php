@@ -1,4 +1,5 @@
 <?php
+// Generates and fills WordPress Authentication Unique Keys and Salts to the newly created config.local.neon file.
 
 require __DIR__.'/../vendor/autoload.php';
 
