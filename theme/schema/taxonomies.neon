@@ -5,7 +5,5 @@ defaults:
 
 register:
 
-	thing_category:
-		label: Thing category
-		post_types:
-			- thing
+	# Check MangoPress repo for examples of registering custom taxonomies:
+	# https://github.com/manGoweb/MangoPress/tree/master/theme/schema

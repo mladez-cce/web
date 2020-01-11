@@ -17,10 +17,6 @@ remove:
 	- comments
 
 register:
-	thing:
-		isExample: true
-		public: true
-		label: Things
-		faicon: crow
-		rewrite:
-			slug: thing
+
+	# Check MangoPress repo for examples of registering custom post types:
+	# https://github.com/manGoweb/MangoPress/tree/master/theme/schema

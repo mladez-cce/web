@@ -1,4 +1,4 @@
 register:
-	contact: Kontakty
-	about: About
-	gallery: Galerie
+
+	# Check MangoPress repo for examples of registering custom page roles:
+	# https://github.com/manGoweb/MangoPress/tree/master/theme/schema

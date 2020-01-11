@@ -1,3 +1,4 @@
 register:
-	main_nav:  Main menu
-	footer_nav: Footer menu
+
+	# Check MangoPress repo for examples of registering custom navs:
+	# https://github.com/manGoweb/MangoPress/tree/master/theme/schema
