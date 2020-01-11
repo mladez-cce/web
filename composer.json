@@ -1,6 +1,6 @@
 {
-    "name": "mangoweb/mangopress",
-    "description": "WordPress + Nette",
+    "name": "mladez",
+    "description": "mladez",
     "type": "project",
     "require": {
         "mangoweb/mangopress-sql-panel": "dev-master",
