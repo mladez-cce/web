@@ -7,13 +7,6 @@ parameters:
 	database:
 		host: 127.0.0.1
 
-	s3:
-		enabled: off
-		bucket: uploads.mangoweb.org
-		region: eu-central-1
-		key:
-		secret:
-
 	sentry:
 		dsn: null
 		format: $Format:%h$

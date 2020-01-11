@@ -24,18 +24,6 @@ parameters:
 		format: $Format:%h$
 		# stage: local
 
-	s3:
-		enabled: off # allow on beta / prod
-		key: "AKIAIZGO5LP3LHAUFQRQ"
-		secret: # 1Password "MangoPress S3 uploads auth"
-		basePath: # project/beta
-		bucketPublicUrl: # https://xyz.cloudfront.net/beta
-
-	imgproxy:
-		key: "0aa4c34cb6636fb8d4deacd150b1c7b4"
-		salt: "20030cf6ef8fc43168d77a7c05f4cd31"
-		projectId: # change this to name of this project
-
 	smtp:
 		host: smtp.mailtrap.io
 		secure: tls

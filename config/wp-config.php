@@ -34,46 +34,6 @@ define('NONCE_SALT', $wpParams['NONCE_SALT'] ?? 'put your unique phrase here');
 
 $table_prefix = 'wp_';
 
-$imgproxy = $App->parameters['imgproxy'];
-define('IMGPROXY_KEY', $imgproxy['key']);
-define('IMGPROXY_SALT', $imgproxy['salt']);
-define('IMGPROXY_BASE_URL', $imgproxy['baseUrl'] ?? 'https://snappycdn.net');
-
-function get_img_proxy_base_url() {
-	global $App;
-	$imgproxy = $App->parameters['imgproxy'];
-
-	if (empty($imgproxy['projectId'])) {
-		throw new Exception('Missing imgproxy.projectId');
-	}
-	return IMGPROXY_BASE_URL . '/' . rawurlencode($imgproxy['projectId']);
-}
-
-if ($s3Params && $s3Params['enabled']) {
-	if (empty($s3Params['secret'])) {
-		die('S3 is enabled, but secret is missing');
-	}
-
-	define('S3_UPLOADS_BUCKET', $s3Params['bucket'] ?? null);
-	define('S3_UPLOADS_BUCKET_URL', $s3Params['bucketPublicUrl'] ?? null);
-	define('S3_UPLOADS_KEY', $s3Params['key'] ?? null);
-	define('S3_UPLOADS_SECRET', $s3Params['secret'] ?? null);
-	define('S3_UPLOADS_REGION', $s3Params['region'] ?? null);
-
-	if (!empty($s3Params['basePath'])) {
-		define('S3_UPLOADS_PATH_PREFIX', '/'.Nette\Utils\Strings::trim($s3Params['basePath'], '/'));
-	} elseif (Mangoweb\isSharedHost()) {
-		define('PROJECT_ROOT', dirname(__DIR__, 2));
-		define('DISALLOW_FILE_MODS', true);
-		define('S3_UPLOADS_PATH_PREFIX', '/'.Mangoweb\getReplicationGroupName().'/'.basename(PROJECT_ROOT));
-	} else {
-		die('Missing config s3.basePath');
-	}
-} else {
-	define('S3_UPLOADS_USE_LOCAL', true);
-	define('S3_UPLOADS_DISABLE_REPLACE_UPLOAD_URL', true);
-}
-
 define('WP_DEBUG', true);
 define('SCRIPT_DEBUG', true);
 
