@@ -18,5 +18,9 @@ remove:
 
 register:
 
-	# Check MangoPress repo for examples of registering custom post types:
-	# https://github.com/manGoweb/MangoPress/tree/master/theme/schema
+	event:
+		public: true
+		label: Události
+		menu_icon: calendar-alt
+		rewrite:
+			slug: event
