@@ -1,4 +1,12 @@
 register:
 
-	# Check MangoPress repo for examples of registering custom meta fields:
-	# https://github.com/manGoweb/MangoPress/tree/master/theme/schema
+	event_start_date:
+		title: Nastavení události
+		post_type: event
+		fields:
+			start_date:
+				name: "Začátek"
+				type: date
+			end_date:
+				name: "Konec"
+				type: date
