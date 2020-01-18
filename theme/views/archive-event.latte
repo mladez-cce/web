@@ -7,9 +7,14 @@
 	{$Post|wp_content}
 
 	<ul>
-		<li>Začátek akce: {$Post->start_date}</li>
-		<li>Konec akce: {$Post->end_date}</li>
+		<li>Začátek akce: {$Post->start_date|date:'j. n. Y'}</li>
+		<li>Konec akce: {$Post->end_date|date:'j. n. Y'}</li>
 	</ul>
+
 {/each}
 
-{posts_nav_link()}
+<h2>Stránkování</h2>
+<ul>
+	<li n:if="$previous_posts_link">{$previous_posts_link|noescape}</li>
+	<li n:if="$next_posts_link">{$next_posts_link|noescape}</li>
+</ul>
