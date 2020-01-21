@@ -1,6 +1,6 @@
 register:
 
-	event_start_date:
+	event_fields:
 		title: Nastavení události
 		post_type: event
 		fields:
