@@ -13,8 +13,9 @@ define("SHOW_PAST_EVENTS_VARNAME", "show_past_events");
  * @return string
  */
 function get_current_url() {
-	global $wp;
-	return add_query_arg($wp->query_vars, home_url());
+	// Although WordPress has APIs to obtain the current URL, this seems to work most reliably,
+	// including the "nice" permalinks.
+	return "//" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 }
 
 /**
