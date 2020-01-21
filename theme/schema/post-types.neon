@@ -24,4 +24,4 @@ register:
 		label: Události
 		menu_icon: calendar-alt
 		rewrite:
-			slug: event
+			slug: udalosti
