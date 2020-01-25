@@ -1,4 +1,7 @@
 <?php
+//
+// Put your WordPress configuration here.
+//
 
 initTheme();
 

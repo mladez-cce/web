@@ -1,5 +1,7 @@
 <?php
+//
 // Template for the "archive page" of the "event" post type (this is the calendar essentially).
+//
 
 function create_anchor_tag($url, $label, $attr) {
 	return

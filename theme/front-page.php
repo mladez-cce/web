@@ -1,4 +1,8 @@
 <?php
+//
+// Template for 'Homepage' as configured in 'Settings > Reading'
+//
+// This is the actual home page of the website.
 
 $latestPosts = get_posts([
 	"orderby" => "date",
@@ -6,7 +10,6 @@ $latestPosts = get_posts([
 	"posts_per_page" => 10,
 ]);
 
-// Template for 'Homepage' as configured in 'Settings > Reading'
 view([
 	"latestPosts" => $latestPosts
 ]);

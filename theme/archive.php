@@ -1,4 +1,6 @@
 <?php
+//
+// Template for a generic "archive page", a page which lists posts.
+//
 
-// Template for an "archive page", a page which lists posts.
 view();

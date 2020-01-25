@@ -1,4 +1,6 @@
 <?php
+//
+// Template for a generic single post page
+//
 
-// Template for a single post page
 view();

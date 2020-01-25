@@ -1,4 +1,7 @@
 <?php
+//
+// Template for the single event page
+//
 
 $relatedPosts = get_posts([
 	"post_type" => "post",
@@ -8,7 +11,6 @@ $relatedPosts = get_posts([
 	"order" => "DESC",
 ]);
 
-// Template for a single event page
 view([
 	"relatedPosts" => $relatedPosts
 ]);
