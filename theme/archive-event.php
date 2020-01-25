@@ -3,12 +3,6 @@
 // Template for the "archive page" of the "event" post type (this is the calendar essentially).
 //
 
-function create_anchor_tag($url, $label, $attr) {
-	return
-		"<a href=\"" . $url . "\" " . $attr . ">" .
-			preg_replace("/&([^#])(?![a-z]{1,8};)/i", "&#038;$1", $label) . "</a>";
-}
-
 /**
  * Returns the pagination link for previous events. If upcoming events are shown and this is the
  * first page (= the nearest upcoming events), the link switches to past events.
