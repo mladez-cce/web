@@ -10,3 +10,13 @@ register:
 			end_date:
 				name: "Konec"
 				type: date
+
+	post_fields:
+		title: Nastavení aktuality
+		post_type: post
+		fields:
+			related_event:
+				name: "Související událost"
+				type: post
+				post_type: event
+				placeholder: "vyberte související událost"

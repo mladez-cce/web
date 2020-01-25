@@ -1,0 +1,17 @@
+{extends @layout.latte}
+
+{block page}
+{each}
+	<h1>{$Post|wp_title}</h1>
+	{$Post|wp_content}
+
+	{if $Post->related_event}
+		<div>
+			<strong>Související událost:</strong>
+
+			<a href="{$Post->related_event|wp_permalink}">
+				{$Post->related_event|wp_title}
+			</a>
+		</div>
+	{/if}
+{/each}
