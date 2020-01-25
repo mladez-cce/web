@@ -1,0 +1,24 @@
+{extends @layout.latte}
+
+{block page}
+{each}
+	<h1>{$Post|wp_title}</h1>
+	{$Post|wp_content}
+
+	{if $relatedPosts}
+		<h2>Související aktuality</h2>
+
+		{foreach $relatedPosts as $relatedPost}
+			<div>
+				<h3>
+					<a href="{$relatedPost|wp_permalink}">
+						{$relatedPost|wp_title}
+					</a>
+				</h3>
+				<p>
+					{$relatedPost|wp_excerpt}
+				</p>
+			</div>
+		{/foreach}
+	{/if}
+{/each}
