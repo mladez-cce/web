@@ -9,16 +9,48 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	{block styles}
 		<link rel="stylesheet" href="{$assetsPath}/styles/index.css">
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap&subset=latin-ext" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap&subset=latin-ext" rel="stylesheet">
 	{/block}
 	<title>{$title}</title>
 	{php wp_head()}
 	{php do_action(get_header)}
 </head>
 <body {php body_class()}>
-<nav>
-	{php wp_nav_menu()}
-</nav>
-<hr>
+<div class="page-header">
+	<div class="page-navbar">
+
+		<div class="page-navbar__logo">
+			<a href="/">
+				<img src="/assets/images/logo.png" alt="Mládež Českobratrské církve evangelické" />
+			</a>
+			<a href="/">
+				Evangelická<br>
+				mládež
+			</a>
+		</div>
+
+		<nav class="page-navbar__menu">
+			{php wp_nav_menu()}
+		</nav>
+
+		<div class="page-navbar__search">
+			<form>
+				<input type="text" placeholder="...a naleznete" /><input type="button" value="Hledejte..." />
+			</form>
+		</div>
+	</div>
+
+	<div class="page-header__container">
+		<div class="page-header__title">
+			<strong>Mládež</strong><br>
+			Českobratrské<br>
+			církve<br>
+			evangelické
+		</div>
+	</div>
+</div>
+
 
 {block body}
 <div class="page">

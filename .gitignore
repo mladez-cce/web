@@ -21,4 +21,9 @@
 /public/wp-content/*
 !/public/wp-content/mu-plugins
 
+# Assets
+!/public/assets
+/public/assets/*
+!/public/assets/images
+
 /vendor
