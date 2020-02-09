@@ -25,5 +25,6 @@
 !/public/assets
 /public/assets/*
 !/public/assets/images
+!/public/assets/scripts
 
 /vendor
