@@ -18,11 +18,11 @@
 </head>
 <body {php body_class()}>
 <div class="page-header">
-	<div class="page-navbar">
+	<nav class="page-navbar">
 
 		<div class="page-navbar__logo">
 			<a href="/">
-				<img src="/assets/images/logo.png" alt="Mládež Českobratrské církve evangelické" />
+				<img src="/assets/images/logo.png" alt="Mládež Českobratrské církve evangelické" title="Mládež Českobratrské církve evangelické" />
 			</a>
 			<a href="/">
 				Evangelická<br>
@@ -30,16 +30,44 @@
 			</a>
 		</div>
 
-		<nav class="page-navbar__menu">
-			{php wp_nav_menu()}
-		</nav>
+		<div class="page-navbar__hamburger">
+			<label for="toggle-nav-menu">MENU</label>
+		</div>
 
-		<div class="page-navbar__search">
-			<form>
+		<input type="checkbox" id="toggle-nav-menu" />
+
+		<div class="page-navbar__menu">
+			<ul>
+				<li><a href="#">Sample</a></li>
+				<li><a href="#">2-level DD
+						<span class="drop-icon">▾</span>
+						<label title="Toggle Drop-down" class="drop-icon" for="sm1">▾</label>
+					</a>
+					<input type="checkbox" id="sm1">
+					<ul class="sub-menu">
+						<li><a href="#">Item 2.1</a></li>
+						<li><a href="#">Item 2.2
+								<span class="drop-icon">▾</span>
+								<label title="Toggle Drop-down" class="drop-icon" for="sm2">▾</label>
+							</a>
+							<input type="checkbox" id="sm2">
+							<ul class="sub-menu">
+								<li><a href="#">Item 2.2.1</a></li>
+								<li><a href="#">Item 2.2.2</a></li>
+								<li><a href="#">Item 2.2.3</a></li>
+							</ul>
+						</li>
+						<li><a href="#">Item 3.4</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Another Sample</a></li>
+			</ul>
+
+			<form class="page-navbar__search">
 				<input type="text" placeholder="...a naleznete" /><input type="button" value="Hledejte..." />
 			</form>
 		</div>
-	</div>
+	</nav>
 
 	<div class="page-header__container">
 		<div class="page-header__title">
