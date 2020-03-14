@@ -1,4 +1,5 @@
 @import '~bootstrap/scss/bootstrap-reboot';
+@import 'icons';
 
 $font-stack: Roboto, sans-serif;
 $font-stack-funny: "Amatic SC", "Roboto Slab";
@@ -42,14 +43,32 @@ body {
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
+	position: relative;
 	padding: 20px;
+
+	@mixin menu-collapsed {
+		opacity: 0;
+		transform: translateY(-40px);
+		transform-origin: top;
+		max-height: 0;
+		overflow: hidden;
+		transition: all 0.2s;
+	}
+
+	@mixin menu-expanded {
+		opacity: 1;
+		transform: translateY(0);
+		max-height: 1600px;
+	}
 
 	&__logo {
 		display: flex;
 		align-items: center;
+		z-index: 100; // FIXME: magic value
 
 		img {
-			height: 58px;
+			height: 53px;
+			margin-right: 10px;
 		}
 
 		a {
@@ -59,33 +78,177 @@ body {
 		}
 	}
 
-	// Nav menu positioning
+	&__hamburger {
+		z-index: 100;
+		padding: 0.5rem;
 
-	position: relative;
+		label {
+			transition: all 0.2s;
+			display: block;
+			background: url("../images/navbar-hamburger.png") no-repeat center center;
+			background-size: 37px 29px;
+			width: 37px;
+			height: 29px;
+			cursor: pointer;
+			font-size: 0;
+			margin: 0;
+		}
+
+		&:hover {
+			background-color: rgba(255, 255, 255, 0.2);
+		}
+	}
+
+	input[type="checkbox"] ~ &__menu {
+		@include menu-collapsed()
+	}
+
+	input[type="checkbox"]:checked ~ &__menu {
+		@include menu-expanded()
+	}
+
+	input[type="checkbox"]:checked ~ &__hamburger {
+		label {
+			background-image: url("../images/navbar-hamburger-expanded.png");
+		}
+	}
 
 	&__menu {
 		position: absolute;
-		top: 100%;
+		top: 0;
 		left: 0;
-		z-index: 3000;
+		z-index: 99;
+		width: 100%;
+
+		background-image: url("../images/page-header-bg-yellow-top-120px.png"), url("../images/page-header-bg-yellow-pattern-120px-from-top.png");
+		background-position: center top, center 120px;
+		background-repeat: repeat-x, repeat;
+		mask-image: url("../images/navbar-mask.png");
+		mask-position: center bottom;
+
+		padding: 0 1.5rem;
+
+		// Add top & bottom "padding" to the menu to create space for the navbar and for the fuzzy bottom border.
+		&:before {
+			content: "";
+			display: block;
+			height: 100px; // FIXME: Margin top is a magic value; use variable for menu height
+		}
+		&:after {
+			content: "";
+			display: block;
+			height: 60px;
+		}
+
+		ul {
+			margin: 0;
+			padding: 0;
+
+			ul {
+				background-color: rgba(255, 255, 255, 0.2);
+				margin-left: 1.5rem;
+				font-size: 0.9rem;
+				margin-top: -1px; // To shrink the border in between.
+			}
+		}
+
+		li {
+			list-style-type: none;
+		}
+
+		a {
+			display: block;
+			position: relative;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+			color: black;
+			padding: 1rem;
+			outline: 0;
+
+			label {
+				$icon-size: 1.8rem;
+				position: absolute;
+				top: 50%;
+				right: 0.1rem;
+				margin: -($icon-size / 2) 0 0;
+				padding-left: 0.2rem;
+				font-size: 0;
+				border-left: 1px solid rgba(0, 0, 0, 0.3);
+				cursor: pointer;
+
+				&:after {
+					content: "";
+					display: block;
+					@include icon_chevron_right();
+					background-size: $icon-size $icon-size;
+					width: $icon-size;
+					height: $icon-size;
+					transition: transform 0.3s;
+				}
+			}
+
+		}
+
+		li:first-child a {
+			border-top: 1px solid rgba(0, 0, 0, 0.3);
+		}
+
+		a:hover {
+			text-decoration: none;
+			background-color: rgba(255, 255, 255, 0.2);
+		}
+
+		input[type="checkbox"]:checked + a {
+			background-color: rgba(255, 255, 255, 0.2); // FIXME: Use variable
+
+			label {
+				&:after {
+					transform: rotate(90deg);
+				}
+			}
+		}
+
+		input[type="checkbox"] ~ ul {
+			@include menu-collapsed()
+		}
+
+		input[type="checkbox"]:checked ~ ul {
+			@include menu-expanded()
+		}
+
+		// Search (also part of the menu)
+
+		&__search {
+			width: 100%;
+			border: 1px solid black;
+			display: flex;
+			margin-top: 1rem;
+
+			input {
+				border: 0;
+				padding: 0.7rem 1rem;
+			}
+
+			input[type="text"] {
+				flex-grow: 1;
+				min-width: auto;
+			}
+
+			input[type="text"]::placeholder {
+				font-weight: 300;
+			}
+
+			input[type="button"] {
+				width: 100px;
+				background-color: black;
+				color: white;
+				font-weight: 700;
+			}
+		}
 	}
 
-	// Nav menu mechanics
-
+	// Necessary menu mechanics
 	input[type="checkbox"] {
 		display: none;
-	}
-	input[type="checkbox"] + * {
-		display:none
-	}
-	input[type="checkbox"]:checked + * {
-		display:block
-	}
-
-	// Nav menu visuals
-
-	&__menu {
-		background-color: white;
 	}
 }
 

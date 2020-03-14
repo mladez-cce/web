@@ -1,0 +1,21 @@
+//
+// Google Material Icons
+// https://material.io/resources/icons
+//
+// How to add a new icon:
+//
+//   1.  Download it from the website as SVG
+//   2.  Base64 encode the contents (this seems to be the safest option)
+//   3.  Add it here as a new mixin
+//
+
+
+@mixin icon {
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+@mixin icon_chevron_right {
+	@include icon();
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0Ij48cGF0aCBkPSJNMTAgNkw4LjU5IDcuNDEgMTMuMTcgMTJsLTQuNTggNC41OUwxMCAxOGw2LTZ6Ii8+PHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjwvc3ZnPgo=");
+}
