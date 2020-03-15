@@ -39,12 +39,18 @@ body {
 }
 
 .page-navbar {
+	$navbar-height: 100px;
+	$active-background: rgba(255, 255, 255, 0.2);
+	$menu-separator-border: 1px solid rgba(0, 0, 0, 0.3);
+	$menu-z-index: 100;
+
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
 	position: relative;
-	padding: 20px;
+	height: $navbar-height;
+	padding: 0 1.5rem;
 
 	@mixin menu-collapsed {
 		opacity: 0;
@@ -64,7 +70,7 @@ body {
 	&__logo {
 		display: flex;
 		align-items: center;
-		z-index: 100; // FIXME: magic value
+		z-index: $menu-z-index + 1;
 
 		img {
 			height: 53px;
@@ -79,7 +85,7 @@ body {
 	}
 
 	&__hamburger {
-		z-index: 100;
+		z-index: $menu-z-index + 1;
 		padding: 0.5rem;
 
 		label {
@@ -95,7 +101,7 @@ body {
 		}
 
 		&:hover {
-			background-color: rgba(255, 255, 255, 0.2);
+			background-color: $active-background;
 		}
 	}
 
@@ -117,8 +123,9 @@ body {
 		position: absolute;
 		top: 0;
 		left: 0;
-		z-index: 99;
+		z-index: $menu-z-index;
 		width: 100%;
+		padding: 0 1.5rem;
 
 		background-image: url("../images/page-header-bg-yellow-top-120px.png"), url("../images/page-header-bg-yellow-pattern-120px-from-top.png");
 		background-position: center top, center 120px;
@@ -126,13 +133,13 @@ body {
 		mask-image: url("../images/navbar-mask.png");
 		mask-position: center bottom;
 
-		padding: 0 1.5rem;
-
-		// Add top & bottom "padding" to the menu to create space for the navbar and for the fuzzy bottom border.
+		// Add top & bottom "padding" to the menu to create space for the navbar
+		// and for the fuzzy bottom border. Standard padding doesn't work well with
+		// max-height which is used to collapsing / expanding the menu
 		&:before {
 			content: "";
 			display: block;
-			height: 100px; // FIXME: Margin top is a magic value; use variable for menu height
+			height: $navbar-height;
 		}
 		&:after {
 			content: "";
@@ -145,7 +152,7 @@ body {
 			padding: 0;
 
 			ul {
-				background-color: rgba(255, 255, 255, 0.2);
+				background-color: $active-background;
 				margin-left: 1.5rem;
 				font-size: 0.9rem;
 				margin-top: -1px; // To shrink the border in between.
@@ -159,7 +166,7 @@ body {
 		a {
 			display: block;
 			position: relative;
-			border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+			border-bottom: $menu-separator-border;
 			color: black;
 			padding: 1rem;
 			outline: 0;
@@ -172,7 +179,7 @@ body {
 				margin: -($icon-size / 2) 0 0;
 				padding-left: 0.2rem;
 				font-size: 0;
-				border-left: 1px solid rgba(0, 0, 0, 0.3);
+				border-left: $menu-separator-border;
 				cursor: pointer;
 
 				&:after {
@@ -189,16 +196,16 @@ body {
 		}
 
 		li:first-child a {
-			border-top: 1px solid rgba(0, 0, 0, 0.3);
+			border-top: $menu-separator-border;
 		}
 
 		a:hover {
 			text-decoration: none;
-			background-color: rgba(255, 255, 255, 0.2);
+			background-color: $active-background;
 		}
 
 		input[type="checkbox"]:checked + a {
-			background-color: rgba(255, 255, 255, 0.2); // FIXME: Use variable
+			background-color: $active-background;
 
 			label {
 				&:after {
