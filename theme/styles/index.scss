@@ -1,5 +1,5 @@
-@import '~bootstrap/scss/bootstrap-reboot';
-@import 'icons';
+@import "~bootstrap/scss/bootstrap-reboot";
+@import "icons";
 
 $font-stack: Roboto, sans-serif;
 $font-stack-funny: "Amatic SC", "Roboto Slab";
@@ -13,7 +13,8 @@ body {
 .page-header {
 	width: 100%;
 	height: 600px;
-	background-image: url("../images/page-header-bg-blue.png"), url("../images/page-header-bg-yellow.png");
+	background-image: url("../images/page-header-bg-blue.png"),
+		url("../images/page-header-bg-yellow.png");
 	background-position: center 40px, center top;
 	background-repeat: repeat-x, repeat-x;
 
@@ -30,7 +31,7 @@ body {
 		text-align: right;
 		letter-spacing: -1px;
 		line-height: 1.2;
-		text-shadow: 2px 2px 8px rgba(255,255,255, 0.6);
+		text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.6);
 
 		strong {
 			font-size: 128px;
@@ -106,11 +107,11 @@ body {
 	}
 
 	input[type="checkbox"] ~ &__menu {
-		@include menu-collapsed()
+		@include menu-collapsed();
 	}
 
 	input[type="checkbox"]:checked ~ &__menu {
-		@include menu-expanded()
+		@include menu-expanded();
 	}
 
 	input[type="checkbox"]:checked ~ &__hamburger {
@@ -127,14 +128,15 @@ body {
 		width: 100%;
 		padding: 0 1.5rem;
 
-		background-image: url("../images/page-header-bg-yellow-top-120px.png"), url("../images/page-header-bg-yellow-pattern-120px-from-top.png");
+		background-image: url("../images/page-header-bg-yellow-top-120px.png"),
+			url("../images/page-header-bg-yellow-pattern-120px-from-top.png");
 		background-position: center top, center 120px;
 		background-repeat: repeat-x, repeat;
 		mask-image: url("../images/navbar-mask.png");
 		mask-position: center bottom;
 
-		// Add top & bottom "padding" to the menu to create space for the navbar
-		// and for the fuzzy bottom border. Standard padding doesn't work well with
+		// Add top & bottom "padding" to the menu to create space for the navbar and
+		// for the fuzzy bottom border. Standard padding doesn't work well with
 		// max-height which is used to collapsing / expanding the menu
 		&:before {
 			content: "";
@@ -192,7 +194,6 @@ body {
 					transition: transform 0.3s;
 				}
 			}
-
 		}
 
 		li:first-child a {
@@ -215,11 +216,11 @@ body {
 		}
 
 		input[type="checkbox"] ~ ul {
-			@include menu-collapsed()
+			@include menu-collapsed();
 		}
 
 		input[type="checkbox"]:checked ~ ul {
-			@include menu-expanded()
+			@include menu-expanded();
 		}
 
 		// Search (also part of the menu)
@@ -264,4 +265,3 @@ body {
 	margin: 0 auto;
 	min-height: 2000px;
 }
-

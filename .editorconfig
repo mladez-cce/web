@@ -10,3 +10,6 @@ trim_trailing_whitespace = true
 
 [*.{json,yml,yaml}]
 indent_style = space
+
+[*.scss]
+max_line_length = 80
