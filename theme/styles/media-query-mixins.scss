@@ -1,0 +1,11 @@
+// The horizontal menu is fairly big so let's give it enough space. 1200px is
+// still fine as most laptops will comfortably match.
+$break-point: 1200px;
+
+@mixin media-large-screen {
+	@media (min-width: $break-point) { @content; }
+}
+
+@mixin media-small-screen {
+	@media (max-width: ($break-point - 0.02)) { @content; }
+}
