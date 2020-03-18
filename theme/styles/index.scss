@@ -108,6 +108,11 @@ body {
 		align-items: center;
 		z-index: $top-sheet-z-index + 1;
 		width: $logo-width;
+		padding: 0.5rem 0;
+
+		&:hover {
+			background-color: $active-background;
+		}
 
 		img {
 			height: 53px;
@@ -118,6 +123,10 @@ body {
 			font-size: 20px;
 			font-weight: 500;
 			color: black;
+		}
+
+		a:hover {
+			text-decoration: none;
 		}
 	}
 
@@ -187,6 +196,7 @@ body {
 			display: block;
 			color: black;
 			padding: 1rem;
+			font-weight: 300;
 			outline: 0;
 
 			@include media-small-screen() {
