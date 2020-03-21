@@ -1,7 +1,8 @@
 {extends @layout.latte}
 
-{block page}
-<h1>Kalendář</h1>
+{block page-title}Události{/block}
+
+{block page-content}
 {each}
 	<h2><a href="{$Post|wp_permalink}">{$Post|wp_title}</a></h2>
 	{$Post|wp_content}
