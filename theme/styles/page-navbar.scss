@@ -41,7 +41,7 @@
 		&:after {
 			content: "";
 			display: block;
-			height: 60px;
+			height: 40px;
 			clear: both;
 		}
 	}
@@ -59,6 +59,18 @@
 		opacity: 1;
 		transform: translateY(0);
 		max-height: 1600px;
+	}
+
+	// Add background to the navbar. As we're using the mask trick to create
+	// the fuzzy bottom border, we can't apply the background directly to the
+	// navbar as the mask would prevent the expanding menu from being shown.
+	&:before {
+		@include top-sheet();
+		content: "";
+		display: block;
+		height: $navbar-height;
+		padding-bottom: 10px; // For the fuzzy border.
+		box-sizing: content-box;
 	}
 
 	&__logo {
@@ -367,6 +379,14 @@
 
 	// Necessary menu mechanics
 	input[type="checkbox"] {
+		display: none;
+	}
+}
+
+.page-jumbotron-header .page-navbar {
+	// Hide the navbar background if it navbar is part of the jumbotron header
+	// which provides the background on its own.
+	&:before {
 		display: none;
 	}
 }
