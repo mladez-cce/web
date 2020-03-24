@@ -1,9 +1,36 @@
 @import "media-query-mixins";
 
+// Responsive navbar with the logo, the multi-level navigation menu and the
+// search form.
+//
+// The multi-level expandable menu does not rely on any JavaScript. It's pure
+// CSS. This is challenging for mobile devices where the menu expands and
+// collapses upon user touch and we need to maintain the actual menu state
+// (the simple :hover selector is not enough).
+//
+// We use a small clever trick with a hidden checkbox. This is the tl;dr of how
+// it works:
+//
+//   input[type="checkbox"] ~ .menu {
+//     display: none;
+//   }
+//
+//   input[type="checkbox"]:checked ~ .menu {
+//     display: block;
+//   }
+//
+// The "tilde" selector here selects subsequent sibling elements with the .menu
+// class. Basically, if the checkbox is checked, the menu next to it is shown.
+//
+// The actual checkbox is completely hidden and the user interacts with it via
+// a linked <label />.
+//
+// The idea comes from this article:
+// https://w3bits.com/css-responsive-nav-menu/
 .page-navbar {
 	$navbar-height: 100px;
 	$logo-width: 200px;
-	$active-background: rgba(255, 255, 255, 0.2);
+	$active-background: rgba(255, 255, 255, 0.2); // For :hover effects etc.
 	$menu-separator-border: 1px solid rgba(0, 0, 0, 0.3);
 	$top-sheet-z-index: 100;
 
@@ -14,6 +41,8 @@
 	position: relative;
 	height: $navbar-height;
 
+	// The navbar padding is responsive and needs to be applied also to absolutely
+	// positioned submenus. Having it as a mixin achieves that.
 	@mixin navbar-padding {
 		padding: 0 1.5rem;
 
@@ -24,6 +53,10 @@
 
 	@include navbar-padding();
 
+	// "Top sheet" is an absolutely positioned full-width yellow block with a
+	// "fuzzy" bottom border that can slide down from top. Depending on a
+	// situation, we need to turn various elements into a top sheet which is why
+	// it is defined as a mixin.
 	@mixin top-sheet {
 		position: absolute;
 		top: 0;
@@ -33,18 +66,20 @@
 
 		@include navbar-padding();
 
+		// Use repeated yellow brush pattern that is aligned with the navbar on top.
+		// It expands from the top in all directions and we use a small trick with
+		// a mask to create a "fuzzy" border effect at the bottom without any seems.
 		background-image: url("../images/page-header-bg-yellow-top-120px.png"),
-		url("../images/page-header-bg-yellow-pattern-120px-from-top.png");
+			url("../images/page-header-bg-yellow-pattern-120px-from-top.png");
 		background-position: center top, center 120px;
 		background-repeat: repeat-x, repeat;
 
-		// TODO: Add vendor prefixes to make this work in Chrome
 		mask-image: url("../images/navbar-mask.png");
 		mask-position: center bottom;
 
 		// Add top & bottom "padding" to the sheet to create space for the navbar
 		// and for the fuzzy bottom border. Standard padding doesn't work well
-		// with max-height which is used to collapsing / expanding the menu
+		// with max-height which is used for collapsing / expanding the menu
 		&:before {
 			content: "";
 			display: block;
@@ -58,6 +93,10 @@
 		}
 	}
 
+	// Collapses the top sheet with an animation. As display property cannot be
+	// animated, we use the max-height trick with overflow:hidden to hide the
+	// sheet from the screen. We add opacity and a little "slide down" effect via
+	// translateY to make the animation more subtle.
 	@mixin top-sheet-collapsed {
 		opacity: 0;
 		transform: translateY(-40px);
@@ -67,6 +106,7 @@
 		transition: all 0.2s;
 	}
 
+	// Expands the top sheet with an animation.
 	@mixin top-sheet-expanded {
 		opacity: 1;
 		transform: translateY(0);
@@ -77,6 +117,8 @@
 	// the fuzzy bottom border, we can't apply the background directly to the
 	// navbar as the mask would prevent the expanding menu from being shown.
 	&:before {
+		// The navbar is a yellow stripe at the top of the screen. It's essentially
+		// a "peeking" top sheet.
 		@include top-sheet();
 		content: "";
 		display: block;
@@ -88,9 +130,11 @@
 	&__logo {
 		display: flex;
 		align-items: center;
-		z-index: $top-sheet-z-index + 1;
 		width: $logo-width;
 		padding: 0.5rem 0;
+
+		// Make the logo visible over the top sheet that slides down from the top.
+		z-index: $top-sheet-z-index + 1;
 
 		&:hover {
 			background-color: $active-background;
@@ -112,10 +156,16 @@
 		}
 	}
 
+	// A "hamburger" button that activates the menu on mobile devices. It is
+	// hidden on desktops.
 	&__hamburger {
-		z-index: $top-sheet-z-index + 1;
 		padding: 0.5rem;
 
+		// Make the hamburger visible over the top sheet that slides down from the
+		// top.
+		z-index: $top-sheet-z-index + 1;
+
+		// Label which is linked to the checkbox toggling the menu.
 		label {
 			display: block;
 			background: url("../images/navbar-hamburger.png") no-repeat center center;
@@ -136,6 +186,7 @@
 		}
 	}
 
+	// The menu mechanics. If the checkbox is checked, the menu is shown.
 	@include for-tablets-and-smaller {
 		input[type="checkbox"] ~ &__menu {
 			@include top-sheet-collapsed();
@@ -152,11 +203,22 @@
 		}
 	}
 
+	// This is a hidden checkbox which activates the corresponding menus. It is
+	// toggled via a label, so it doesn't have to be visible
+	input[type="checkbox"] {
+		display: none;
+	}
+
+	// The top level menu (which includes the search form as well).
 	&__menu {
+
+		// On small screens, it is a hidden top sheet which slides down.
 		@include for-tablets-and-smaller {
 			@include top-sheet();
 		}
 
+		// On large screens, it is part of the horizontal navbar and only
+		// additional sub-menus slide down if activated.
 		@include for-desktops-and-larger {
 			flex-grow: 1;
 			display: flex;
@@ -181,6 +243,8 @@
 			outline: 0;
 
 			@include for-tablets-and-smaller() {
+				// The menu is vertical on small screens, so we separate the items using
+				// horizontal lines.
 				border-bottom: $menu-separator-border;
 			}
 		}
@@ -197,7 +261,7 @@
 		}
 
 		//
-		// Top-level menu
+		// Top-level menu (the actual menu items).
 		//
 
 		& > &__items-container {
@@ -205,17 +269,22 @@
 				flex-grow: 1;
 
 				& > ul {
+					// On large screens, the menu items are placed horizontally inside the
+					// navbar.
 					display: flex;
 					flex-direction: row;
 				}
 			}
 
+			// A top-level menu item.
 			& > ul > li > a {
-				// For positioning the label & setting z-index.
+
+				// Enable absolute positioning of the inner label & setting z-index.
 				position: relative;
 
-				// Label which is linked to the checkbox activating the sub menu. We
-				// display a chevron icon in it which rotates up activation.
+				// Label which is linked to the checkbox activating the corresponding
+				// submenu. We display a chevron icon in it which rotates upon
+				// activation.
 				label {
 					font-size: 0;
 					cursor: pointer;
@@ -227,6 +296,9 @@
 					}
 				}
 
+				// On small screens (which are expected to be touch enabled), the
+				// top-level menu is vertical and the chevron button activating the
+				// corresponding submenu is aligned to the right of the menu item box.
 				@include for-tablets-and-smaller() {
 					label {
 						$icon-size: 1.8rem;
@@ -246,6 +318,9 @@
 					}
 				}
 
+				// On big screens, the top-level menu is horizontal and the chevron is
+				// not a button but merely an indicator of nesting which is displayed in
+				// line, next to the menu item text.
 				@include for-desktops-and-larger() {
 					z-index: $top-sheet-z-index + 1;
 
@@ -262,18 +337,21 @@
 							background-size: $icon-size $icon-size;
 							width: $icon-size;
 							height: $icon-size;
+							// Chevron down.
 							transform: rotate(90deg);
 						}
 					}
 				}
 			}
 
+			// On small screens,
 			@include for-tablets-and-smaller() {
 				input[type="checkbox"]:checked + a {
 					background-color: $active-background;
 
 					label {
 						&:after {
+							// Chevron right to chevron down.
 							transform: rotate(90deg);
 						}
 					}
@@ -286,6 +364,8 @@
 
 					label {
 						&:after {
+							// Chevron down to chevron up. We rotate also on the Y axis to
+							// create a nice spinning animation.
 							transform: rotate(90deg) rotateY(180deg);
 						}
 					}
@@ -293,16 +373,24 @@
 			}
 		}
 
+		// The sub menu mechanics.
 		input[type="checkbox"] ~ &__items-container {
 			@include top-sheet-collapsed();
 		}
 
+		// On smaller devices, the submenu is activated via the checkbox trick just
+		// like the top-level menu.
 		@include for-tablets-and-smaller() {
 			input[type="checkbox"]:checked ~ &__items-container {
+				// Note that even though the submenu on smaller devices is no longer a
+				// dedicated top sheet (it is simply nested into the expanded existing
+				// sheet), we still (mis)use the sheet mixins for the animations.
 				@include top-sheet-expanded();
 			}
 		}
 
+		// On larger devices, the submenu is activated when the user hovers over the
+		// corresponding menu item.
 		@include for-desktops-and-larger() {
 			li:hover > input[type="checkbox"] ~ &__items-container {
 				@include top-sheet-expanded();
@@ -320,16 +408,25 @@
 				padding: 0.8rem;
 			}
 
+			// On small screens, the submenu is a simple vertical list, nested into
+			// the expanded existing sheet.
 			@include for-tablets-and-smaller() {
 				background-color: $active-background;
 				margin-left: 1.5rem;
-				margin-top: -1px; // To shrink the border in between.
+
+				// Shrink the border in between the menu item and the corresponding
+				// submenu.
+				margin-top: -1px;
 			}
 
+			// On large screens, the submenu is a hidden top sheet which slides down
+			// and the menu items are organized into several columns using a flex
+			// container.
 			@include for-desktops-and-larger() {
 				@include top-sheet();
 
 				ul {
+					// Horizontally align the menu items with the logo.
 					margin-left: $logo-width;
 					display: flex;
 					flex-direction: column;
@@ -345,17 +442,36 @@
 			}
 		}
 
-		// TODO: block additional menu layer
+		// Another level of nesting is not supported. So let's hide the menu and
+		// show a warning in case somebody accidentally adds another submenu in
+		// Wordpress.
+		& > &__items-container > ul > li > &__items-container > ul ul {
+			> * {
+				display: none;
+			}
+
+			&:after {
+				display: inline-block;
+				content: "Další úroveň menu není podporována!";
+				font-weight: bold;
+				color: white;
+				background-color: red;
+				padding: 0.5rem;
+			}
+		}
 
 		//
 		// Search (also part of the menu)
 		//
 
 		&__search {
-			width: 100%;
 			border: 1px solid black;
 			display: flex;
-			margin-top: 1rem;
+
+			@include for-tablets-and-smaller() {
+				width: 100%;
+				margin-top: 1rem;
+			}
 
 			@include for-desktops-and-larger() {
 				width: 300px;
@@ -384,11 +500,6 @@
 				font-weight: 700;
 			}
 		}
-	}
-
-	// Necessary menu mechanics
-	input[type="checkbox"] {
-		display: none;
 	}
 }
 
