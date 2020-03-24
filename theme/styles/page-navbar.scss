@@ -11,7 +11,16 @@
 	justify-content: space-between;
 	position: relative;
 	height: $navbar-height;
-	padding: 0 1.5rem;
+
+	@mixin navbar-padding {
+		padding: 0 1.5rem;
+
+		@media (min-width: 1400px) {
+			padding: 2rem 5rem 1rem 5rem;
+		}
+	}
+
+	@include navbar-padding();
 
 	@mixin top-sheet {
 		position: absolute;
@@ -19,7 +28,8 @@
 		left: 0;
 		z-index: $top-sheet-z-index;
 		width: 100%;
-		padding: 0 1.5rem; // TODO: Refactor into a variable
+
+		@include navbar-padding();
 
 		background-image: url("../images/page-header-bg-yellow-top-120px.png"),
 		url("../images/page-header-bg-yellow-pattern-120px-from-top.png");
@@ -317,9 +327,8 @@
 			@include media-large-screen() {
 				@include top-sheet();
 
-				padding-left: $logo-width;
-
 				ul {
+					margin-left: $logo-width;
 					display: flex;
 					flex-direction: column;
 					flex-wrap: wrap;
@@ -328,8 +337,6 @@
 					max-height: 250px;
 
 					li {
-						// To align it with the top-level menu.
-						margin-left: 1.5rem;
 						width: 250px;
 					}
 				}
