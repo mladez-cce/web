@@ -1,3 +1,5 @@
+@import "media-query-mixins";
+
 .page-navbar {
 	$navbar-height: 100px;
 	$logo-width: 200px;
@@ -15,7 +17,7 @@
 	@mixin navbar-padding {
 		padding: 0 1.5rem;
 
-		@media (min-width: 1400px) {
+		@include for-big-desktops-and-larger {
 			padding: 2rem 5rem 1rem 5rem;
 		}
 	}
@@ -129,12 +131,12 @@
 			background-color: $active-background;
 		}
 
-		@include media-large-screen {
+		@include for-desktops-and-larger {
 			display: none;
 		}
 	}
 
-	@include media-small-screen {
+	@include for-tablets-and-smaller {
 		input[type="checkbox"] ~ &__menu {
 			@include top-sheet-collapsed();
 		}
@@ -151,11 +153,11 @@
 	}
 
 	&__menu {
-		@include media-small-screen {
+		@include for-tablets-and-smaller {
 			@include top-sheet();
 		}
 
-		@include media-large-screen {
+		@include for-desktops-and-larger {
 			flex-grow: 1;
 			display: flex;
 			flex-direction: row;
@@ -178,7 +180,7 @@
 			font-weight: 300;
 			outline: 0;
 
-			@include media-small-screen() {
+			@include for-tablets-and-smaller() {
 				border-bottom: $menu-separator-border;
 			}
 		}
@@ -189,7 +191,7 @@
 		}
 
 		li:first-child a {
-			@include media-small-screen() {
+			@include for-tablets-and-smaller() {
 				border-top: $menu-separator-border;
 			}
 		}
@@ -199,7 +201,7 @@
 		//
 
 		& > &__items-container {
-			@include media-large-screen() {
+			@include for-desktops-and-larger() {
 				flex-grow: 1;
 
 				& > ul {
@@ -225,7 +227,7 @@
 					}
 				}
 
-				@include media-small-screen() {
+				@include for-tablets-and-smaller() {
 					label {
 						$icon-size: 1.8rem;
 						position: absolute;
@@ -244,7 +246,7 @@
 					}
 				}
 
-				@include media-large-screen() {
+				@include for-desktops-and-larger() {
 					z-index: $top-sheet-z-index + 1;
 
 					label {
@@ -266,7 +268,7 @@
 				}
 			}
 
-			@include media-small-screen() {
+			@include for-tablets-and-smaller() {
 				input[type="checkbox"]:checked + a {
 					background-color: $active-background;
 
@@ -278,7 +280,7 @@
 				}
 			}
 
-			@include media-large-screen() {
+			@include for-desktops-and-larger() {
 				li:hover > input[type="checkbox"] + a {
 					background-color: $active-background;
 
@@ -295,13 +297,13 @@
 			@include top-sheet-collapsed();
 		}
 
-		@include media-small-screen() {
+		@include for-tablets-and-smaller() {
 			input[type="checkbox"]:checked ~ &__items-container {
 				@include top-sheet-expanded();
 			}
 		}
 
-		@include media-large-screen() {
+		@include for-desktops-and-larger() {
 			li:hover > input[type="checkbox"] ~ &__items-container {
 				@include top-sheet-expanded();
 			}
@@ -318,13 +320,13 @@
 				padding: 0.8rem;
 			}
 
-			@include media-small-screen() {
+			@include for-tablets-and-smaller() {
 				background-color: $active-background;
 				margin-left: 1.5rem;
 				margin-top: -1px; // To shrink the border in between.
 			}
 
-			@include media-large-screen() {
+			@include for-desktops-and-larger() {
 				@include top-sheet();
 
 				ul {
@@ -355,7 +357,7 @@
 			display: flex;
 			margin-top: 1rem;
 
-			@include media-large-screen() {
+			@include for-desktops-and-larger() {
 				width: 300px;
 				margin-top: 0;
 				z-index: $top-sheet-z-index + 1;
