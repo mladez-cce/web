@@ -37,40 +37,30 @@
 		</div>
 
 		<div class="page-navbar__menu">
-			<div class="page-navbar__menu__items-container">
-				<ul>
-					<li><a href="#">Kalendář</a></li>
-					<li><a href="#">Aktuálně</a></li>
-					<li><a href="#">Oddělení mládeže</a></li>
-					<li><a href="#">COM</a></li>
-					<li>
-						<input type="checkbox" id="sm1">
-						<a href="#">
-							SOMy
-							<label title="Aktivovat podmenu" for="sm1">Aktivovat podmenu</label>
-						</a>
-						<div class="page-navbar__menu__items-container">
-							<ul>
-								<li><a href="#">Pražský</a></li>
-								<li><a href="#">Poděbradský</a></li>
-								<li><a href="#">Jihočeský</a></li>
-								<li><a href="#">Západočeský</a></li>
-								<li><a href="#">Ústecký</a></li>
-								<li><a href="#">Liberecký</a></li>
-								<li><a href="#">Královéhradecký</a></li>
-								<li><a href="#">Chrudimský</a></li>
-								<li><a href="#">Poličský</a></li>
-								<li><a href="#">Horácký</a></li>
-								<li><a href="#">Brněnský</a></li>
-								<li><a href="#">Východomoravský</a></li>
-								<li><a href="#">Moravskoslezský</a></li>
-								<li><a href="#">Ochranovský</a></li>
-							</ul>
-						</div>
-					</li>
-					<li><a href="#">Kontakt</a></li>
-				</ul>
-			</div>
+			{var $menu = get_structured_menu("Primary")}
+
+			{block wp-menu}
+				<div class="page-navbar__menu__items-container">
+					<ul>
+						{foreach $menu as $item}
+							<li>
+								{if $item->submenu}
+									{var $submenuId = "sm" . $item->id}
+									{* The hidden checkbox to activate the submenu. Check the menu CSS file for more info. *}
+									<input type="checkbox" n:attr="id => $submenuId">
+									<a n:attr="href => $item->url">
+										{$item->label}
+										<label title="Aktivovat podmenu" n:attr="for => $submenuId">Aktivovat podmenu</label>
+									</a>
+									{include wp-menu, menu => $item->submenu}
+								{else}
+									<a n:attr="href => $item->url">{$item->label}</a>
+								{/if}
+							</li>
+						{/foreach}
+					</ul>
+				</div>
+			{/block}
 
 			<form class="page-navbar__menu__search">
 				<input type="text" placeholder="...a naleznete" size="1" /><input type="button" value="Hledejte..." />
