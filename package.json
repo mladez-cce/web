@@ -5,21 +5,21 @@
 		"build-sass-dev": "node-sass --importer=node_modules/node-sass-tilde-importer theme/styles/index.scss --output-style expanded --source-map true --source-map-contents true --precision 6 public/assets/styles/index.css",
 		"build-sass": "node-sass --importer=node_modules/node-sass-tilde-importer theme/styles/index.scss public/assets/styles/index.css",
 		"build-css-dev": "npm run build-sass-dev && postcss public/assets/styles/index.css --use autoprefixer --replace",
-    "build-css": "npm run build-sass && postcss public/assets/styles/index.css --use autoprefixer cssnano --replace --no-map",
-    "watch-css": "watch 'npm run build-css-dev' theme/styles"
+		"build-css": "npm run build-sass && postcss public/assets/styles/index.css --use autoprefixer cssnano --replace --no-map",
+		"watch-css": "watch 'npm run build-css-dev' theme/styles"
 	},
 	"dependencies": {
 		"bootstrap": "^4.4.1",
 		"npm-check": "^5.9.0"
 	},
 	"devDependencies": {
-		"autoprefixer": "^9.7.4",
+		"autoprefixer": "^9.7.5",
 		"cssnano": "^4.1.10",
 		"node-sass": "^4.13.0",
 		"node-sass-tilde-importer": "^1.0.2",
 		"postcss": "^7.0.27",
 		"postcss-cli": "^7.1.0",
-		"prettier": "1.19.1",
+		"prettier": "^2.0.2",
 		"watch": "^1.0.2"
 	}
 }
