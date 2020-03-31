@@ -15,8 +15,8 @@ function get_previous_posts_link_for_events($label = NULL) {
 
 	if ($previous_posts_link === NULL && !show_past_events()) {
 		$previous_posts_link =
-			create_anchor_tag(
-				add_query_arg(SHOW_PAST_EVENTS_VARNAME, true, get_current_url()),
+			wml_create_anchor_tag(
+				add_query_arg(SHOW_PAST_EVENTS_VARNAME, true, wml_get_current_url()),
 				$label,
 				apply_filters("next_posts_link_attributes", ""));
 	}
@@ -36,8 +36,8 @@ function get_next_posts_link_for_events($label = NULL) {
 
 	if ($next_posts_link === NULL && show_past_events()) {
 		$next_posts_link =
-			create_anchor_tag(
-				add_query_arg(SHOW_PAST_EVENTS_VARNAME, false, get_current_url()),
+			wml_create_anchor_tag(
+				add_query_arg(SHOW_PAST_EVENTS_VARNAME, false, wml_get_current_url()),
 				$label,
 				apply_filters("next_posts_link_attributes", ""));
 	}

@@ -4,7 +4,7 @@
  * Returns the current complete URL address just as it's shown in the URL bar.
  * @return string
  */
-function get_current_url() {
+function wml_get_current_url() {
 	// Although WordPress has APIs to obtain the current URL, this seems to work most reliably,
 	// including the "nice" permalinks.
 	return "//" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
@@ -18,7 +18,7 @@ function get_current_url() {
  * @param string $attr
  * @return string
  */
-function create_anchor_tag($url, $label, $attr) {
+function wml_create_anchor_tag($url, $label, $attr) {
 	return
 		"<a href=\"" . $url . "\" " . $attr . ">" .
 		preg_replace("/&([^#])(?![a-z]{1,8};)/i", "&#038;$1", $label) . "</a>";

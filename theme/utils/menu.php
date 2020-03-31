@@ -34,7 +34,7 @@ class MenuItem {
  * @param array $args
  * @return MenuItem[]
  */
-function get_structured_menu($menu, $args = []) {
+function wml_get_structured_menu($menu, $args = []) {
 	$wp_items = wp_get_nav_menu_items($menu, $args);
 
 	$menu = [];
