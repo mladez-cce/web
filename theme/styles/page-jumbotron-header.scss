@@ -3,31 +3,84 @@
 @import "media-query-mixins";
 
 .page-jumbotron-header {
-	width: 100%;
 	height: 600px;
 	background-image: url("../images/page-header-bg-blue.png"),
-	url("../images/page-header-bg-yellow.png");
+	  url("../images/page-header-bg-yellow.png");
 	background-position: center 40px, center top;
 	background-repeat: repeat-x, repeat-x;
 
-	&__container {
-		height: 350px;
+	// By default we optimize for small screens and show the boat bellow the
+	// jumbotron text.
 
-		margin: 0 auto;
-		background: url("../images/page-header-bg-boat.png") center center no-repeat;
+	h1 {
+		font-family: $secondary-font-family;
+		text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.6);
+		letter-spacing: -1px;
+		text-align: center;
+		line-height: 1;
+		margin: 0;
+		padding-top: 50px;
 	}
 
 	&__title {
-		font-family: $secondary-font-family;
-		font-size: 50px;
-		width: 50%;
-		text-align: right;
-		letter-spacing: -1px;
-		line-height: 1.2;
-		text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.6);
+		font-size: 120px;
+		font-weight: bold;
+		display: block;
+	}
 
-		strong {
+	&__subtitle {
+		font-size: 40px;
+		font-weight: normal;
+		max-width: 300px; // To wrap the subtitle to multiple lines
+		margin: 0 auto;
+		display: block;
+	}
+
+	&__boat {
+		background: url("../images/page-header-bg-boat.png") center center no-repeat;
+		height: 237px;
+		// Move the boat up a little to overlap the text above
+		position: relative;
+		top: -28px;
+	}
+
+	// On bigger screens with enough space, we show the boat to the right of the
+	// jumbotron text.
+	@include for-tablets-and-larger {
+		$boat-z-index: 0;
+		position: relative; // To position the boat absolutely
+
+		h1 {
+			padding-top: 30px;
+
+			// Align the text to the right with center line.
+			padding-right: 50%;
+			text-align: right;
+
+			// Put the text over the boat and waves.
+			position: relative;
+			z-index: $boat-z-index + 1;
+		}
+
+		&__title {
 			font-size: 128px;
+		}
+
+		&__subtitle {
+			font-size: 50px;
+			line-height: 1.2;
+			max-width: 200px; // To wrap the subtitle to multiple lines
+			margin: 0;
+			float: right;
+		}
+
+		&__boat {
+			width: 100%;
+			position: absolute;
+			top: 200px;
+			// Move the boat off-center to the right.
+			background-position: calc(50% + 220px) 50%;
+			z-index: $boat-z-index;
 		}
 	}
 }

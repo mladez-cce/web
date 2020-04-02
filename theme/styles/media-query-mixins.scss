@@ -1,3 +1,6 @@
+// Inspired by Bootstrap.
+$tablet-min-width: 576px;
+
 // The horizontal menu is fairly big so let's give it enough space. 1200px is
 // still fine as most laptops will comfortably match.
 $desktop-min-width: 1200px;
@@ -10,6 +13,10 @@ $big-desktop-min-width: 1400px;
 
 @mixin for-big-desktops-and-larger {
 	@media (min-width: $big-desktop-min-width) { @content; }
+}
+
+@mixin for-tablets-and-larger {
+	@media (min-width: ($tablet-min-width )) { @content; }
 }
 
 @mixin for-tablets-and-smaller {
