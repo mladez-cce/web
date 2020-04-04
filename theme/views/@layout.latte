@@ -72,7 +72,14 @@
 {block body}
 	{include page-navbar}
 
-	<h1>{include page-title}</h1>
+	<div class="page-header">
+		{if has_post_thumbnail($Post)}
+			<img src="{$Post|wp_thumbnail}" alt="{include page-title}" />
+		{/if}
+		<h1>{include page-title}</h1>
+		<div n:if="$Post->subtitle" class="page-header__subtitle">{$Post->subtitle}</div>
+	</div>
+
 
 	{block page-content}
 		{$Post|wp_content}

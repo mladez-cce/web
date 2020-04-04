@@ -4,5 +4,6 @@
 # https://github.com/manGoweb/MangoPress/tree/master/theme/schema
 
 support:
+	- post-thumbnails
 
 hide:

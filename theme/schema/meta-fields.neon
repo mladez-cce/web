@@ -20,3 +20,13 @@ register:
 				type: post
 				post_type: event
 				placeholder: "vyberte související událost"
+
+
+	page_fields:
+		title: Nastavení stránky
+		post_type: page
+		fields:
+			subtitle:
+				name: "Podtitulek"
+				type: string
+				post_type: page

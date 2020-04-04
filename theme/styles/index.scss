@@ -1,11 +1,17 @@
 @import "~bootstrap/scss/bootstrap-reboot";
 @import "config";
+@import "page-header";
 @import "page-jumbotron-header";
 @import "page-navbar";
 
 body {
 	font-family: $primary-font-family;
 	color: black;
+}
+
+h1 {
+	font-family: $secondary-font-family;
+	letter-spacing: -2px;
 }
 
 // TODO: Move this to a separate file

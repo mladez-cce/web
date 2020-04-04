@@ -1,0 +1,33 @@
+@import "media-query-mixins";
+
+.page-header {
+	background-image: url("../images/white-fuzzy-border-bottom.png"),
+		url("../images/bg-gray-pattern.png");
+	background-repeat: repeat-x, repeat;
+	background-position: center bottom, center center;
+	text-align: center;
+
+	// Padding-bottom is defined explicitly to match the height of the bottom
+	// fuzzy border.
+	// TODO: Define a common constant for a standard text padding.
+	padding: 3rem 2rem 69px 2rem;
+
+	img {
+		max-height: 200px;
+		margin-bottom: 1rem;
+	}
+
+	h1 {
+		font-size: 70px;
+		line-height: 1;
+
+		@include for-tablets-and-larger {
+			font-size: 80px;
+		}
+	}
+
+	&__subtitle {
+		font-size: 18px;
+		padding-bottom: 1rem;
+	}
+}
