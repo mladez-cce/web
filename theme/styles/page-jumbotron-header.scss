@@ -6,6 +6,8 @@
 	height: 600px;
 	background-image: url("../images/page-header-bg-blue.png"),
 	  url("../images/page-header-bg-yellow.png");
+	// If you change the top offset for the blue background, you also need to
+	// update the parallax effect definition in public/assets/scripts/index.js.
 	background-position: center 40px, center top;
 	background-repeat: repeat-x, repeat-x;
 
