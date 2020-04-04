@@ -80,9 +80,12 @@
 		<div n:if="$Post->subtitle" class="page-header__subtitle">{$Post->subtitle}</div>
 	</div>
 
-
 	{block page-content}
-		{$Post|wp_content}
+		<div class="page-content">
+			<div class="text-container">
+				{$Post|wp_content}
+			</div>
+		</div>
 	{/block}
 {/block}
 

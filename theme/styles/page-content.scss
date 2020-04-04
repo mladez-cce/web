@@ -1,0 +1,10 @@
+@import "common-mixins";
+
+.page-content {
+	@include page-horizontal-padding();
+}
+
+.text-container {
+	max-width: 680px;
+	margin: 0 auto;
+}
