@@ -44,10 +44,12 @@
 	// The navbar padding is responsive and needs to be applied also to absolutely
 	// positioned submenus. Having it as a mixin achieves that.
 	@mixin navbar-padding {
-		padding: 0 1.5rem;
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
 
 		@include for-big-desktops-and-larger {
-			padding: 2rem 5rem 1rem 5rem;
+			padding-left: 4rem;
+			padding-right: 4rem;
 		}
 	}
 
