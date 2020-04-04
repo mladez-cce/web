@@ -18,16 +18,16 @@
 	}
 
 	h1 {
-		font-size: 70px;
+		font-size: 4.4rem;
 		line-height: 1;
 
 		@include for-tablets-and-larger {
-			font-size: 80px;
+			font-size: 5rem;
 		}
 	}
 
 	&__subtitle {
-		font-size: 18px;
+		font-size: 1.1rem;
 		padding-bottom: 1rem;
 	}
 }

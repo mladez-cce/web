@@ -23,13 +23,13 @@
 	}
 
 	&__title {
-		font-size: 120px;
+		font-size: 7.5rem;
 		font-weight: bold;
 		display: block;
 	}
 
 	&__subtitle {
-		font-size: 40px;
+		font-size: 2.5rem;
 		font-weight: normal;
 		max-width: 300px; // To wrap the subtitle to multiple lines
 		margin: 0 auto;
@@ -63,11 +63,11 @@
 		}
 
 		&__title {
-			font-size: 128px;
+			font-size: 8rem;
 		}
 
 		&__subtitle {
-			font-size: 50px;
+			font-size: 3.1rem;
 			line-height: 1.2;
 			max-width: 200px; // To wrap the subtitle to multiple lines
 			margin: 0;
