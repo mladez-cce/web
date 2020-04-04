@@ -1,0 +1,17 @@
+@import "config";
+@import "media-query-mixins";
+
+@mixin page-horizontal-padding {
+	padding-left: 16px;
+	padding-right: 16px;
+
+	@include for-tablets-and-larger {
+		padding-left: 24px;
+		padding-right: 24px;
+	}
+
+	@include for-big-desktops-and-larger {
+		padding-left: 64px;
+		padding-right: 64px;
+	}
+}

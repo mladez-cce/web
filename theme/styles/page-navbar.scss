@@ -1,4 +1,5 @@
 @import "media-query-mixins";
+@import "common-mixins";
 
 // Responsive navbar with the logo, a multi-level navigation menu and a
 // search form.
@@ -44,13 +45,7 @@
 	// The navbar padding is responsive and needs to be applied also to absolutely
 	// positioned submenus. Having it as a mixin achieves that.
 	@mixin navbar-padding {
-		padding-left: 24px;
-		padding-right: 24px;
-
-		@include for-big-desktops-and-larger {
-			padding-left: 64px;
-			padding-right: 64px;
-		}
+		@include page-horizontal-padding();
 	}
 
 	@include navbar-padding();

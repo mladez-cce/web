@@ -1,4 +1,5 @@
 @import "media-query-mixins";
+@import "common-mixins";
 
 .page-header {
 	background-image: url("../images/white-fuzzy-border-bottom.png"),
@@ -7,10 +8,12 @@
 	background-position: center bottom, center center;
 	text-align: center;
 
-	// Padding-bottom is defined explicitly to match the height of the bottom
-	// fuzzy border.
-	// TODO: Define a common constant for a standard text padding.
-	padding: 48px 32px 69px 32px;
+	@include page-horizontal-padding();
+
+	padding-top: 48px;
+
+	// Matches the height of the bottom fuzzy border.
+	padding-bottom: 69px;
 
 	img {
 		max-height: 200px;
