@@ -10,11 +10,11 @@
 	// Padding-bottom is defined explicitly to match the height of the bottom
 	// fuzzy border.
 	// TODO: Define a common constant for a standard text padding.
-	padding: 3rem 2rem 69px 2rem;
+	padding: 48px 32px 69px 32px;
 
 	img {
 		max-height: 200px;
-		margin-bottom: 1rem;
+		margin-bottom: 16px;
 	}
 
 	h1 {
@@ -28,6 +28,6 @@
 
 	&__subtitle {
 		font-size: 1.1rem;
-		padding-bottom: 1rem;
+		padding-bottom: 16px;
 	}
 }
