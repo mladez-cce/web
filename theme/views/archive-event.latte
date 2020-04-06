@@ -4,14 +4,27 @@
 
 {block page-content}
 {each}
-	<h2><a href="{$Post|wp_permalink}">{$Post|wp_title}</a></h2>
-	{$Post|wp_content}
+	<div class="event-thumbnail">
+		{if has_post_thumbnail($Post)}
+			<div class="event-thumbnail__image">
+				<img src="{$Post|wp_thumbnail}" alt="{$Post|wp_title}" />
+			</div>
+		{/if}
 
-	<ul>
-		<li>Začátek akce: {$Post->start_date|date:'j. n. Y'}</li>
-		<li>Konec akce: {$Post->end_date|date:'j. n. Y'}</li>
-	</ul>
+		<div class="event-thumbnail__date">
+			<div class="event-thumbnail__date__month">{$Post->start_date|date:'n'|wp_cz_month}</div>
+			<div class="event-thumbnail__date__day">{$Post->start_date|date:'j'}</div>
+		</div>
 
+		<h2><a href="{$Post|wp_permalink}">{$Post|wp_title}</a></h2>
+		<div class="event-thumbnail__subtitle">{$Post->subtitle}</div>
+		<div class="event-thumbnail__info">
+			{wml_get_event_date($Post)}
+			{if !empty($Post->place)}
+				&bull; {$Post->place}
+			{/if}
+		</div>
+	</div>
 {/each}
 
 <h2>Stránkování</h2>

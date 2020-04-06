@@ -4,12 +4,21 @@ register:
 		title: Nastavení události
 		post_type: event
 		fields:
+			subtitle:
+				name: "Podtitulek"
+				type: string
 			start_date:
 				name: "Začátek"
 				type: date
 			end_date:
 				name: "Konec"
 				type: date
+			place:
+				name: "Místo konání (zkrácené)"
+				type: string
+			address:
+				name: "Místo konání (plná adresa)"
+				type: string
 
 	post_fields:
 		title: Nastavení aktuality

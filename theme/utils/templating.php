@@ -20,3 +20,21 @@
 MangoFilters::$set["wp_excerpt"] = function ($post) {
 	return safe(get_the_excerpt($post));
 };
+
+/**
+ * Returns a three-letter representation of a month.
+ *
+ * Usage: {$Post->start_date|date:'n'|wp_cz_month}
+ *
+ * @param string|int numeric month in a year (1-12)
+ * @return SafeHtmlString
+ */
+MangoFilters::$set["wp_cz_month"] = function ($month) {
+	$MONTHS = ["led", "úno", "bře", "dub", "kvě", "čvn", "čvc", "srp", "zář", "říj", "lis", "pro"];
+
+	if (!array_key_exists(intval($month) - 1, $MONTHS)) {
+		throw new InvalidArgumentException("This is not a valid month number: " . $month);
+	}
+
+	return $MONTHS[intval($month) - 1];
+};
