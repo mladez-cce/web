@@ -30,7 +30,7 @@
 		max-height: $max-width; // To go for a square-ish shape at most.
 		overflow: hidden;
 		// Create the fuzzy border effect at the bottom of the poster.
-		mask-image: url("../images/navbar-mask.png");
+		mask-image: url("../images/fuzzy-border-bottom-mask.png");
 		mask-position: center bottom;
 		position: relative;
 
