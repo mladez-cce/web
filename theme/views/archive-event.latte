@@ -1,44 +1,56 @@
 {extends @layout.latte}
 
-{block page-title}Události{/block}
+{block page-title}
+	{show_past_events() ? "Uplynulé události" : "Nadcházející události"}
+{/block}
 
-{block page-content}
-	<div class="page-content">
-		<div class="events">
-			{each}
-				<div n:class="event-thumbnail, wml_is_event_over($Post) ? event-thumbnail-past">
-					{if has_post_thumbnail($Post)}
-						<div class="event-thumbnail__poster">
-							<a href="{$Post|wp_permalink}" title="{$Post|wp_title}">
-								<img src="{$Post|wp_thumbnail}" alt="{$Post|wp_title}" />
-							</a>
-						</div>
-					{/if}
+{block body}
+{include page-navbar}
 
-					<div class="event-thumbnail__label">
-						<div class="event-thumbnail__date">
-							<div class="event-thumbnail__date__month">{$Post->start_date|date:'n'|wp_cz_month}</div>
-							<div class="event-thumbnail__date__day">{$Post->start_date|date:'j'}</div>
-						</div>
+<div class="page-header">
+	<img src="assets/images/illustration-sleeping-bag.png" alt="{include page-title}" />
+	<h1>{include page-title}</h1>
+	<div class="page-header__subtitle">
+		{show_past_events() ? "Co jste si v minulosti mohli užít" : "Na co jste srdečně zváni"}
+	</div>
+</div>
 
-						<div class="event-thumbnail__info">
-							<h2><a href="{$Post|wp_permalink}">{$Post|wp_title}</a></h2>
-							<div class="event-thumbnail__subtitle">{$Post->subtitle}</div>
+<div class="page-content">
+	<div class="events">
+		{each}
+			<div n:class="event-thumbnail, wml_is_event_over($Post) ? event-thumbnail-past">
+				{if has_post_thumbnail($Post)}
+					<div class="event-thumbnail__poster">
+						<a href="{$Post|wp_permalink}" title="{$Post|wp_title}">
+							<img src="{$Post|wp_thumbnail}" alt="{$Post|wp_title}" />
+						</a>
+					</div>
+				{/if}
 
-							{wml_get_event_date($Post)}
-							{if !empty($Post->place)}
-								&bull; {$Post->place}
-							{/if}
-						</div>
+				<div class="event-thumbnail__label">
+					<div class="event-thumbnail__date">
+						<div class="event-thumbnail__date__month">{$Post->start_date|date:'n'|wp_cz_month}</div>
+						<div class="event-thumbnail__date__day">{$Post->start_date|date:'j'}</div>
 					</div>
 
-				</div>
-			{/each}
+					<div class="event-thumbnail__info">
+						<h2><a href="{$Post|wp_permalink}">{$Post|wp_title}</a></h2>
+						<div class="event-thumbnail__subtitle">{$Post->subtitle}</div>
 
-			<h2>Stránkování</h2>
-			<ul>
-				<li n:if="$previous_events_link">{$previous_events_link|noescape}</li>
-				<li n:if="$next_events_link">{$next_events_link|noescape}</li>
-			</ul>
-		</div>
+						{wml_get_event_date($Post)}
+						{if !empty($Post->place)}
+							&bull; {$Post->place}
+						{/if}
+					</div>
+				</div>
+
+			</div>
+		{/each}
+
+		<h2>Stránkování</h2>
+		<ul>
+			<li n:if="$previous_events_link">{$previous_events_link|noescape}</li>
+			<li n:if="$next_events_link">{$next_events_link|noescape}</li>
+		</ul>
 	</div>
+</div>
