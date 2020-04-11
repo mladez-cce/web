@@ -127,6 +127,7 @@
 		align-items: center;
 		width: $logo-width;
 		padding: ($spacer * 0.5) 0;
+		border-radius: $button-border-radius;
 
 		// Make the logo visible over the top sheet that slides down from the top.
 		z-index: $top-sheet-z-index + 1;
@@ -156,6 +157,7 @@
 	// hidden on desktops.
 	&__hamburger {
 		padding: ($spacer * 0.5);
+		border-radius: $button-border-radius;
 
 		// Make the hamburger visible over the top sheet that slides down from the
 		// top.
@@ -237,11 +239,13 @@
 			padding: $spacer;
 			font-weight: 300;
 			outline: 0;
+			border-radius: $button-border-radius;
 
 			@include for-tablets-and-smaller() {
 				// The menu is vertical on small screens, so we separate the items using
 				// horizontal lines.
 				border-bottom: $menu-separator-border;
+				border-radius: 0;
 			}
 		}
 
@@ -461,6 +465,8 @@
 		&__search {
 			border: 1px solid black;
 			display: flex;
+			border-radius: $button-border-radius;
+			overflow: hidden;
 
 			@include for-tablets-and-smaller() {
 				width: 100%;
