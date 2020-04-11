@@ -1,0 +1,84 @@
+@import "config";
+@import "common-mixins";
+@import "icons";
+
+.pagination {
+	$horizontal-spacing: $spacer * 0.5;
+	$icon-size: 1.5rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: ($spacer * 2) (-$horizontal-spacing);
+
+	a {
+		@include button();
+
+		display: block;
+		margin: 0 $horizontal-spacing;
+		position: relative;
+
+		// Add a chevron icon to the pagination links.
+		&:after {
+			@include icon_chevron_right();
+
+			content: "";
+			position: absolute;
+			top: calc(50% - (#{$icon-size} / 2));
+			display: block;
+			background-size: $icon-size $icon-size;
+			width: $icon-size;
+			height: $icon-size;
+
+			// Make the icon a little translucent to match the thin font.
+			opacity: 0.6;
+		}
+	}
+
+	&__prev {
+		// Align to the left
+		order: 1;
+		margin-right: auto;
+
+		a {
+			// Make space for the chevron icon.
+			padding-left: calc(#{$icon-size} + #{$spacer} / 2); // Mixed units
+
+			// Place the chevron icon to the left.
+			&:after {
+				left: $spacer / 2;
+				transform: rotate(180deg); // Chevron left
+				transition: left 0.2s;
+			}
+
+			&:hover {
+				&:after {
+					left: $spacer / 2 - 4px;
+				}
+			}
+		}
+	}
+
+	&__next {
+		// Align to the right.
+		order: 2;
+		margin-left: auto;
+
+		a {
+			// Make space for the chevron icon.
+			padding-right: calc(#{$icon-size} + #{$spacer} / 2); // Mixed units
+
+			// Place the chevron icon to the right.
+			&:after {
+				right: $spacer / 2;
+				transition: right 0.2s;
+			}
+
+			&:hover {
+				&:after {
+					right: $spacer / 2 - 4px;
+				}
+			}
+		}
+	}
+}
