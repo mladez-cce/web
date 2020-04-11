@@ -24,7 +24,7 @@
 	overflow: hidden;
 
 	padding-bottom: 50px; // For the fuzzy border.
-	margin-bottom: 32px;
+	margin-bottom: $component-spacer;
 
 	&__poster {
 		max-height: $max-width; // To go for a square-ish shape at most.

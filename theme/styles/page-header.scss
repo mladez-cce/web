@@ -15,7 +15,7 @@
 	// Matches the height of the bottom fuzzy border.
 	padding-bottom: 69px;
 
-	margin-bottom: 24px;
+	margin-bottom: $component-spacer;
 
 	img {
 		max-height: 200px;
