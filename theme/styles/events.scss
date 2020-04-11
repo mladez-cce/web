@@ -70,7 +70,7 @@
 	}
 
 	&__date {
-		padding-top: 16px;
+		padding-top: $spacer;
 		flex-basis: 110px;
 		flex-shrink: 0;
 		font-family: $secondary-font-family;
@@ -88,8 +88,8 @@
 	}
 
 	&__info {
-		padding-top: 16px;
-		padding-right: 16px;
+		padding-top: $spacer;
+		padding-right: $spacer;
 		font-weight: 300;
 
 		h2 {

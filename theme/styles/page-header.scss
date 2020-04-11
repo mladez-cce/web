@@ -10,7 +10,7 @@
 
 	@include page-horizontal-padding();
 
-	padding-top: 48px;
+	padding-top: $spacer * 3;
 
 	// Matches the height of the bottom fuzzy border.
 	padding-bottom: 69px;
@@ -33,6 +33,6 @@
 
 	&__subtitle {
 		font-size: 1.1rem;
-		padding-bottom: 16px;
+		padding-bottom: $spacer;
 	}
 }

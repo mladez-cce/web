@@ -2,16 +2,16 @@
 @import "media-query-mixins";
 
 @mixin page-horizontal-padding {
-	padding-left: 16px;
-	padding-right: 16px;
+	padding-left: $spacer;
+	padding-right: $spacer;
 
 	@include for-tablets-and-larger {
-		padding-left: 24px;
-		padding-right: 24px;
+		padding-left: $spacer * 1.5;
+		padding-right: $spacer * 1.5;
 	}
 
 	@include for-big-desktops-and-larger {
-		padding-left: 64px;
-		padding-right: 64px;
+		padding-left: $spacer * 8;
+		padding-right: $spacer * 8;
 	}
 }
