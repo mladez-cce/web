@@ -6,7 +6,7 @@
 	<div class="page-content">
 		<div class="events">
 			{each}
-				<div class="event-thumbnail">
+				<div n:class="event-thumbnail, wml_is_event_over($Post) ? event-thumbnail-past">
 					{if has_post_thumbnail($Post)}
 						<div class="event-thumbnail__poster">
 							<a href="{$Post|wp_permalink}" title="{$Post|wp_title}">
