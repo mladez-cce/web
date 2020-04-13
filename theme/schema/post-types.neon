@@ -21,7 +21,7 @@ register:
 	event:
 		public: true
 		has_archive: true
-		label: Události
+		label: Akce
 		menu_icon: calendar-alt
 		rewrite:
-			slug: udalosti
+			slug: akce

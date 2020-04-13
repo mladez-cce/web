@@ -52,5 +52,5 @@ function get_next_events_link($label = NULL) {
 }
 
 view(NULL, [
-	"previous_events_link" => get_previous_events_link("Předešlé události"),
-	"next_events_link" => get_next_events_link("Následující události")]);
+	"previous_events_link" => get_previous_events_link("Předešlé akce"),
+	"next_events_link" => get_next_events_link("Následující akce")]);
