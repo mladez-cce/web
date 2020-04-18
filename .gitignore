@@ -21,6 +21,44 @@
 /public/wp-content/*
 !/public/wp-content/mu-plugins
 
+# Explicitly exclude from ignoring the manually drawn illustrations that are
+# in the WordPress Media library.
+!/public/wp-content/uploads
+/public/wp-content/uploads/*
+!/public/wp-content/uploads/2020
+/public/wp-content/uploads/2020/*
+!/public/wp-content/uploads/2020/04
+/public/wp-content/uploads/2020/04/*
+!/public/wp-content/uploads/2020/04/comak-ada-r.png
+!/public/wp-content/uploads/2020/04/comak-aja-z.png
+!/public/wp-content/uploads/2020/04/comak-dominik-b.png
+!/public/wp-content/uploads/2020/04/comak-filip-b.png
+!/public/wp-content/uploads/2020/04/comak-filip-t.png
+!/public/wp-content/uploads/2020/04/comak-jana-h.png
+!/public/wp-content/uploads/2020/04/comak-jenik-l.png
+!/public/wp-content/uploads/2020/04/comak-marta-s.png
+!/public/wp-content/uploads/2020/04/comak-sasa-j.png
+!/public/wp-content/uploads/2020/04/comak-tobias-p.png
+!/public/wp-content/uploads/2020/04/comak-tomas-j.png
+!/public/wp-content/uploads/2020/04/comak-zuzka-f.png
+!/public/wp-content/uploads/2020/04/ilustrace-caj.png
+!/public/wp-content/uploads/2020/04/ilustrace-com.png
+!/public/wp-content/uploads/2020/04/ilustrace-elektrika.png
+!/public/wp-content/uploads/2020/04/ilustrace-husuv-dum.png
+!/public/wp-content/uploads/2020/04/ilustrace-piano.png
+!/public/wp-content/uploads/2020/04/ilustrace-pomazanky.png
+!/public/wp-content/uploads/2020/04/ilustrace-rozbaleny-spacak.png
+!/public/wp-content/uploads/2020/04/ilustrace-sbaleny-spacak.png
+!/public/wp-content/uploads/2020/04/ilustrace-spici-mladeznik.png
+!/public/wp-content/uploads/2020/04/ilustrace-zubni-pasta.png
+!/public/wp-content/uploads/2020/04/univerzalni-plakat-cerveny-na-sirku.jpg
+!/public/wp-content/uploads/2020/04/univerzalni-plakat-cerveny-na-vysku.png
+!/public/wp-content/uploads/2020/04/univerzalni-plakat-sedomodry-na-sirku.jpg
+!/public/wp-content/uploads/2020/04/univerzalni-plakat-sedomodry-na-vysku.png
+!/public/wp-content/uploads/2020/04/univerzalni-plakat-zeleny-na-sirku.jpg
+!/public/wp-content/uploads/2020/04/univerzalni-plakat-zeleny-na-vysku.png
+!/public/wp-content/uploads/2020/04/univerzalni-plakat-zluty-na-sirku.jpg
+
 # Assets
 !/public/assets
 /public/assets/*
