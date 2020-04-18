@@ -100,3 +100,19 @@ $ yarn build-css
 
 Done. The website should be now up and running. You can access the
 administration on `/wp-admin`.
+
+## Import default site content
+
+You can import the default site content (sample pages, posts, events, menus etc)
+from [`wp-site-content-export.xml`](wp-site-content-export.xml).
+
+1.  Log in into WordPress admin
+2.  Go to `Tools → Import` and run `WordPress Importer`
+3.  Upload [`wp-site-content-export.xml`](wp-site-content-export.xml)
+
+For best experience (e.g. to get also the default media imported), first open
+the XML file and replace all instances of the base site url (e.g.
+`http://31.31.74.63/`) with your WordPress URL.
+
+Note that the export is not intended as backup of the actual website. Its
+purpose is merely to simplify setting up the local dev environment.
