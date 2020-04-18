@@ -17,27 +17,11 @@
 		<div class="page-jumbotron-header__boat"></div>
 	</div>
 
-	<h1>Hard-coded řetězec pro úvodní stranu</h1>
 
-		<h2>Nejnovější aktuality</h2>
-
-		{if $latestPosts}
-			{foreach $latestPosts as $latestPost}
-				<h3>
-					<a href="{$latestPost|wp_permalink}">
-						{$latestPost|wp_title}
-					</a>
-				</h3>
-				<p>
-					{$latestPost|wp_excerpt}
-				</p>
-			{/foreach}
-
-			 <p>
-				 <a href="{get_permalink(get_option("page_for_posts"))}">Všechny novinky</a>
-			 </p>
-		{else}
-			<p>Žádné novinky</p>
-		{/if}
+	<div class="page-content">
+		<div class="text-container">
+			Tady budou poslední aktuality a nejbližší akce.
+		</div>
+	</div>
 
 {/block}

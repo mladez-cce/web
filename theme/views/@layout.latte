@@ -80,13 +80,13 @@
 		<div n:if="!empty($Post->subtitle)" class="page-header__subtitle">{$Post->subtitle}</div>
 	</div>
 
-	{block page-content}
-		<div class="page-content">
-			<div class="text-container">
+	<div class="page-content">
+		<div class="text-container">
+			{block page-content}
 				{$Post|wp_content}
-			</div>
+			{/block}
 		</div>
-	{/block}
+	</div>
 {/block}
 
 {php wp_footer()}

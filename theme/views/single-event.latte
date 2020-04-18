@@ -1,23 +1,26 @@
 {extends @layout.latte}
 
 {block page-content}
-{each}
-	{$Post|wp_content}
+	{each}
+		{$Post|wp_content}
 
-	{if $relatedPosts}
-		<h2>Související aktuality</h2>
+		Tady budou další informace k akci.
 
-		{foreach $relatedPosts as $relatedPost}
-			<div>
-				<h3>
-					<a href="{$relatedPost|wp_permalink}">
-						{$relatedPost|wp_title}
-					</a>
-				</h3>
-				<p>
-					{$relatedPost|wp_excerpt}
-				</p>
-			</div>
-		{/foreach}
-	{/if}
-{/each}
+		{if $relatedPosts}
+			<h2>Související aktuality</h2>
+
+			{foreach $relatedPosts as $relatedPost}
+				<div>
+					<h3>
+						<a href="{$relatedPost|wp_permalink}">
+							{$relatedPost|wp_title}
+						</a>
+					</h3>
+					<p>
+						{$relatedPost|wp_excerpt}
+					</p>
+				</div>
+			{/foreach}
+		{/if}
+	{/each}
+{/block}
