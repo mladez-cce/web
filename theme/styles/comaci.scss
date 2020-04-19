@@ -1,0 +1,89 @@
+@import "config";
+
+// This extends the "Columns Block" from the WordPress editor which is used to
+// display profiles of COM members. It adds additional styling to make it look
+// a bit more fancy.
+//
+// The default styles are provided by WordPress. They rely on CSS Flexbox to
+// create the column layout, and custom break-points to make them responsive.
+// Unfortunately, this makes certain changes (like changing the gutter between
+// columns) rather challenging as we'd need to override most of the default
+// styles.
+.comaci {
+	// The gutter between columns (this is set by WordPress' styles)
+	$wp-column-gutter: 32px;
+
+	// Instead of creating the gutter by setting the left margin on all columns
+	// expect the first one (which is what WordPress does by default), we set it
+	// on all columns and then compensate for it here. This seems to work better
+	// on small screens when the columns don't fit the screen.
+	margin-left: -$wp-column-gutter;
+
+	margin-bottom: 0;
+	justify-content: center;
+
+	.wp-block-column {
+		margin-left: $wp-column-gutter;
+		margin-bottom: $component-spacer;
+
+		// If the column becomes too wide, it doesn't look good (mainly due to the
+		// profile picture).
+		max-width: 250px;
+
+		// The <figure /> contains the profile picture of a COM member. Let's add a
+		// gray circle behind it.
+		figure.wp-block-image {
+			// A trick to make the <figure /> element a responsive square
+			width: 100%;
+			padding-bottom: 100%;
+			position: relative;
+
+			// Make the image "fit to height" and position it to the center of the
+			// square, both vertically and horizontally.
+			img {
+				position: absolute;
+				height: 100%;
+				left: 50%;
+				transform: translate(-50%, 0);
+				z-index: 1;
+			}
+
+			// Add a grey circle behind the image.
+			&:after {
+				content: "";
+				position: absolute;
+				display: block;
+				width: 100%;
+				height: 100%;
+				background: url("../images/bg-gray-pattern.png") center center no-repeat;
+				background-size: 500%;
+				border-radius: 50%;
+				z-index: 0;
+			}
+		}
+	}
+
+	// Style the heading regardless of which heading it is (this is to make the
+	// styling more robust, independent on which heading is selected in the
+	// WordPress editor).
+	h2, h3, h4, h5 {
+		font-size: 1.5rem;
+		line-height: 1;
+		margin-bottom: 5px;
+		text-align: center;
+	}
+
+	// Style the first paragraph after the heading as subheading. This is a
+	// brittle approach because it assumes that the second paragraph is actually
+	// a subheading. Unfortunately, there is no easy way to mark a paragraph as
+	// subheading in the WordPress editor. Let's see if this works.
+	h2 + p, h3 + p, h4 + p, h5 + p {
+		text-align: center;
+		color: $secondary-text-color;
+		font-size: 1rem;
+	}
+
+	p {
+		font-size: 0.9rem;
+	}
+}
