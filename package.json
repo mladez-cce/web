@@ -2,11 +2,11 @@
 	"name": "mladez",
 	"scripts": {
 		"upgrade-interactive": "npm-check --update",
-		"build-sass-dev": "node-sass --importer=node_modules/node-sass-tilde-importer theme/styles/index.scss --output-style expanded --source-map true --source-map-contents true --precision 6 public/assets/styles/index.css",
-		"build-sass": "node-sass --importer=node_modules/node-sass-tilde-importer theme/styles/index.scss public/assets/styles/index.css",
+		"build-sass-dev": "node_modules/.bin/node-sass --importer=node_modules/node-sass-tilde-importer theme/styles/index.scss --output-style expanded --source-map true --source-map-contents true --precision 6 public/assets/styles/index.css",
+		"build-sass": "node_modules/.bin/node-sass --importer=node_modules/node-sass-tilde-importer theme/styles/index.scss public/assets/styles/index.css",
 		"build-css-dev": "npm run build-sass-dev && postcss public/assets/styles/index.css --use autoprefixer --replace",
 		"build-css": "npm run build-sass && postcss public/assets/styles/index.css --use autoprefixer cssnano --replace --no-map",
-		"watch-css": "watch 'npm run build-css-dev' theme/styles"
+		"watch-css": "node_modules/.bin/watch 'npm run build-css-dev' theme/styles"
 	},
 	"dependencies": {
 		"bootstrap": "^4.4.1",
