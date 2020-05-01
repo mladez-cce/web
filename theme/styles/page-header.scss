@@ -2,25 +2,37 @@
 @import "common-mixins";
 
 .page-header {
-	background-image: url("../images/white-fuzzy-border-bottom.png"),
-		url("../images/bg-gray-pattern.png");
-	background-repeat: repeat-x, repeat;
-	background-position: center bottom, center center;
-	text-align: center;
+	// Actual height of white-fuzzy-border-bottom.png.
+	$bottom-fuzzy-border-height: 69px;
 
 	@include page-horizontal-padding();
 
+	background: url("../images/bg-gray-pattern.png") repeat center center;
+	text-align: center;
 	padding-top: $spacer * 3;
-
-	// Matches the height of the bottom fuzzy border.
-	padding-bottom: 69px;
-
+	padding-bottom: $bottom-fuzzy-border-height;
 	margin-bottom: $component-spacer;
+	position: relative;
+
+	// Implement the bottom fuzzy border using a floating, absolutely positioned
+	// element at the bottom of the header. Compared to adding the border as
+	// additional background or using a mask, this approach allows the fuzzy
+	// border to be both above & below elements contained in the header, just as
+	// needed.
+	&:after {
+		content: "";
+		width: 100%;
+		height: $bottom-fuzzy-border-height;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		background: url("../images/white-fuzzy-border-bottom.png") repeat-x center bottom;
+	}
 
 	img {
 		max-height: 200px;
 		max-width: 100%;
-		margin-bottom: 16px;
+		margin-bottom: $spacer;
 	}
 
 	h1 {
