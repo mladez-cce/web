@@ -110,6 +110,23 @@
 			height: 50px;
 		}
 	}
+
+	position: relative;
+
+	// Add a boat to the footer. We want to make the boat semi-transparent while
+	// reusing the existing boat image, so adding another background to the footer
+	// element wouldn't work.
+	&:after {
+		content: "";
+		position: absolute;
+		top: 150px;
+		left: 55%;
+		width: 300px;
+		height: 80px;
+		background: url("../images/page-header-bg-boat.png") top center no-repeat;
+		background-size: contain;
+		opacity: 0.5;
+	}
 }
 
 // A small flex trick to stick the footer to the bottom of the screen even on
