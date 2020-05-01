@@ -1,5 +1,5 @@
 {
-	"name": "mladez",
+	"name": "@mladez-cce/web",
 	"scripts": {
 		"upgrade-interactive": "npm-check --update",
 		"build-sass-dev": "node-sass --importer=node_modules/node-sass-tilde-importer theme/styles/index.scss --output-style expanded --source-map true --source-map-contents true --precision 6 public/assets/styles/index.css",
