@@ -1,0 +1,53 @@
+.page-event-header {
+	// Remove the padding accounting for the bottom fuzzy border as we want the
+	// fuzzy border to overlap the feature image.
+	padding-bottom: 0;
+
+	&__featured-image-container {
+		margin: 0 auto;
+		max-width: 680px; // TODO: Use a constant.
+		border-radius: 15px;
+		overflow: hidden;
+		transition: all 0.3s;
+
+		// Clickable label that wraps around the image and hides part of it using
+		// overflow: hidden when in the collapsed state.
+		label {
+			display: block;
+			overflow: hidden;
+			max-height: 300px;
+			padding: 0;
+			margin: 0;
+			cursor: pointer;
+			transition: all 0.3s;
+
+			img {
+				width: 100%;
+				max-height: none;
+				margin: 0;
+			}
+		}
+	}
+
+	// We are using the same trick with a hidden checkbox to collapse / expand
+	// the featured image without any JavaScript. Check page-navbar.scss for how
+	// this works.
+
+	input[type="checkbox"] {
+		display: none;
+	}
+
+	input[type="checkbox"]:checked ~ &__featured-image-container {
+		position: relative;
+		z-index: 2;
+		box-shadow: 0 0 50px 0 rgba(0,0,0,0.3);
+
+		// Account for the fuzzy border; makes the animation look nicer.
+		margin-bottom: 70px;
+
+		label {
+			max-height: 2000px;
+			overflow: visible;
+		}
+	}
+}

@@ -7,7 +7,7 @@
 
 	@include page-horizontal-padding();
 
-	background: url("../images/bg-gray-pattern.png") repeat center center;
+	background: url("../images/bg-gray-pattern.png") repeat top center;
 	text-align: center;
 	padding-top: $spacer * 3;
 	padding-bottom: $bottom-fuzzy-border-height;
