@@ -1,0 +1,130 @@
+@import "common-mixins";
+@import "config";
+@import "media-query-mixins";
+
+.page-footer {
+	@include page-horizontal-padding();
+
+	$vertical-spacer: $spacer;
+
+	background: url("../images/page-header-bg-blue.png") center top repeat-x;
+
+	// Account for the semi-transparent fuzzy border.
+	padding-top: 150px;
+
+	// The background is not a repeatable pattern so we need to limit the height.
+	// Given the current content, it is sufficient but we may need to come up with
+	// a different solution later.
+	max-height: 420px;
+	overflow: hidden;
+
+	display: flex;
+	flex-direction: column;
+
+	font-weight: 300;
+	color: white;
+
+	// The blue background has some light spots which would make the white text
+	// hard to read. Let's add a light shadow to compensate for that.
+	text-shadow: 0 0 5px #737AB1, 0 0 15px #737AB1;
+
+	a {
+		color: white;
+		font-weight: 500;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+
+	@include for-desktops-and-larger {
+		padding-top: 200px;
+		padding-bottom: $spacer * 2;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	&__logo {
+		display: flex;
+		margin-bottom: $vertical-spacer;
+
+		img {
+			height: 55px;
+			margin-right: 10px;
+		}
+
+		a {
+			font-size: 1.25rem;
+			font-weight: 500;
+			line-height: 1.2;
+		}
+	}
+
+	&__links {
+		flex-grow: 1;
+
+		ul {
+			display: flex;
+			flex-wrap: wrap;
+			padding: 0;
+			margin-bottom: $vertical-spacer;
+
+			li {
+				list-style-type: none;
+			}
+		}
+
+		@include for-desktops-and-larger {
+			margin-left: $spacer * 3;
+		}
+
+		&__social {
+			flex-direction: row;
+
+			li {
+				padding-right: $spacer;
+			}
+		}
+
+		&__about {
+			font-size: 0.8rem;
+			flex-direction: column;
+
+			@include for-desktops-and-larger {
+				flex-direction: row;
+
+				// Separate the list items by a the "pipe" character.
+				li:not(:last-child):after {
+					content: "|";
+					margin: 0 0.5rem;
+				}
+			}
+		}
+	}
+
+	&__logo-cce {
+		display: block;
+		margin-bottom: $vertical-spacer;
+
+		img {
+			height: 50px;
+		}
+	}
+}
+
+// A small flex trick to stick the footer to the bottom of the screen even on
+// pages without too much content.
+//
+// We use a dedicated element placed just before the page footer which
+// automatically inflates to take up all the available vertical space. We
+// could inflate the page content itself but this approach is decoupled from how
+// the page content is implemented.
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+.page-content-inflatable-padding {
+	flex: 1;
+}
