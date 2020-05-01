@@ -8,10 +8,13 @@ register:
 				name: "Podtitulek"
 				type: string
 			start_date:
-				name: "Začátek"
+				name: "Začátek (datum)"
 				type: date
+			start_time:
+				name: "Začátek (čas)"
+				type: time
 			end_date:
-				name: "Konec"
+				name: "Konec (datum)"
 				type: date
 			place:
 				name: "Místo konání (zkrácené)"
@@ -19,6 +22,35 @@ register:
 			address:
 				name: "Místo konání (plná adresa)"
 				type: string
+			fb_event_url:
+				name: "Akce na Facebooku (URL)"
+				type: string
+			web_url:
+				name: "Web (URL)"
+				type: string
+			register_url:
+				name: "Přihlašování na (URL)"
+				type: string
+			price:
+				name: "Cena"
+				type: string
+		validation:
+			rules:
+				start_date:
+					required: true
+				end_date:
+					required: true
+				fb_event_url:
+					url: true
+				web_url:
+					url: true
+				register_url:
+					url: true
+			messages:
+				start_date:
+					required: "Vyplňte začátek i konec akce. Pokud je akce jednodenní, zadejte dvakrát to samé datum."
+				end_date:
+					required: "Vyplňte začátek i konec akce. Pokud je akce jednodenní, zadejte dvakrát to samé datum."
 
 	post_fields:
 		title: Nastavení aktuality
