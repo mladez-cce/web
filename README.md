@@ -86,6 +86,15 @@ $ vendor/bin/wp core install \
 
 The administrator password will be printed on the screen.
 
+Install required WordPress plugins. You can do it
+[manually](https://wordpress.org/support/article/managing-plugins/#manual-plugin-installation)
+or use the WP CLI again:
+
+```
+$ vendor/bin/wp plugin install meta-box --path=public
+$ vendor/bin/wp plugin activate meta-box --path=public
+```
+
 Clear cache to avoid potential permission problems:
 
 ```
@@ -106,9 +115,10 @@ administration on `/wp-admin`.
 You can import the default site content (sample pages, posts, events, menus etc)
 from [`wp-site-content-export.xml`](wp-site-content-export.xml).
 
-1.  Log in into WordPress admin
-2.  Go to `Tools → Import` and run `WordPress Importer`
-3.  Upload [`wp-site-content-export.xml`](wp-site-content-export.xml)
+1.  Install & activate [Wordpress Importer](https://cs.wordpress.org/plugins/wordpress-importer/)
+2.  Log in into WordPress admin
+3.  Go to `Tools → Import` and run `WordPress Importer`
+4.  Upload [`wp-site-content-export.xml`](wp-site-content-export.xml)
 
 For best experience (e.g. to get also the default media imported), first open
 the XML file and replace all instances of the base site url (e.g.
