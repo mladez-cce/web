@@ -44,7 +44,13 @@
 
 			<div class="event-page__text">
 				{$Post|wp_content}
+
+				<p class="event-page__last-modified">
+					Naposledy upravil/a {the_modified_author()},
+					{$Post|wp_modified_date|wp_cz_date_format}.
+				</p>
 			</div>
+
 
 			{if !empty($Post->register_url)}
 				<a n:attr="href => $Post->register_url" target="_blank" class="event-page__register-button" title="Online přihlašování" target="_blank">Přihlásit se na akci</a>

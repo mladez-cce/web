@@ -114,6 +114,14 @@
 		}
 	}
 
+	&__text {
+		margin-bottom: $component-spacer;
+	}
+
+	&__last-modified {
+		@include post-meta-info();
+	}
+
 	&__register-button {
 		@include primary-button();
 
@@ -144,8 +152,7 @@
 		}
 
 		&__publish-date {
-			font-weight: 300;
-			color: #959595;
+			@include post-meta-info();
 		}
 	}
 }

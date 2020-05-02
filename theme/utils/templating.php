@@ -22,6 +22,18 @@ MangoFilters::$set["wp_excerpt"] = function ($post) {
 };
 
 /**
+ * Returns the post last modified date.
+ *
+ * Usage: {$post|wp_modified_date}
+ *
+ * @param int|WP_Post $post
+ * @return string|void
+ */
+MangoFilters::$set["wp_modified_date"] = function ($post) {
+	return get_the_modified_date(/* format = */ "", $post);
+};
+
+/**
  * Returns a Czech three-letter representation of the month.
  *
  * Usage: {$Post|wp_date|wp_short_month_cz_name}
