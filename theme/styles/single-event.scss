@@ -4,12 +4,10 @@
 
 .event-page {
 	&__header {
-		// Remove the padding accounting for the bottom fuzzy border as we want the
-		// fuzzy border to overlap the feature image.
-		padding-bottom: 0;
-
 		&__featured-image-container {
-			margin: 0 auto;
+			// The negative margin removes the padding accounting for the bottom fuzzy
+			// border as we want the fuzzy border to overlap the feature image.
+			margin: 0 auto -69px; // TODO: Use constant.
 			max-width: 680px; // TODO: Use a constant.
 			border-radius: 15px;
 			overflow: hidden;
