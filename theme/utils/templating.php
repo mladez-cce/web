@@ -22,19 +22,54 @@ MangoFilters::$set["wp_excerpt"] = function ($post) {
 };
 
 /**
- * Returns a three-letter representation of a month.
+ * Returns a Czech three-letter representation of the month.
  *
- * Usage: {$Post->start_date|date:'n'|wp_cz_month}
+ * Usage: {$Post|wp_date|wp_short_month_cz_name}
  *
- * @param string|int numeric month in a year (1-12)
+ * @param DateTime|int|string $date
  * @return SafeHtmlString
  */
-MangoFilters::$set["wp_cz_month"] = function ($month) {
-	$MONTHS = ["led", "úno", "bře", "dub", "kvě", "čvn", "čvc", "srp", "zář", "říj", "lis", "pro"];
+MangoFilters::$set["wp_short_month_cz_name"] = function ($date) {
+	return safe(wml_get_short_month_cz_name(wml_to_datetime($date)));
+};
 
-	if (!array_key_exists(intval($month) - 1, $MONTHS)) {
-		throw new InvalidArgumentException("This is not a valid month number: " . $month);
+/**
+ * Returns date in the common Czech format, e.g. 24. prosince 2019.
+ *
+ * Usage: {$Post|wp_date|wp_cz_date_format}
+ *
+ * @param DateTime|int|string $date
+ * @return SafeHtmlString
+ */
+MangoFilters::$set["wp_cz_date_format"] = function ($date) {
+	return safe(wml_get_cz_date_format(wml_to_datetime($date)));
+};
+
+/**
+ * Returns a from / to string representation of an event's date.
+ *
+ * @param WP_Post|int $id a WordPress post (or its id) of the "event" type.
+ * @return string the representation or empty if the post is not a valid event.
+ * @throws Exception
+ */
+MangoFilters::$set["wp_event_date"] = function ($id) {
+	$post = wml_lazy_post($id);
+
+	if (empty($post->start_date) || empty($post->end_date)) {
+		return "";
 	}
 
-	return $MONTHS[intval($month) - 1];
+	$startDate = wml_to_datetime($post->start_date);
+	$endDate = wml_to_datetime($post->end_date);
+
+	if ($startDate == $endDate) {
+		return wml_get_cz_date_format($startDate);
+	}
+
+	$sameMonth = $startDate->format("m") == $endDate->format("m");
+
+	return $startDate->format("j. ")
+		. ($sameMonth ? "" : wml_get_month_cz_name_for_date($startDate) . " ")
+		. "až "
+		. wml_get_cz_date_format($endDate);
 };

@@ -30,7 +30,7 @@
 
 				<div class="event-thumbnail__label">
 					<div class="event-thumbnail__date">
-						<div class="event-thumbnail__date__month">{$Post->start_date|date:'n'|wp_cz_month}</div>
+						<div class="event-thumbnail__date__month">{$Post->start_date|wp_short_month_cz_name}</div>
 						<div class="event-thumbnail__date__day">{$Post->start_date|date:'j'}</div>
 					</div>
 
@@ -38,7 +38,7 @@
 						<h2><a href="{$Post|wp_permalink}">{$Post|wp_title}</a></h2>
 						<div class="event-thumbnail__subtitle">{$Post->subtitle}</div>
 
-						{wml_get_event_date($Post)}
+						{$Post|wp_event_date}
 						{if !empty($Post->place)}
 							&bull; {$Post->place}
 						{/if}
