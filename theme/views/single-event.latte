@@ -50,22 +50,17 @@
 				<a n:attr="href => $Post->register_url" target="_blank" class="event-page__register-button" title="Online přihlašování" target="_blank">Přihlásit se na akci</a>
 			{/if}
 
-			{if $relatedPosts}
+			<div n:if="$relatedPosts" class="event-page__related-posts">
 				<h2>Související aktuality</h2>
 
-				{foreach $relatedPosts as $relatedPost}
-					<div>
-						<h3>
-							<a href="{$relatedPost|wp_permalink}">
-								{$relatedPost|wp_title}
-							</a>
-						</h3>
-						<p>
-							{$relatedPost|wp_excerpt}
-						</p>
-					</div>
-				{/foreach}
-			{/if}
+				<ul>
+					<li n:foreach="$relatedPosts as $relatedPost" class="event-page__related-post">
+						<h3><a href="{$relatedPost|wp_permalink}">{$relatedPost|wp_title}</a></h3>
+						<p>{$relatedPost|wp_excerpt}</p>
+						<p class="event-page__related-post__publish-date">Publikováno {$relatedPost|wp_date:'j. n. Y'}</p>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 {/block}

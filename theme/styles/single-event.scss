@@ -121,4 +121,28 @@
 		text-align: center;
 		max-width: 300px;
 	}
+
+	&__related-posts {
+		h2 {
+			font-size: 1.5rem;
+		}
+	}
+
+	&__related-post {
+		font-size: 0.9rem;
+		margin-bottom: $spacer;
+
+		h3, p {
+			margin-bottom: $spacer / 2;
+		}
+
+		h3 {
+			font-size: 1.1rem;
+		}
+
+		&__publish-date {
+			font-weight: 300;
+			color: #959595;
+		}
+	}
 }
