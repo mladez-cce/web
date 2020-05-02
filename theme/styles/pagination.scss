@@ -12,7 +12,7 @@
 	margin: ($spacer * 2) (-$horizontal-spacing);
 
 	a {
-		@include button();
+		@include secondary-button();
 
 		display: block;
 		margin: 0 $horizontal-spacing;

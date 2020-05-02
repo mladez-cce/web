@@ -16,16 +16,27 @@
 	}
 }
 
-@mixin button {
+@mixin button($text-color, $bg-color) {
 	border-radius: $button-border-radius;
-	background-color: #e7e7e7;
+	background-color: $bg-color;
 	padding: $spacer * 0.5 $spacer;
-	color: black;
-	font-weight: 300;
+	color: $text-color;
 	transition: background-color 0.2s;
 
 	&:hover {
 		text-decoration: none;
-		background-color: #efefef;
+		color: $text-color;
+		// Lighten the background color (rgba() works better than lighten() on both
+		// dark and light colors).
+		background-color: rgba($bg-color, 0.7);
 	}
+}
+
+@mixin primary-button {
+	@include button(#fff, #000);
+}
+
+@mixin secondary-button {
+	@include button(#000, #e7e7e7);
+	font-weight: 300;
 }
