@@ -55,6 +55,14 @@
 		}
 	}
 
+	&.event-page-past {
+		.event-page__header__featured-image-container {
+			img {
+				filter: grayscale(100%);
+			}
+		}
+	}
+
 	&__info {
 		margin-bottom: $component-spacer;
 		font-weight: 500;
