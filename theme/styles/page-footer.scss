@@ -7,6 +7,7 @@
 
 	$vertical-spacer: $spacer;
 
+	margin-top: $component-spacer;
 	background: url("../images/page-header-bg-blue.png") center top repeat-x;
 
 	// Account for the semi-transparent fuzzy border.

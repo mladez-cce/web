@@ -11,7 +11,7 @@
 	text-align: center;
 	padding-top: $spacer * 3;
 	padding-bottom: $bottom-fuzzy-border-height;
-	margin-bottom: $component-spacer;
+	margin-bottom: $spacer * 2;
 	position: relative;
 
 	// Implement the bottom fuzzy border using a floating, absolutely positioned
