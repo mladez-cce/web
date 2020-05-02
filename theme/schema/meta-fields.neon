@@ -29,7 +29,7 @@ register:
 				name: "Web (URL)"
 				type: string
 			register_url:
-				name: "Přihlašování na (URL)"
+				name: "Online přihlašování (URL)"
 				type: string
 			price:
 				name: "Cena"

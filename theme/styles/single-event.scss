@@ -1,53 +1,114 @@
-.page-event-header {
-	// Remove the padding accounting for the bottom fuzzy border as we want the
-	// fuzzy border to overlap the feature image.
-	padding-bottom: 0;
+@import "icons";
+@import "config";
 
-	&__featured-image-container {
-		margin: 0 auto;
-		max-width: 680px; // TODO: Use a constant.
-		border-radius: 15px;
-		overflow: hidden;
-		transition: all 0.3s;
+.event-page {
+	&__header {
+		// Remove the padding accounting for the bottom fuzzy border as we want the
+		// fuzzy border to overlap the feature image.
+		padding-bottom: 0;
 
-		// Clickable label that wraps around the image and hides part of it using
-		// overflow: hidden when in the collapsed state.
-		label {
-			display: block;
+		&__featured-image-container {
+			margin: 0 auto;
+			max-width: 680px; // TODO: Use a constant.
+			border-radius: 15px;
 			overflow: hidden;
-			max-height: 300px;
-			padding: 0;
-			margin: 0;
-			cursor: pointer;
 			transition: all 0.3s;
 
-			img {
-				width: 100%;
-				max-height: none;
+			// Clickable label that wraps around the image and hides part of it using
+			// overflow: hidden when in the collapsed state.
+			label {
+				display: block;
+				overflow: hidden;
+				max-height: 300px;
+				padding: 0;
 				margin: 0;
+				cursor: pointer;
+				transition: all 0.3s;
+
+				img {
+					width: 100%;
+					max-height: none;
+					margin: 0;
+				}
+			}
+		}
+
+		// We are using the same trick with a hidden checkbox to collapse / expand
+		// the featured image without any JavaScript. Check page-navbar.scss for how
+		// this works.
+
+		input[type="checkbox"] {
+			display: none;
+		}
+
+		input[type="checkbox"]:checked ~ &__featured-image-container {
+			position: relative;
+			z-index: 2;
+			box-shadow: 0 0 50px 0 rgba(0,0,0,0.3);
+
+			// Account for the fuzzy border; makes the animation look nicer.
+			margin-bottom: 70px;
+
+			label {
+				max-height: 2000px;
+				overflow: visible;
 			}
 		}
 	}
 
-	// We are using the same trick with a hidden checkbox to collapse / expand
-	// the featured image without any JavaScript. Check page-navbar.scss for how
-	// this works.
+	&__info {
+		font-weight: 500;
+		padding: 0;
 
-	input[type="checkbox"] {
-		display: none;
-	}
+		li {
+			list-style-type: none;
+			margin-bottom: $spacer / 2;
 
-	input[type="checkbox"]:checked ~ &__featured-image-container {
-		position: relative;
-		z-index: 2;
-		box-shadow: 0 0 50px 0 rgba(0,0,0,0.3);
+			// Display an icon for each list element.
+			&:before {
+				content: "";
+				display: inline-block;
+				width: 1.5rem;
+				height: 1.5rem;
+				background-size: cover;
+				margin-right: 0.5rem;
+				opacity: 0.4;
 
-		// Account for the fuzzy border; makes the animation look nicer.
-		margin-bottom: 70px;
+				// Some magic to align the icon vertically with the text.
+				vertical-align: middle;
+				position: relative;
+				top: -0.1rem;
+			}
+		}
 
-		label {
-			max-height: 2000px;
-			overflow: visible;
+		&__date {
+			&:before {
+				@include icon_access_time();
+			}
+		}
+
+		&__address {
+			&:before {
+				@include icon_location_on();
+			}
+		}
+
+		&__price {
+			&:before {
+				@include icon_local_offer();
+			}
+		}
+
+		&__links {
+			&:before {
+				@include icon_link();
+			}
+
+			// Separate links by a bullet point.
+			span:not(:last-child):after {
+				content: " •";
+				margin: 0 0.2rem;
+			}
 		}
 	}
 }

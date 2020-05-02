@@ -4,7 +4,7 @@
 {block body}
 	{include page-navbar}
 
-	<div class="page-header page-event-header">
+	<div class="page-header event-page__header">
 		<h1>{include page-title}</h1>
 		<div class="page-header__subtitle">
 			<span n:ifcontent>{$Post->subtitle}</span>
@@ -14,7 +14,7 @@
 
 		{if has_post_thumbnail($Post)}
 			<input type="checkbox" id="toggle-event-featured-image" />
-			<div class="page-event-header__featured-image-container">
+			<div class="event-page__header__featured-image-container">
 				<label for="toggle-event-featured-image" title="{include page-title} &ndash; kliknutím zobrazte celý obrázek">
 					<img src="{$Post|wp_thumbnail}" alt="{include page-title}" />
 				</label>
@@ -23,23 +23,43 @@
 	</div>
 
 	<div class="page-content">
-		{$Post|wp_content}
+		<div class="text-container">
+			<ul n:ifcontent class="event-page__info">
+				<li class="event-page__info__date">
+					{wml_get_event_date($Post)}{if !empty($Post->start_time)},
+						začátek {$Post->start_time}{/if}
+				</li>
+				<li class="event-page__info__address" n:ifcontent>
+					{$Post->address}
+				</li>
+				<li class="event-page__info__price" n:ifcontent>
+					{$Post->price}
+				</li>
+				<li class="event-page__info__links" n:ifcontent>
+					<span n:if="!empty($Post->fb_event_url)"><a n:attr="href => $Post->fb_event_url" target="_blank">Událost na Facebooku</a></span>
+					<span n:if="!empty($Post->web_url)"><a n:attr="href => $Post->web_url" target="_blank">Webové stránky</a></span>
+					<span n:if="!empty($Post->register_url)"><a n:attr="href => $Post->register_url" target="_blank">Online přihlašování</a></span>
+				</li>
+			</ul>
 
-		{if $relatedPosts}
-			<h2>Související aktuality</h2>
+			{$Post|wp_content}
 
-			{foreach $relatedPosts as $relatedPost}
-				<div>
-					<h3>
-						<a href="{$relatedPost|wp_permalink}">
-							{$relatedPost|wp_title}
-						</a>
-					</h3>
-					<p>
-						{$relatedPost|wp_excerpt}
-					</p>
-				</div>
-			{/foreach}
-		{/if}
+			{if $relatedPosts}
+				<h2>Související aktuality</h2>
+
+				{foreach $relatedPosts as $relatedPost}
+					<div>
+						<h3>
+							<a href="{$relatedPost|wp_permalink}">
+								{$relatedPost|wp_title}
+							</a>
+						</h3>
+						<p>
+							{$relatedPost|wp_excerpt}
+						</p>
+					</div>
+				{/foreach}
+			{/if}
+		</div>
 	</div>
 {/block}
