@@ -58,6 +58,7 @@
 	}
 
 	&__info {
+		margin-bottom: $component-spacer;
 		font-weight: 500;
 		padding: 0;
 
@@ -117,12 +118,14 @@
 		@include primary-button();
 
 		display: block;
-		margin: $spacer auto;
+		margin: 0 auto $component-spacer;
 		text-align: center;
 		max-width: 300px;
 	}
 
 	&__related-posts {
+		margin-bottom: $component-spacer;
+
 		h2 {
 			font-size: 1.5rem;
 		}
