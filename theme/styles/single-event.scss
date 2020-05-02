@@ -1,4 +1,5 @@
 @import "icons";
+@import "common-mixins";
 @import "config";
 
 .event-page {
@@ -110,5 +111,14 @@
 				margin: 0 0.2rem;
 			}
 		}
+	}
+
+	&__register-button {
+		@include primary-button();
+
+		display: block;
+		margin: $spacer auto;
+		text-align: center;
+		max-width: 300px;
 	}
 }

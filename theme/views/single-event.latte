@@ -42,7 +42,13 @@
 				</li>
 			</ul>
 
-			{$Post|wp_content}
+			<div class="event-page__text">
+				{$Post|wp_content}
+			</div>
+
+			{if !empty($Post->register_url)}
+				<a n:attr="href => $Post->register_url" target="_blank" class="event-page__register-button" title="Online přihlašování" target="_blank">Přihlásit se na akci</a>
+			{/if}
 
 			{if $relatedPosts}
 				<h2>Související aktuality</h2>
