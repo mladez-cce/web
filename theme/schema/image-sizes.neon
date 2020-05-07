@@ -1,4 +1,2 @@
 register:
-	s: 320
-	m: 320x480
-	l: 320x480c
+	page-width: 680x9999

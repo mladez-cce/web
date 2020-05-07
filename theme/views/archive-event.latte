@@ -23,7 +23,7 @@
 				{if has_post_thumbnail($Post)}
 					<div class="event-thumbnail__poster">
 						<a href="{$Post|wp_permalink}" title="{$Post|wp_title}">
-							<img src="{$Post|wp_thumbnail}" alt="{$Post|wp_title}" />
+							<img src="{$Post|wp_thumbnail:'page-width'}" alt="{$Post|wp_title}" />
 						</a>
 					</div>
 				{/if}

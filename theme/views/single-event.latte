@@ -17,7 +17,7 @@
 				<input type="checkbox" id="toggle-event-featured-image" />
 				<div class="event-page__header__featured-image-container">
 					<label for="toggle-event-featured-image" title="{include page-title} &ndash; kliknutím zobrazte celý obrázek">
-						<img src="{$Post|wp_thumbnail}" alt="{include page-title}" />
+						<img src="{$Post|wp_thumbnail:page-width}" alt="{include page-title}" />
 					</label>
 				</div>
 			{/if}
