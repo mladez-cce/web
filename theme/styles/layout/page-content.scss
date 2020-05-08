@@ -1,4 +1,4 @@
-@import "common-mixins";
+@import "../common/common-mixins";
 
 .page-content {
 	@include page-horizontal-padding();

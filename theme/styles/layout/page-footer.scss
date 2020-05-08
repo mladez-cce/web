@@ -1,6 +1,6 @@
-@import "common-mixins";
-@import "config";
-@import "media-query-mixins";
+@import "../common/common-mixins";
+@import "../common/config";
+@import "../common/media-query-mixins";
 
 .page-footer {
 	@include page-horizontal-padding();

@@ -1,5 +1,5 @@
-@import "media-query-mixins";
-@import "common-mixins";
+@import "../common/media-query-mixins";
+@import "../common/common-mixins";
 
 .page-header {
 	// Actual height of white-fuzzy-border-bottom.png.

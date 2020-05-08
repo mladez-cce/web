@@ -1,6 +1,6 @@
-@import "config";
-@import "icons";
-@import "media-query-mixins";
+@import "../common/config";
+@import "../common/icons";
+@import "../common/media-query-mixins";
 
 .front-page {
 	&__header {

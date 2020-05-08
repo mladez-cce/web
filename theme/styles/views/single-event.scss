@@ -1,6 +1,6 @@
-@import "icons";
-@import "common-mixins";
-@import "config";
+@import "../common/icons";
+@import "../common/common-mixins";
+@import "../common/config";
 
 .event-page {
 	&__header {
