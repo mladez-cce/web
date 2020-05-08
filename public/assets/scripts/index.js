@@ -40,7 +40,7 @@ addParallaxEffect(
 
 // Add a parallax effect to the header text.
 addParallaxEffect(
-	".page-jumbotron-header h1",
+	".front-page__header h1",
 	function (style, offset) {
 		const SCROLL_SPEED = 0.011;
 		const FADE_SPEED = 0.003;
@@ -51,7 +51,7 @@ addParallaxEffect(
 
 // Add a parallax effect to the header boat image.
 addParallaxEffect(
-	".page-jumbotron-header__boat",
+	".front-page__header__boat",
 	function (style, offset) {
 		const SCROLL_SPEED = 0.12;
 		const FADE_SPEED = 0.002;
