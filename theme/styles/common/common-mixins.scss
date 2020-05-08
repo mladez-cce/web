@@ -1,6 +1,11 @@
 @import "config";
 @import "media-query-mixins";
 
+@mixin secondary-font {
+	font-family: $secondary-font-family;
+	letter-spacing: -2px; // This makes it look much better.
+}
+
 @mixin page-horizontal-padding {
 	padding-left: $spacer;
 	padding-right: $spacer;

@@ -18,8 +18,7 @@ body {
 }
 
 h1 {
-	font-family: $secondary-font-family;
-	letter-spacing: -2px;
+	@include secondary-font();
 }
 
 h2, h3, h4, h5, h6 {

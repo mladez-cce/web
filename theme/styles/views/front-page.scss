@@ -122,8 +122,7 @@
 
 	&__posts {
 		h2 {
-			font-family: $secondary-font-family;
-			letter-spacing: -2px; // TODO: create a mixin for the secondary font
+			@include secondary-font();
 			font-size: 4.5rem;
 		}
 	}
