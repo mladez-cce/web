@@ -1,2 +1,3 @@
 register:
 	page-width: 680x9999
+	for-page-header: 200x680

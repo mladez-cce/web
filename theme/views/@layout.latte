@@ -74,7 +74,7 @@
 
 	<div class="page-header">
 		{if has_post_thumbnail($Post)}
-			<img src="{$Post|wp_thumbnail}" alt="{include page-title}" />
+			<img src="{$Post|wp_thumbnail:'for-page-header'}" alt="{include page-title}" />
 		{/if}
 		<h1>{include page-title}</h1>
 		<div n:if="!empty($Post->subtitle)" class="page-header__subtitle">{$Post->subtitle}</div>
