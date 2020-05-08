@@ -502,11 +502,3 @@
 		}
 	}
 }
-
-.page-jumbotron-header .page-navbar {
-	// Hide the navbar background if it navbar is part of the jumbotron header
-	// which provides the background on its own.
-	&:before {
-		display: none;
-	}
-}
