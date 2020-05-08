@@ -4,59 +4,52 @@
 
 .event-page {
 	&__header {
-		&__featured-image-container {
-			// The negative margin removes the padding accounting for the bottom fuzzy
-			// border as we want the fuzzy border to overlap the feature image.
-			margin: 0 auto -69px; // TODO: Use constant.
+		// Limit the height of the header so that the featured image (typically the
+		// event poster) remains partially hidden and shows only upon expansion of
+		// the header.
+		overflow: hidden;
+		max-height: 460px;
+		transition: all 0.5s;
+
+		// Clickable label that expands the header.
+		&__featured-image {
+			display: block;
 			max-width: 680px; // TODO: Use a constant.
+			overflow: hidden; // For the rounded borders
 			border-radius: 15px;
-			overflow: hidden;
-			transition: all 0.3s;
+			margin: 0 auto;
+			cursor: pointer;
+			transition: all 0.5s;
 
-			// Clickable label that wraps around the image and hides part of it using
-			// overflow: hidden when in the collapsed state.
-			label {
-				display: block;
-				overflow: hidden;
-				max-height: 300px;
-				padding: 0;
+			img {
+				width: 100%;
+				max-height: none;
 				margin: 0;
-				cursor: pointer;
-				transition: all 0.3s;
-
-				img {
-					width: 100%;
-					max-height: none;
-					margin: 0;
-				}
 			}
 		}
 
-		// We are using the same trick with a hidden checkbox to collapse / expand
-		// the featured image without any JavaScript. Check page-navbar.scss for how
-		// this works.
-
-		input[type="checkbox"] {
-			display: none;
+		&__featured-image-download {
+			margin: $spacer auto;
 		}
+	}
 
-		input[type="checkbox"]:checked ~ &__featured-image-container {
-			position: relative;
-			z-index: 2;
+	// We are using the same trick with a hidden checkbox to collapse / expand
+	// the featured image without any JavaScript. Check page-navbar.scss for how
+	// this works.
+	input[type="checkbox"]#toggle-event-featured-image {
+		display: none;
+	}
+
+	input[type="checkbox"]#toggle-event-featured-image:checked ~ .event-page__header {
+		max-height: 2000px;
+
+		.event-page__header__featured-image {
 			box-shadow: 0 0 50px 0 rgba(0,0,0,0.3);
-
-			// Account for the fuzzy border; makes the animation look nicer.
-			margin-bottom: 70px;
-
-			label {
-				max-height: 2000px;
-				overflow: visible;
-			}
 		}
 	}
 
 	&.event-page-past {
-		.event-page__header__featured-image-container {
+		.event-page__header__featured-image {
 			img {
 				filter: grayscale(100%);
 			}

@@ -5,6 +5,8 @@
 	{include page-navbar}
 
 	<div n:class="event-page, wml_is_event_over($Post) ? event-page-past">
+		<input n:if="has_post_thumbnail($Post)" type="checkbox" id="toggle-event-featured-image" />
+
 		<div class="page-header event-page__header">
 			<h1>{include page-title}</h1>
 			<div class="page-header__subtitle">
@@ -14,11 +16,12 @@
 			</div>
 
 			{if has_post_thumbnail($Post)}
-				<input type="checkbox" id="toggle-event-featured-image" />
-				<div class="event-page__header__featured-image-container">
-					<label for="toggle-event-featured-image" title="{include page-title} &ndash; kliknutím zobrazte celý obrázek">
-						<img src="{$Post|wp_thumbnail:page-width}" alt="{include page-title}" />
-					</label>
+				<label class="event-page__header__featured-image" for="toggle-event-featured-image" title="{include page-title} &ndash; kliknutím zobrazte celý obrázek">
+					<img src="{$Post|wp_thumbnail:page-width}" alt="{include page-title}" />
+				</label>
+
+				<div class="event-page__header__featured-image-download">
+					<a href="{$Post|wp_thumbnail:full}" download>Stáhnout v originální velikosti</a>
 				</div>
 			{/if}
 		</div>
