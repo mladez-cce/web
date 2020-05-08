@@ -10,3 +10,10 @@ $spacer: 16px;
 $component-spacer: $spacer * 3;
 
 $button-border-radius: 6px;
+
+// The default width for a content page across the whole site. Chosen to make
+// the text on the page not too wide and easily readable.
+$base-content-width: 680px;
+
+// The default width for an event thumbnail across the whole site.
+$base-event-thumbnail-width: 530px;

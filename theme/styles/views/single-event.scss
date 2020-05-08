@@ -14,7 +14,7 @@
 		// Clickable label that expands the header.
 		&__featured-image {
 			display: block;
-			max-width: 680px; // TODO: Use a constant.
+			max-width: $base-content-width;
 			overflow: hidden; // For the rounded borders
 			border-radius: 15px;
 			margin: 0 auto;

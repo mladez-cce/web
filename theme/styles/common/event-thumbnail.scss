@@ -2,7 +2,7 @@
 
 .event-thumbnail {
 	$border-radius: 10px;
-	$max-width: 530px;
+	$max-width: $base-event-thumbnail-width;
 
 	max-width: $max-width;
 	background-image: url("../images/white-fuzzy-border-bottom.png"),

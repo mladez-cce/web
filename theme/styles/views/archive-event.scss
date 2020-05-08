@@ -2,7 +2,7 @@
 
 .archive-event {
 	&__events {
-		max-width: 530px;
+		max-width: $base-event-thumbnail-width;
 		margin: 0 auto;
 	}
 }
