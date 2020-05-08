@@ -4,7 +4,7 @@
 	{show_past_events() ? "Uplynulé akce" : "Nadcházející akce"}
 {/block}
 
-<div n:block="body">
+<div n:block="body" class="archive-event">
 	{include page-navbar}
 
 	<div class="page-header">
@@ -17,7 +17,7 @@
 	</div>
 
 	<div class="page-content">
-		<div class="events">
+		<div class="archive-event__events">
 			{each}
 				{include "shared/event-thumbnail.latte", event => $Post}
 			{/each}

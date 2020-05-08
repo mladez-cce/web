@@ -2,7 +2,7 @@
 @import "../common/common-mixins";
 @import "../common/config";
 
-.event-page {
+.single-event {
 	&__header {
 		// Limit the height of the header so that the featured image (typically the
 		// event poster) remains partially hidden and shows only upon expansion of
@@ -40,16 +40,16 @@
 		display: none;
 	}
 
-	input[type="checkbox"]#toggle-event-featured-image:checked ~ .event-page__header {
+	input[type="checkbox"]#toggle-event-featured-image:checked ~ .single-event__header {
 		max-height: 2000px;
 
-		.event-page__header__featured-image {
+		.single-event__header__featured-image {
 			box-shadow: 0 0 50px 0 rgba(0,0,0,0.3);
 		}
 	}
 
-	&.event-page-past {
-		.event-page__header__featured-image {
+	&.single-event-past {
+		.single-event__header__featured-image {
 			img {
 				filter: grayscale(100%);
 			}

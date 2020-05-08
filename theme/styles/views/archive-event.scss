@@ -1,8 +1,10 @@
 @import "../common/config";
 
-.events {
-	max-width: 530px;
-	margin: 0 auto;
+.archive-event {
+	&__events {
+		max-width: 530px;
+		margin: 0 auto;
+	}
 }
 
 .event-thumbnail {
