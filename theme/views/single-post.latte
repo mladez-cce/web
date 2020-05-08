@@ -1,6 +1,6 @@
 {extends @layout.latte}
 
-{block page-content}
+<div n:block="page-content">
 	{each}
 		{$Post|wp_content}
 
@@ -14,4 +14,4 @@
 			</div>
 		{/if}
 	{/each}
-{/block}
+</div>

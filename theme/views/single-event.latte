@@ -1,77 +1,74 @@
 {extends @layout.latte}
 
-
-{block body}
+<div n:block="body" n:class="event-page, wml_is_event_over($Post) ? event-page-past">
 	{include page-navbar}
 
-	<div n:class="event-page, wml_is_event_over($Post) ? event-page-past">
-		<input n:if="has_post_thumbnail($Post)" type="checkbox" id="toggle-event-featured-image" />
+	<input n:if="has_post_thumbnail($Post)" type="checkbox" id="toggle-event-featured-image" />
 
-		<div class="page-header event-page__header">
-			<h1>{include page-title}</h1>
-			<div class="page-header__subtitle">
-				<span n:ifcontent>{$Post->subtitle}</span>
-				<span n:ifcontent>{$Post|wp_event_date}</span>
-				<span n:ifcontent>{$Post->place}</span>
-			</div>
-
-			{if has_post_thumbnail($Post)}
-				<label class="event-page__header__featured-image" for="toggle-event-featured-image" title="{include page-title} &ndash; kliknutím zobrazte celý obrázek">
-					<img src="{$Post|wp_thumbnail:page-width}" alt="{include page-title}" />
-				</label>
-
-				<div class="event-page__header__featured-image-download">
-					<a href="{$Post|wp_thumbnail:full}" download>Stáhnout v originální velikosti</a>
-				</div>
-			{/if}
+	<div class="page-header event-page__header">
+		<h1>{include page-title}</h1>
+		<div class="page-header__subtitle">
+			<span n:ifcontent>{$Post->subtitle}</span>
+			<span n:ifcontent>{$Post|wp_event_date}</span>
+			<span n:ifcontent>{$Post->place}</span>
 		</div>
 
-		<div class="page-content">
-			<div class="text-container">
-				<ul n:ifcontent class="event-page__info">
-					<li class="event-page__info__date">
-						{$Post|wp_event_date}{if !empty($Post->start_time)},
-							začátek {$Post->start_time}{/if}
-					</li>
-					<li class="event-page__info__address" n:ifcontent>
-						{$Post->address}
-					</li>
-					<li class="event-page__info__price" n:ifcontent>
-						{$Post->price}
-					</li>
-					<li class="event-page__info__links" n:ifcontent>
-						<span n:if="!empty($Post->fb_event_url)"><a n:attr="href => $Post->fb_event_url" target="_blank">Událost na Facebooku</a></span>
-						<span n:if="!empty($Post->web_url)"><a n:attr="href => $Post->web_url" target="_blank">Webové stránky</a></span>
-						<span n:if="!empty($Post->register_url)"><a n:attr="href => $Post->register_url" target="_blank">Online přihlašování</a></span>
+		{if has_post_thumbnail($Post)}
+			<label class="event-page__header__featured-image" for="toggle-event-featured-image" title="{include page-title} &ndash; kliknutím zobrazte celý obrázek">
+				<img src="{$Post|wp_thumbnail:page-width}" alt="{include page-title}" />
+			</label>
+
+			<div class="event-page__header__featured-image-download">
+				<a href="{$Post|wp_thumbnail:full}" download>Stáhnout v originální velikosti</a>
+			</div>
+		{/if}
+	</div>
+
+	<div class="page-content">
+		<div class="text-container">
+			<ul n:ifcontent class="event-page__info">
+				<li class="event-page__info__date">
+					{$Post|wp_event_date}{if !empty($Post->start_time)},
+						začátek {$Post->start_time}{/if}
+				</li>
+				<li class="event-page__info__address" n:ifcontent>
+					{$Post->address}
+				</li>
+				<li class="event-page__info__price" n:ifcontent>
+					{$Post->price}
+				</li>
+				<li class="event-page__info__links" n:ifcontent>
+					<span n:if="!empty($Post->fb_event_url)"><a n:attr="href => $Post->fb_event_url" target="_blank">Událost na Facebooku</a></span>
+					<span n:if="!empty($Post->web_url)"><a n:attr="href => $Post->web_url" target="_blank">Webové stránky</a></span>
+					<span n:if="!empty($Post->register_url)"><a n:attr="href => $Post->register_url" target="_blank">Online přihlašování</a></span>
+				</li>
+			</ul>
+
+			<div class="event-page__text">
+				{$Post|wp_content}
+
+				<p class="event-page__last-modified">
+					Naposledy upravil/a {the_modified_author()},
+					{$Post|wp_modified_date|wp_cz_date_format}.
+				</p>
+			</div>
+
+
+			{if !empty($Post->register_url) && !wml_is_event_over($Post)}
+				<a n:attr="href => $Post->register_url" target="_blank" class="event-page__register-button" title="Online přihlašování" target="_blank">Přihlásit se na akci</a>
+			{/if}
+
+			<div n:if="$relatedPosts" class="event-page__related-posts">
+				<h2>Související aktuality</h2>
+
+				<ul>
+					<li n:foreach="$relatedPosts as $relatedPost" class="event-page__related-post">
+						<h3><a href="{$relatedPost|wp_permalink}">{$relatedPost|wp_title}</a></h3>
+						<p>{$relatedPost|wp_excerpt}</p>
+						<p class="event-page__related-post__publish-date">Publikováno {$relatedPost|wp_date|wp_cz_date_format}</p>
 					</li>
 				</ul>
-
-				<div class="event-page__text">
-					{$Post|wp_content}
-
-					<p class="event-page__last-modified">
-						Naposledy upravil/a {the_modified_author()},
-						{$Post|wp_modified_date|wp_cz_date_format}.
-					</p>
-				</div>
-
-
-				{if !empty($Post->register_url) && !wml_is_event_over($Post)}
-					<a n:attr="href => $Post->register_url" target="_blank" class="event-page__register-button" title="Online přihlašování" target="_blank">Přihlásit se na akci</a>
-				{/if}
-
-				<div n:if="$relatedPosts" class="event-page__related-posts">
-					<h2>Související aktuality</h2>
-
-					<ul>
-						<li n:foreach="$relatedPosts as $relatedPost" class="event-page__related-post">
-							<h3><a href="{$relatedPost|wp_permalink}">{$relatedPost|wp_title}</a></h3>
-							<p>{$relatedPost|wp_excerpt}</p>
-							<p class="event-page__related-post__publish-date">Publikováno {$relatedPost|wp_date|wp_cz_date_format}</p>
-						</li>
-					</ul>
-				</div>
 			</div>
 		</div>
 	</div>
-{/block}
+</div>

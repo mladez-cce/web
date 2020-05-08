@@ -4,27 +4,28 @@
 	{show_past_events() ? "Uplynulé akce" : "Nadcházející akce"}
 {/block}
 
-{block body}
-{include page-navbar}
+<div n:block="body">
+	{include page-navbar}
 
-<div class="page-header">
-	{var $headerImg = show_past_events() ? "illustration-packed-sleeping-bag.png" : "illustration-unpacked-sleeping-bag.png"}
-	<img src="assets/images/{$headerImg}" alt="{include page-title}" />
-	<h1>{include page-title}</h1>
-	<div class="page-header__subtitle">
-		{show_past_events() ? "Co jste si v minulosti mohli užít" : "Na co jste srdečně zváni"}
+	<div class="page-header">
+		{var $headerImg = show_past_events() ? "illustration-packed-sleeping-bag.png" : "illustration-unpacked-sleeping-bag.png"}
+		<img src="assets/images/{$headerImg}" alt="{include page-title}" />
+		<h1>{include page-title}</h1>
+		<div class="page-header__subtitle">
+			{show_past_events() ? "Co jste si v minulosti mohli užít" : "Na co jste srdečně zváni"}
+		</div>
 	</div>
-</div>
 
-<div class="page-content">
-	<div class="events">
-		{each}
-			{include "shared/event-thumbnail.latte", event => $Post}
-		{/each}
+	<div class="page-content">
+		<div class="events">
+			{each}
+				{include "shared/event-thumbnail.latte", event => $Post}
+			{/each}
 
-		<div class="pagination">
-			<div class="pagination__prev" n:if="$previous_events_link">{$previous_events_link|noescape}</div>
-			<div class="pagination__next" n:if="$next_events_link">{$next_events_link|noescape}</div>
+			<div class="pagination">
+				<div class="pagination__prev" n:if="$previous_events_link">{$previous_events_link|noescape}</div>
+				<div class="pagination__next" n:if="$next_events_link">{$next_events_link|noescape}</div>
+			</div>
 		</div>
 	</div>
 </div>
