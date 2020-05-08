@@ -1,0 +1,26 @@
+<div n:class="event-thumbnail, wml_is_event_over($event) ? event-thumbnail-past">
+	{if has_post_thumbnail($event)}
+		<div class="event-thumbnail__poster">
+			<a href="{$event|wp_permalink}" title="{$event|wp_title}">
+				<img src="{$event|wp_thumbnail:'page-width'}" alt="{$event|wp_title}" />
+			</a>
+		</div>
+	{/if}
+
+	<div class="event-thumbnail__label">
+		<div class="event-thumbnail__date">
+			<div class="event-thumbnail__date__month">{$event->start_date|wp_short_month_cz_name}</div>
+			<div class="event-thumbnail__date__day">{$event->start_date|date:'j'}</div>
+		</div>
+
+		<div class="event-thumbnail__info">
+			<h2><a href="{$event|wp_permalink}">{$event|wp_title}</a></h2>
+			<div class="event-thumbnail__subtitle">{$event->subtitle}</div>
+
+			{$event|wp_event_date}
+			{if !empty($event->place)}
+				&bull; {$event->place}
+			{/if}
+		</div>
+	</div>
+</div>

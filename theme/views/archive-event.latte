@@ -19,33 +19,7 @@
 <div class="page-content">
 	<div class="events">
 		{each}
-			<div n:class="event-thumbnail, wml_is_event_over($Post) ? event-thumbnail-past">
-				{if has_post_thumbnail($Post)}
-					<div class="event-thumbnail__poster">
-						<a href="{$Post|wp_permalink}" title="{$Post|wp_title}">
-							<img src="{$Post|wp_thumbnail:'page-width'}" alt="{$Post|wp_title}" />
-						</a>
-					</div>
-				{/if}
-
-				<div class="event-thumbnail__label">
-					<div class="event-thumbnail__date">
-						<div class="event-thumbnail__date__month">{$Post->start_date|wp_short_month_cz_name}</div>
-						<div class="event-thumbnail__date__day">{$Post->start_date|date:'j'}</div>
-					</div>
-
-					<div class="event-thumbnail__info">
-						<h2><a href="{$Post|wp_permalink}">{$Post|wp_title}</a></h2>
-						<div class="event-thumbnail__subtitle">{$Post->subtitle}</div>
-
-						{$Post|wp_event_date}
-						{if !empty($Post->place)}
-							&bull; {$Post->place}
-						{/if}
-					</div>
-				</div>
-
-			</div>
+			{include "shared/event-thumbnail.latte", event => $Post}
 		{/each}
 
 		<div class="pagination">
