@@ -1,12 +1,16 @@
+@import "../common/common-mixins";
 @import "../common/config";
 @import "../common/icons";
 @import "../common/media-query-mixins";
 
 .front-page {
+	$front-page-width: 960px;
+	$content-gutter: $spacer * 4;
+
 	&__header {
 		height: 600px;
 		background-image: url("../images/page-header-bg-blue.png"),
-		url("../images/page-header-bg-yellow.png");
+			url("../images/page-header-bg-yellow.png");
 		// If you change the top offset for the blue background, you also need to
 		// update the parallax effect definition in public/assets/scripts/index.js.
 		background-position: center 40px, center top;
@@ -108,6 +112,65 @@
 		// which provides the background on its own.
 		&:before {
 			display: none;
+		}
+	}
+
+	&__content {
+		margin: 0 auto;
+		max-width: $base-event-thumbnail-width;
+	}
+
+	&__posts {
+		h2 {
+			font-family: $secondary-font-family;
+			letter-spacing: -2px; // TODO: create a mixin for the secondary font
+			font-size: 4.5rem;
+		}
+	}
+
+	&__post {
+		margin-bottom: $spacer * 2;
+
+		h3 {
+			font-size: 1.5rem;
+			margin-bottom: 0.5rem;
+
+			a {
+				color: $primary-text-color;
+			}
+		}
+
+		// This is a neat hack :/ Due to WordPress' limitations of the
+		// "excerpt_more" filter, we can't easily append a "Read more" link to the
+		// post's excerpt, only a generic "..." string which is identified by the
+		// wp-excerpt-more class. So we append that "Read more" link manually to all
+		// excerpts but hide it by default...
+		&__read-more {
+			display: none;
+		}
+
+		// ...unless there is "..." present, indicating that there is more to read.
+		.wp-excerpt-more ~ &__read-more {
+			display: inline;
+		}
+
+		&__publish-date {
+			@include post-meta-info();
+		}
+	}
+
+	@include for-desktops-and-larger {
+		&__content {
+			width: $front-page-width;
+			max-width: none;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		&__events {
+			width: $base-event-thumbnail-width;
+			flex-shrink: 0;
+			margin-right: $content-gutter;
 		}
 	}
 }

@@ -4,12 +4,26 @@
 //
 // This is the actual home page of the website.
 
+$upcomingEvents = get_posts([
+	"post_type"	=> "event",
+	"meta_query" => [
+		"key" => "end_date",
+		"value" => date("Y-m-d"),
+		"compare" => ">="
+	],
+	"meta_key" => "start_date",
+	"orderby" => "meta_value",
+	"order" => "ASC",
+	"numberposts" => 3,
+]);
+
 $latestPosts = get_posts([
 	"orderby" => "date",
 	"order" => "DESC",
-	"posts_per_page" => 10,
+	"numberposts" => 6,
 ]);
 
 view([
-	"latestPosts" => $latestPosts
+	"upcomingEvents" => $upcomingEvents,
+	"latestPosts" => $latestPosts,
 ]);

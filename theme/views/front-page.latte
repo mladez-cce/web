@@ -18,8 +18,41 @@
 	</div>
 
 	<div class="page-content">
-		<div class="text-container">
-			Tady budou poslední aktuality a nejbližší akce.
+		<div class="front-page__content">
+			<div class="front-page__events">
+				{if empty($upcomingEvents)}
+					<p>Žádné nadcházející akce :/</p>
+				{else}
+					{foreach $upcomingEvents as $event}
+						{include "shared/event-thumbnail.latte", event => $event}
+					{/foreach}
+				{/if}
+
+				<div class="pagination">
+					<div class="pagination__more">
+						<a n:attr="href => get_post_type_archive_link('event')">Zobrazit všechny akce</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="front-page__posts">
+				<h2>Co se děje nového</h2>
+
+				<div n:foreach="$latestPosts as $latestPost" class="front-page__post">
+					<h3><a href="{$latestPost|wp_permalink}">{$latestPost|wp_title}</a></h3>
+					<p>
+						{$latestPost|wp_excerpt}
+						<a class="front-page__post__read-more" href="{$latestPost|wp_permalink}">Pokračovat &gt;</a>
+					</p>
+					<p class="front-page__post__publish-date">Publikováno {$latestPost|wp_date|wp_cz_date_format}</p>
+				</div>
+
+				<div class="pagination">
+					<div class="pagination__more">
+						<a n:attr="href => get_post_type_archive_link('post')">Zobrazit všechny aktuality</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

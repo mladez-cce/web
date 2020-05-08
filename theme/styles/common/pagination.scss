@@ -81,4 +81,12 @@
 			}
 		}
 	}
+
+	&__more {
+		margin: 0 auto;
+
+		a:after {
+			display: none;
+		}
+	}
 }
