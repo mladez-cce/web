@@ -153,10 +153,6 @@
 		.wp-excerpt-more ~ &__read-more {
 			display: inline;
 		}
-
-		&__publish-date {
-			@include post-meta-info();
-		}
 	}
 
 	@include for-desktops-and-larger {

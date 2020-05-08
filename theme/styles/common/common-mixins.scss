@@ -42,7 +42,6 @@
 }
 
 @mixin post-meta-info {
-	font-style: italic;
 	font-weight: 300;
-	color: #6E6E6E;
+	color: $secondary-text-color;
 }

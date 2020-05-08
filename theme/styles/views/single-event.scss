@@ -117,10 +117,6 @@
 		margin-bottom: $component-spacer;
 	}
 
-	&__last-modified {
-		@include post-meta-info();
-	}
-
 	&__register-button {
 		@include primary-button();
 
@@ -148,10 +144,6 @@
 
 		h3 {
 			font-size: 1.1rem;
-		}
-
-		&__publish-date {
-			@include post-meta-info();
 		}
 	}
 }
