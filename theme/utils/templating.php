@@ -7,6 +7,35 @@
 //
 
 /**
+ * Returns the display name of the post author.
+ *
+ * Usage: {$post|wp_author}
+ *
+ * @param int|WP_Post $post
+ * @return SafeHtmlString
+ */
+MangoFilters::$set["wp_author"] = function ($post) {
+	$authorId = get_post_field("post_author", $post);
+	return safe(
+		$authorId ? get_userdata($authorId)->display_name : "neznámý uživatel");
+};
+
+/**
+ * Returns the display name of the author that modified the post last.
+ *
+ * Usage: {$post|wp_last_modified_author}
+ *
+ * @param int|WP_Post $post
+ * @return SafeHtmlString
+ */
+MangoFilters::$set["wp_last_modified_author"] = function ($post) {
+	$authorId = get_post_meta(
+		wml_lazy_post($post)->ID, '_edit_last', /* single = */ true);
+	return safe(
+		$authorId ? get_userdata($authorId)->display_name : "neznámý uživatel");
+};
+
+/**
  * Returns the post excerpt.
  *
  * This overrides the existing Mango filter as it doesn't support automatic excerpts.

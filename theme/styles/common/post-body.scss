@@ -1,0 +1,26 @@
+@import "config";
+@import "common-mixins";
+
+.post-body {
+	&__featured-image {
+		a {
+			$border-radius: 10px;
+			position: relative;
+			display: block;
+			margin-bottom: $spacer * 2;
+			border-radius: $border-radius;
+			overflow: hidden;
+			max-height: $base-content-width / 2;
+
+			&:before {
+				// Inset shadow over the poster so that light images are visible against
+				// the white background.
+				@include inset-shadow($border-radius);
+			}
+
+			img {
+				width: 100%;
+			}
+		}
+	}
+}

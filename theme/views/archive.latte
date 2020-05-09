@@ -1,10 +1,17 @@
 {extends @layout.latte}
 
-<div n:block="page-content">
+<div n:block="page-content" class="archive">
 	{each}
-		<h2><a href="{$Post|wp_permalink}">{$Post|wp_title}</a></h2>
-		{$Post|wp_content}
+		<div class="archive__post">
+			<h2><a href="{$Post|wp_permalink}">{$Post|wp_title}</a></h2>
+			<p class="publish-info">{$Post|wp_date|wp_cz_date_format}</p>
+
+			{include "shared/post-body.latte", post => $Post}
+		</div>
 	{/each}
 
-	{posts_nav_link()}
+	<div class="pagination">
+		<div class="pagination__next" n:ifcontent>{get_next_posts_link("Starší aktuality")|noescape}</div>
+		<div class="pagination__prev" n:ifcontent>{get_previous_posts_link("Novější aktuality")|noescape}</div>
+	</div>
 </div>

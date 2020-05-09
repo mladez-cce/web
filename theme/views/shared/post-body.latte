@@ -1,0 +1,22 @@
+<div class="post-body">
+	<div n:if="has_post_thumbnail($post)" class="post-body__featured-image">
+		<a href="{$post|wp_thumbnail:full}" download title="{$post|wp_title} &ndash; kliknutím stáhněte obrázek v originální velikosti">
+			<img src="{$post|wp_thumbnail:page-width}" alt="{$post|wp_title}" />
+		</a>
+	</div>
+
+	{$post|wp_content}
+
+	<p n:if="!empty($post->related_event)">
+		<strong>Související událost:</strong>
+
+		<a href="{$post->related_event|wp_permalink}">
+			{$post->related_event|wp_title}
+		</a>
+	</p>
+
+	<p class="publish-info">
+		Naposledy upravil/a {$post|wp_last_modified_author},
+		{$post|wp_modified_date|wp_cz_date_format}.
+	</p>
+</div>

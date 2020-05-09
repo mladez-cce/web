@@ -3,11 +3,13 @@
 @import "common/config";
 @import "common/event-thumbnail";
 @import "common/pagination";
+@import "common/post-body";
 @import "common/publish-info";
 @import "layout/page-content";
 @import "layout/page-footer";
 @import "layout/page-header";
 @import "layout/page-navbar";
+@import "views/archive";
 @import "views/archive-event";
 @import "views/front-page";
 @import "views/single-event";
