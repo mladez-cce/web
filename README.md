@@ -126,3 +126,23 @@ the XML file and replace all instances of the base site url (e.g.
 
 Note that the export is not intended as backup of the actual website. Its
 purpose is merely to simplify setting up the local dev environment.
+
+## Additional site setup for production
+
+Some functionality is not part of this repo and needs to be set up manually.
+However, that functionality is mostly only relevant for the actual site instance
+in production.
+
+### Generated XML sitemap
+
+The XML sitemap for improved search engine crawling can be generated using e.g.
+the [Google XML
+Sitemaps](https://wordpress.org/plugins/google-sitemap-generator/) plugin.
+
+```
+$ vendor/bin/wp plugin install google-sitemap-generator --path=public
+$ vendor/bin/wp plugin activate google-sitemap-generator --path=public
+```
+
+Once it is installed, go to `Settings → XML-Sitemap` and make sure to include
+also the custom post types in `Sitemap Content`.
