@@ -1,6 +1,7 @@
 @import "../common/icons";
 @import "../common/common-mixins";
 @import "../common/config";
+@import "../common/media-query-mixins";
 
 .single-event {
 	&__header {
@@ -8,8 +9,14 @@
 		// event poster) remains partially hidden and shows only upon expansion of
 		// the header.
 		overflow: hidden;
-		max-height: 460px;
+		max-height: 600px;
 		transition: all 0.5s;
+
+		// For desktops, which are typically in the landscape mode, limit the height
+		// even more so that more of the page is visible to the visitor.
+		@include for-desktops-and-larger {
+			max-height: 460px;
+		}
 
 		// Clickable label that expands the header.
 		&__featured-image {

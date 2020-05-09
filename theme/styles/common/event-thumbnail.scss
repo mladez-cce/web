@@ -23,12 +23,21 @@
 	margin-bottom: $component-spacer;
 
 	&__poster {
-		max-height: $max-width; // To go for a square-ish shape at most.
 		overflow: hidden;
 		// Create the fuzzy border effect at the bottom of the poster.
 		mask-image: url("../images/fuzzy-border-bottom-mask.png");
 		mask-position: center bottom;
 		position: relative;
+
+		// Limit the height of the poster so that it doesn't take up too much of the
+		// available screen space.
+		max-height: $max-width * 1.3;
+
+		// For desktops, which are typically in the landscape mode, limit the height
+		// even more (go for a square-ish shape).
+		@include for-desktops-and-larger {
+			max-height: $max-width * 0.8;
+		}
 
 		// Inset shadow over the poster so that light images are visible against
 		// the white background.
