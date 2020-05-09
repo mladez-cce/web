@@ -33,15 +33,7 @@
 		// Inset shadow over the poster so that light images are visible against
 		// the white background.
 		> a:before {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.2);
-			border-radius: $border-radius $border-radius 0 0;
-			z-index: 1;
+			@include inset-shadow($border-radius);
 		}
 
 		> a {
