@@ -1,0 +1,22 @@
+@import "../common/common-mixins";
+@import "../common/config";
+
+.search {
+	&__item {
+		margin-bottom: $component-spacer;
+
+		& > * {
+			margin-bottom: $spacer / 2;
+		}
+
+		h2 {
+			font-size: 1.5rem;
+		}
+
+		&__meta {
+			@include separate-spans-by-bullet();
+			font-weight: 300;
+			color: $secondary-text-color;
+		}
+	}
+}
