@@ -112,11 +112,7 @@
 				@include icon_link();
 			}
 
-			// Separate links by a bullet point.
-			span:not(:last-child):after {
-				content: " •";
-				margin: 0 0.2rem;
-			}
+			@include separate-spans-by-bullet();
 		}
 	}
 

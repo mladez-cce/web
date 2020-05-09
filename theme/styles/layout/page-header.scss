@@ -49,9 +49,6 @@
 		font-weight: 300;
 		padding-bottom: $spacer;
 
-		span:not(:last-child):after {
-			content: " •";
-			margin: 0 0.2rem;
-		}
+		@include separate-spans-by-bullet();
 	}
 }
