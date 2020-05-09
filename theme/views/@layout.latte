@@ -75,8 +75,15 @@
 				</div>
 			{/block}
 
-			<form class="page-navbar__menu__search">
-				<input type="text" placeholder="...a naleznete" size="1" /><input type="button" value="Hledejte..." />
+			<form class="page-navbar__menu__search"
+						action="{esc_url(home_url('/'))}"
+						method="get">
+				<input type="text"
+							 placeholder="...a naleznete"
+							 size="1"
+							 name="s"
+							 value="{get_search_query(/* escaped = */ false)}"
+				/><input type="submit" value="Hledejte..." />
 			</form>
 		</div>
 	</nav>
