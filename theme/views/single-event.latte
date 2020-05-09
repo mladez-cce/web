@@ -48,7 +48,7 @@
 				{$Post|wp_content}
 
 				<p class="publish-info">
-					Naposledy upravil/a {the_modified_author()},
+					Naposledy upravil/a {$Post|wp_last_modified_author},
 					{$Post|wp_modified_date|wp_cz_date_format}.
 				</p>
 			</div>
