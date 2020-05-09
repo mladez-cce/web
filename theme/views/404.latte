@@ -1,7 +1,20 @@
 {extends @layout.latte}
 
-{block page-title}404 Stránka nenalezena{/block}
+{block page-title}Chyba 404: Stránka nenalezena{/block}
 
-<div n:block="page-content">
-	Sorry brah
+<div n:block="body">
+	{include page-navbar}
+
+	<div class="page-header">
+		<img src="assets/images/illustration-sleeping.png" alt="{include page-title}" />
+		<h1>Chyba 404</h1>
+		<div class="page-header__subtitle">Hledejte a naleznete. Ale ne tady.</div>
+	</div>
+
+	<div class="page-content">
+		<div class="text-container">
+			<p>Mrzí nás to, ale tato stránka neexistuje.</p>
+			<p>Pokud se domníváte, že by existovat měla, dejte nám vědět.</p>
+		</div>
+	</div>
 </div>
