@@ -92,7 +92,7 @@
 {block body}
 	{include page-navbar}
 
-	<div class="page-header">
+	<div class="page-header" n:inner-block="page-header">
 		{if has_post_thumbnail($Post)}
 			<img src="{$Post|wp_thumbnail:'for-page-header'}" alt="{include page-title}" />
 		{/if}
@@ -101,10 +101,8 @@
 	</div>
 
 	<div class="page-content">
-		<div class="text-container">
-			{block page-content}
-				{$Post|wp_content}
-			{/block}
+		<div class="text-container" n:inner-block="page-content">
+			{$Post|wp_content}
 		</div>
 	</div>
 {/block}

@@ -4,45 +4,39 @@
 	Vyhledávání "{get_search_query(/* escaped = */ false)}"
 {/block}
 
-<div n:block="body" class="search">
-	{include page-navbar}
+<div n:block="page-header">
+	<h1>{include page-title}</h1>
 
-	<div class="page-header">
-		<h1>{include page-title}</h1>
-
-		<div class="page-header__subtitle">
-			<span>Počet nalezených stránek: {$wp_query->found_posts}</span>
-		</div>
+	<div class="page-header__subtitle">
+		<span>Počet nalezených stránek: {$wp_query->found_posts}</span>
 	</div>
+</div>
 
-	<div class="page-content">
-		<div class="text-container">
-			<p n:if="$wp_query->found_posts == 0">Nic jsme nenašli</p>
+<div n:block="page-content" class="search">
+	<p n:if="$wp_query->found_posts == 0">Nic jsme nenašli</p>
 
-			{each}
-				<div class="search__item">
-					<h2><a href="{$Post|wp_permalink}">{$Post|wp_title}</a></h2>
+	{each}
+		<div class="search__item">
+			<h2><a href="{$Post|wp_permalink}">{$Post|wp_title}</a></h2>
 
-					<p n:if="$Post->post_type == 'post'" class="search__item__meta">
-						<span>Aktualita</span>
-						<span>{$Post|wp_date|wp_cz_date_format}</span>
-					</p>
+			<p n:if="$Post->post_type == 'post'" class="search__item__meta">
+				<span>Aktualita</span>
+				<span>{$Post|wp_date|wp_cz_date_format}</span>
+			</p>
 
-					<p n:if="$Post->post_type == 'event'" class="search__item__meta">
-						<span>Akce</span>
-						<span n:ifcontent>{$Post->subtitle}</span>
-						<span n:ifcontent>{$Post|wp_event_date}</span>
-						<span n:ifcontent>{$Post->place}</span>
-					</p>
+			<p n:if="$Post->post_type == 'event'" class="search__item__meta">
+				<span>Akce</span>
+				<span n:ifcontent>{$Post->subtitle}</span>
+				<span n:ifcontent>{$Post|wp_event_date}</span>
+				<span n:ifcontent>{$Post->place}</span>
+			</p>
 
-					<p>{$Post|wp_excerpt}</p>
-				</div>
-			{/each}
-
-			<div class="pagination">
-				<div class="pagination__next" n:ifcontent>{get_next_posts_link("Další")|noescape}</div>
-				<div class="pagination__prev" n:ifcontent>{get_previous_posts_link("Předchozí")|noescape}</div>
-			</div>
+			<p>{$Post|wp_excerpt}</p>
 		</div>
+	{/each}
+
+	<div class="pagination">
+		<div class="pagination__next" n:ifcontent>{get_next_posts_link("Další")|noescape}</div>
+		<div class="pagination__prev" n:ifcontent>{get_previous_posts_link("Předchozí")|noescape}</div>
 	</div>
 </div>
