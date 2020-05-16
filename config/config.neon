@@ -7,10 +7,6 @@ parameters:
 	database:
 		host: 127.0.0.1
 
-	sentry:
-		dsn: null
-		format: $Format:%h$
-
 	smtp:
 		host: smtp.mailtrap.io
 		secure: tls
