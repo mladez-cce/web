@@ -127,6 +127,68 @@ the XML file and replace all instances of the base site url (e.g.
 Note that the export is not intended as backup of the actual website. Its
 purpose is merely to simplify setting up the local dev environment.
 
+## Development intro (how to make changes)
+
+_If you want to make changes, the following section is intended to help you._
+
+### Stack
+
+The website is built using the combination of
+[WordPress](https://wordpress.org/) and [Nette](https://nette.org/), as bundled
+by [MangoPress](https://github.com/manGoweb/MangoPress/).
+
+To make changes, you should have rough understanding of both tools (refer to the
+appropriate documentations). However, the Nette integration is light, and we're
+mainly using it for [Latte](https://latte.nette.org/), a fancy templating
+language, so that's mostly all you need.
+
+PHP deps (including Nette & Latte) are managed by
+[composer](https://getcomposer.org/).
+
+WordPress deps (plugins) are not managed in any way and need to be handled
+manually. However, there is not that many must-have plugins required for the
+page to run, just make sure to follow & keep up-to-date the installation
+instructions (above).
+
+JavaScript & styling deps are managed in `package.json` and installed using
+[npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/).
+
+Currently, we're using raw, vanilla JavaScript for the little functionality that
+we need. Styles are written in [Sass](https://sass-lang.com/) and transpiled to
+CSS. Use the following command to build the styles and watch for changes:
+
+```
+$ yarn watch-css
+```
+
+### Code structure
+
+For core configuration (like database login) go to [`config`](config). Avoid
+making changes to the WordPress config file.
+
+The whole website is built as a **custom WordPress theme**, which contains both
+the presentational logic (how the website looks) and the functional logic (e.g.
+custom [post
+types](https://wordpress.org/support/article/post-types/#custom-post-types) for
+events).
+
+Most of the relevant files are in the top-level [`theme`](theme) directory,
+which is where you're most likely going to make your changes. Check
+[`theme/README.md`](theme/README.md) (and additional _READMEs_ in subfolders)
+for more info.
+
+The rest is in [`public/assets`](public/assets) (static assets like images and
+JavaScripts, which are not compiled).
+
+[`public`](public) is where WordPress is installed and it should be the document
+root for your web server.
+
+### Making changes
+
+Propose your change in a form of a GitHub [pull
+request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
+Make sure you first test it locally.
+
 ## Additional site setup for production
 
 Some functionality is not part of this repo and needs to be set up manually.
