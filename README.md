@@ -146,3 +146,17 @@ $ vendor/bin/wp plugin activate google-sitemap-generator --path=public
 
 Once it is installed, go to `Settings → XML-Sitemap` and make sure to include
 also the custom post types in `Sitemap Content`.
+
+### Visitor stats
+
+As we wanted to avoid relying on external services (which are often problematic
+from GDPR perspective, including Google Analytics), we chose the
+[WP-Statistics plugin](https://wp-statistics.com/) to track our visitors.
+
+```
+vendor/bin/wp plugin install wp-statistics --path=public
+vendor/bin/wp plugin activate wp-statistics --path=public
+```
+
+Once installed, consider enabling `Anonymize IP Addresses` in `Statistics →
+Settings → Privacy`.
