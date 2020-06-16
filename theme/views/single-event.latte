@@ -49,7 +49,7 @@
 
 				<p class="publish-info">
 					Naposledy upravil/a {$Post|wp_last_modified_author},
-					{$Post|wp_modified_date|wp_cz_date_format}.
+					{$Post|wp_modified_date}.
 				</p>
 			</div>
 
@@ -65,7 +65,7 @@
 					<li n:foreach="$relatedPosts as $relatedPost" class="single-event__related-post">
 						<h3><a href="{$relatedPost|wp_permalink}">{$relatedPost|wp_title}</a></h3>
 						<p>{$relatedPost|wp_excerpt}</p>
-						<p class="publish-info">Publikováno {$relatedPost|wp_date|wp_cz_date_format}</p>
+						<p class="publish-info">Publikováno {$relatedPost|wp_date}</p>
 					</li>
 				</ul>
 			</div>

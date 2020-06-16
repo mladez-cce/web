@@ -51,6 +51,18 @@ MangoFilters::$set["wp_excerpt"] = function ($post) {
 };
 
 /**
+ * Returns the date on which the post was written.
+ *
+ * Usage: {$post|wp_modified_date}
+ *
+ * @param int|WP_Post $post
+ * @return string|void
+ */
+MangoFilters::$set["wp_date"] = function ($post) {
+	return get_the_date(/* format = */ "", $post);
+};
+
+/**
  * Returns the post last modified date.
  *
  * Usage: {$post|wp_modified_date}
@@ -72,18 +84,6 @@ MangoFilters::$set["wp_modified_date"] = function ($post) {
  */
 MangoFilters::$set["wp_short_month_cz_name"] = function ($date) {
 	return safe(wml_get_short_month_cz_name(wml_to_datetime($date)));
-};
-
-/**
- * Returns date in the common Czech format, e.g. 24. prosince 2019.
- *
- * Usage: {$Post|wp_date|wp_cz_date_format}
- *
- * @param DateTime|int|string $date
- * @return SafeHtmlString
- */
-MangoFilters::$set["wp_cz_date_format"] = function ($date) {
-	return safe(wml_get_cz_date_format(wml_to_datetime($date)));
 };
 
 /**

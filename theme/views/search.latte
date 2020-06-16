@@ -21,7 +21,7 @@
 
 			<p n:if="$Post->post_type == 'post'" class="search__item__meta">
 				<span>Aktualita</span>
-				<span>{$Post|wp_date|wp_cz_date_format}</span>
+				<span>{$Post|wp_date}</span>
 			</p>
 
 			<p n:if="$Post->post_type == 'event'" class="search__item__meta">

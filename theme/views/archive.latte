@@ -4,7 +4,7 @@
 	{each}
 		<div class="archive__post">
 			<h2><a href="{$Post|wp_permalink}">{$Post|wp_title}</a></h2>
-			<p class="publish-info">{$Post|wp_date|wp_cz_date_format}</p>
+			<p class="publish-info">{$Post|wp_date}</p>
 
 			{include "shared/post-body.latte", post => $Post}
 		</div>
