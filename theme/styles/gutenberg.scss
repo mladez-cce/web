@@ -1,0 +1,23 @@
+@import "common/config";
+@import "common/typography";
+
+// These styles are be applied to the Gutenberg visual editor when editing
+// content in WordPress admin.
+
+// The post title (H1 essentially)
+.editor-post-title__block .editor-post-title__input {
+	@include secondary-font();
+	font-size: 4rem;
+}
+
+// The post body
+.edit-post-visual-editor.editor-styles-wrapper {
+	font-size: $base-font-size;
+
+	@include typography();
+
+	// Match the editor width to the page width.
+	.wp-block {
+		max-width: $base-content-width;
+	}
+}

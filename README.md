@@ -112,6 +112,7 @@ Build CSS files:
 
 ```
 $ yarn build-css
+$ yarn build-gutenberg-css
 ```
 
 Done. The website should be now up and running. You can access the

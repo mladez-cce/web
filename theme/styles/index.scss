@@ -2,11 +2,10 @@
 @import "common/comaci";
 @import "common/config";
 @import "common/event-thumbnail";
-@import "common/font-roboto";
-@import "common/font-amatic-sc";
 @import "common/pagination";
 @import "common/post-body";
 @import "common/publish-info";
+@import "common/typography";
 @import "common/wp-figure";
 @import "layout/page-content";
 @import "layout/page-footer";
@@ -19,46 +18,9 @@
 @import "views/single-event";
 
 html {
-	font-size: 18px;
+	font-size: $base-font-size; // Base for the rem units
 }
 
 body {
-	font-family: $primary-font-family;
-	color: $primary-text-color;
-	line-height: 1.6;
-}
-
-h1 {
-	@include secondary-font();
-}
-
-h2, h3, h4, h5, h6 {
-	margin-bottom: 1rem;
-	margin-top: 2rem;
-	font-weight: 500;
-}
-
-h2 {
-	font-size: 1.8rem;
-	line-height: 1.2;
-}
-
-h3 {
-	font-size: 1.6rem;
-}
-
-h4 {
-	font-size: 1.35rem;
-}
-
-h5 {
-	font-size: 1.15rem;
-}
-
-h6 {
-	font-size: 1rem;
-}
-
-p {
-	margin-bottom: 1rem;
+	@include typography(); // Override bootstrap-reboot
 }
