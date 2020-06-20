@@ -23,4 +23,12 @@
 			}
 		}
 	}
+
+	&__old-post-alert {
+		font-weight: 500;
+		margin-bottom: $spacer * 2;
+		border-radius: $border-radius;
+		padding: $spacer;
+		background: url("../images/page-header-bg-yellow-top-120px.png") repeat top center;
+	}
 }

@@ -1,4 +1,9 @@
 <div class="post-body">
+	<div n:if="date_create(get_the_date('Y-m-d', $post)) < date_create('2020-06-19')" class="post-body__old-post-alert">
+		Upozornění: Tento příspěvek je starý a pochází ještě z původního webu
+		mládeže. Většina obrázků a odkazů pravděpodobně už nebude fungovat.
+	</div>
+
 	<div n:if="has_post_thumbnail($post)" class="post-body__featured-image">
 		<a href="{$post|wp_thumbnail:full}" download title="{$post|wp_title} &ndash; kliknutím stáhněte obrázek v originální velikosti">
 			<img src="{$post|wp_thumbnail:page-width}" alt="{$post|wp_title}" />
