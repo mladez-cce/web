@@ -1,0 +1,11 @@
+@import "config";
+
+figure.wp-block-image {
+	margin: $spacer * 2;
+
+	figcaption {
+		text-align: center;
+		color: $secondary-text-color;
+		margin: $spacer 0;
+	}
+}
