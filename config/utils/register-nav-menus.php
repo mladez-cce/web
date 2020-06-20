@@ -5,6 +5,6 @@ $initTheme[] = function ($dir) {
 
 	if(file_exists($filepath)) {
 		$array = Nette\Neon\Neon::decode(file_get_contents($filepath));
-		register_nav_menus($array['register'] ?? []);
+		register_nav_menus(isset($array['register']) ? $array['register'] : []);
 	}
 };

@@ -14,10 +14,10 @@ $initTheme[] = function () {
 
 		$mailer->isSMTP();
 		$mailer->SMTPAuth = true;
-		$mailer->SMTPSecure = $config['secure'] ?? '';
+		$mailer->SMTPSecure = isset($config['secure']) ? $config['secure'] : '';
 		$mailer->Host = $config['host'];
-		$mailer->Port = $config['port'] ?? ($mailer->SMTPSecure === 'ssl' ? 465 : 25);
-		$mailer->Username = $config['username'] ?? '';
-		$mailer->Password = $config['password'] ?? '';
+		$mailer->Port = isset($config['port']) ? $config['port'] : ($mailer->SMTPSecure === 'ssl' ? 465 : 25);
+		$mailer->Username = isset($config['username']) ? $config['username'] : '';
+		$mailer->Password = isset($config['password']) ? $config['password'] : '';
 	});
 };

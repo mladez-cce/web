@@ -24,7 +24,7 @@ function get_localized_option($group, $field = null, $lang = null)
 	if (!isset($settings[$group])) {
 		$settings[$group] = get_option($group) ?: [];
 	}
-	$postfix = str_replace('{mp:lang}', $lang, $settings[$group]['postfix-format'] ?? '');
+	$postfix = str_replace('{mp:lang}', $lang, isset($settings[$group]['postfix-format']) ? $settings[$group]['postfix-format'] : '');
 	if (!$field) {
 		$group = $settings[$group];
 		$result = [];
@@ -33,5 +33,5 @@ function get_localized_option($group, $field = null, $lang = null)
 		}
 		return $result;
 	}
-	return $settings[$group][$field.$postfix] ?? $settings[$group][$field] ?? null;
+	return isset($settings[$group][$field.$postfix]) ? $settings[$group][$field.$postfix] : isset($settings[$group][$field]) ? $settings[$group][$field] : null;
 }

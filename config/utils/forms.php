@@ -27,8 +27,8 @@ $initTheme[] = function ($dir) {
 		global $Post;
 		$Post = get_queried_object();
 
-		$Forms = $Forms ?? [];
-		$View = $View ?? Nette\Utils\ArrayHash::from([]);
+		$Forms = isset($Forms) ? $Forms : [];
+		$View = isset($View) ? $View : Nette\Utils\ArrayHash::from([]);
 
 		foreach (glob($dir . '/forms/*.php') as $filepath) {
 			$Forms[basename($filepath, '.php')] = require_once $filepath;

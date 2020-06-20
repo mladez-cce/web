@@ -19,9 +19,9 @@ $initTheme[] = function ($dir) {
 			if (!empty($result['component'])) {
 				$r = [
 					'id' => $result['id'],
-					'title' => $result['title'] ?? '',
+					'title' => isset($result['title']) ? $result['title'] : '',
 					'meta' => [
-						'html' => (string) createInitComponent($result['component']['name'], [ 'place' => '#wp-admin-bar-'.$result['id'], 'data' => $result['component']['data'] ?? null ], 'initAdminComponents'),
+						'html' => (string) createInitComponent($result['component']['name'], [ 'place' => '#wp-admin-bar-'.$result['id'], 'data' => isset($result['component']['data']) ? $result['component']['data'] : null ], 'initAdminComponents'),
 					],
 				];
 				$result = $r;

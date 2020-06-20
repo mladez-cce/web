@@ -29,7 +29,9 @@ function parsePageRolesConfig($path)
 function hasPageRoles()
 {
 	if(file_exists(getPageRolesConfigPath())) {
-		$registered = Nette\Neon\Neon::decode(file_get_contents(getPageRolesConfigPath()))['register'] ?? [];
+		$registered = Nette\Neon\Neon::decode(file_get_contents(getPageRolesConfigPath()))['register']
+			? Nette\Neon\Neon::decode(file_get_contents(getPageRolesConfigPath()))['register']
+			: [];
 		return !!count($registered);
 	}
 	return false;
@@ -39,7 +41,9 @@ function hasPageRoles()
 function pageRolesMetaboxPayload($post_id)
 {
 	$savedRoles = (array) get_option(getPageRolesOptionKey(), []);
-	$registered = parsePageRolesConfig(getPageRolesConfigPath())['register'] ?? [];
+	$registered = parsePageRolesConfig(getPageRolesConfigPath())['register']
+		? parsePageRolesConfig(getPageRolesConfigPath())['register']
+		: [];
 
 	$roles = array_merge(array_map(function () { return null; }, $registered), $savedRoles);
 	$titles = [];
@@ -76,10 +80,10 @@ function getPageByRole($role, $allowRaw = false)
 	$savedRoles = (array) get_option(getPageRolesOptionKey(), []);
 
 	if ($allowRaw) {
-		return $savedRoles[$role] ?? null;
+		return isset($savedRoles[$role]) ? $savedRoles[$role] : null;
 	}
 
-	$id = $savedRoles[$role] ?? null;
+	$id = isset($savedRoles[$role]) ? $savedRoles[$role] : null;
 	return isPostPublished($id) ? $id : null;
 }
 

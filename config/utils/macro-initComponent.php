@@ -19,14 +19,14 @@ function createInitComponent($name, $argsOrHandler = null, string $handler = 'in
 	if (is_array($name)) {
 		$args = $name;
 	} else {
-		$args = ($args ?? null) ?: [];
+		$args = (isset($args) ? $args : null) ?: [];
 		$args['name'] = $name;
 	}
 
-	$handler = $args['handler'] ?? $handler;
-	$name = $args['name'] ?? null;
-	$place = $args['place'] ?? null;
-	$props = $args['props'] ?? null;
+	$handler = isset($args['handler']) ? $args['handler'] : $handler;
+	$name = isset($args['name']) ? $args['name'] : null;
+	$place = isset($args['place']) ? $args['place'] : null;
+	$props = isset($args['props']) ? $args['props'] : null;
 
 	$component = [
 		'name' => $name,

@@ -9,7 +9,7 @@ if (!file_exists($configFile)) {
 
 $appConfig = Nette\Neon\Neon::decode(file_get_contents($configFile));
 
-$config = ($appConfig['parameters']['sentry'] ?? []) + [
+$config = (isset($appConfig['parameters']['sentry']) ? $appConfig['parameters']['sentry'] : []) + [
 	'dsn' => null,
 	'curl_method' => 'async',
 	'release' => null,

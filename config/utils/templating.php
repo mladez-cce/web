@@ -125,8 +125,8 @@ function runtimeCheckLatteDeclaration($template, string $serializedDeclaration, 
 {
 	global $latteDeclarations;
 	$templateName = $template->getName();
-	$latteDeclarations = $latteDeclarations ?? [];
-	$latteDeclarations[$templateName] = $latteDeclarations[$templateName] ?? [];
+	$latteDeclarations = isset($latteDeclarations) ? $latteDeclarations : [];
+	$latteDeclarations[$templateName] = isset($latteDeclarations[$templateName]) ? $latteDeclarations[$templateName] : [];
 
 	$declaration = unserialize($serializedDeclaration);
 
@@ -148,8 +148,8 @@ function runtimeCheckLatteDeclaration($template, string $serializedDeclaration, 
 function globallyDeclare(string $templateName, array $declaration, bool $assert = false)
 {
 	global $latteDeclarations;
-	$latteDeclarations = $latteDeclarations ?? [];
-	$latteDeclarations[$templateName] = $latteDeclarations[$templateName] ?? [];
+	$latteDeclarations = isset($latteDeclarations) ? $latteDeclarations : [];
+	$latteDeclarations[$templateName] = isset($latteDeclarations[$templateName]) ? $latteDeclarations[$templateName] : [];
 
 	$cleanDeclaration = [];
 
@@ -162,11 +162,11 @@ function globallyDeclare(string $templateName, array $declaration, bool $assert 
 		}
 
 		$cleanDeclaration[$var] = [
-			'default' => $meta['default'] ?? null,
-			'defaultValue' => $meta['defaultValue'] ?? null,
+			'default' => isset($meta['default']) ? $meta['default'] : null,
+			'defaultValue' => isset($meta['defaultValue']) ? $meta['defaultValue'] : null,
 			'types' => $types,
 			'nullable' => in_array('null', $types),
-			'comment' => $meta['comment'] ?? null,
+			'comment' => isset($meta['comment']) ? $meta['comment'] : null,
 		];
 	}
 
@@ -181,9 +181,9 @@ function getGloballyDeclared(string $templateName)
 	global $latteDeclarations;
 	global $_DURING_DECLARATION;
 	$_DURING_DECLARATION = true;
-	$latteDeclarations = $latteDeclarations ?? [];
+	$latteDeclarations = isset($latteDeclarations) ? $latteDeclarations : [];
 
-	$result = $latteDeclarations[$templateName] ?? null;
+	$result = isset($latteDeclarations[$templateName]) ? $latteDeclarations[$templateName] : null;
 
 	if (empty($result)) {
 		$parser = new \Latte\Parser();
@@ -205,7 +205,7 @@ function getGloballyDeclared(string $templateName)
 	}
 
 	$_DURING_DECLARATION = false;
-	return $latteDeclarations[$templateName] ?? [];
+	return isset($latteDeclarations[$templateName]) ? $latteDeclarations[$templateName] : [];
 }
 
 function parseDeclareValue($str, $line = null)
@@ -214,18 +214,18 @@ function parseDeclareValue($str, $line = null)
 
 	$nullable = false;
 
-	$types = array_values(array_filter(array_map('trim', explode('|', $match[1] ?? ''))));
+	$types = array_values(array_filter(array_map('trim', explode('|', isset($match[1]) ? $match[1] : ''))));
 	$types = array_map('normalizeType', $types);
 	$originalTypes = $types;
 	$types = flattenArray(array_map('expandTypeShortcuts', $types));
 
-	$value = trim($match[5] ?? '');
+	$value = trim(isset($match[5]) ? $match[5] : '');
 	$right = new Latte\MacroTokens($value);
 
 	$writer = new Latte\PhpWriter(new \Latte\MacroTokens);
 	$valueCode = $writer->quotingPass($right)->joinAll();
 
-	$varName = trim(trim($match[2] ?? ''), '$');
+	$varName = trim(trim(isset($match[2]) ? $match[2] : ''), '$');
 
 	$valueCode = $valueCode === '' ? 'null' : $valueCode;
 
@@ -252,10 +252,15 @@ function parseDeclareValue($str, $line = null)
 		'types' => $types,
 		'originalTypes' => $originalTypes,
 		'varName' => $varName,
-		'operator' => trim($match[4] ?? ''),
+		'operator' => trim(isset($match[4]) ? $match[4] : ''),
 		'defaultValueString' => $value,
 		'defaultValue' => $valueCode,
-		'comment' => trim(Nette\Utils\Strings::match($match[5] ?? '', '~([^(//)]*)//(.*)~ism')[2] ?? '') ?: null,
+		'comment' =>
+			trim(
+					Nette\Utils\Strings::match(isset($match[5]) ? $match[5] : '', '~([^(//)]*)//(.*)~ism')[2]
+						? Nette\Utils\Strings::match(isset($match[5]) ? $match[5]
+						: '', '~([^(//)]*)//(.*)~ism')[2] : '')
+				?: null,
 		'original' => $str,
 		'nullable' => $nullable,
 	];

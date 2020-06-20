@@ -24,11 +24,11 @@ function getCurrentPostId()
 
 function sanitizeIconKey($item, string $key = 'menu_icon')
 {
-	$item[$key] = $item[$key] ?? $item['icon'] ?? null;
+	$item[$key] = isset($item[$key]) ? $item[$key] : (isset($item['icon']) ? $item['icon'] : null);
 	$item[$key] = $item[$key] ? 'dashicons-'.$item[$key] : null;
 
 	global $FontAwesomeIcons;
-	$FontAwesomeIcons = $FontAwesomeIcons ?? [];
+	$FontAwesomeIcons = isset($FontAwesomeIcons) ? $FontAwesomeIcons : [];
 
 	if(!empty($item['faicon'])) {
 		if(!empty($item['name'])) {
@@ -178,7 +178,7 @@ abstract class NeonDef
 
 	public function load(string $filename = null)
 	{
-		$filename = $filename ?? $this->defaultFilename;
+		$filename = isset($filename) ? $filename : $this->defaultFilename;
 		$filepath = $this->dir.'/'.$filename;
 		$raw = file_get_contents($filepath);
 		if (false === $raw) {
@@ -239,9 +239,9 @@ class PostTypesNeonDef extends NeonDef
 	{
 		$result = $data;
 
-		$defaults = $data['defaults'] ?? [];
-		$result['remove'] = $data['remove'] ?? [];
-		$register = $data['register'] ?? [];
+		$defaults = isset($data['defaults']) ? $data['defaults'] : [];
+		$result['remove'] = isset($data['remove']) ? $data['remove'] : [];
+		$register = isset($data['register']) ? $data['register'] : [];
 
 		$result['register'] = [];
 
@@ -254,7 +254,7 @@ class PostTypesNeonDef extends NeonDef
 				continue;
 			}
 
-			$item['name'] = $item['name'] ?? $key;
+			$item['name'] = isset($item['name']) ? $item['name'] : $key;
 			$item = array_merge($defaults, $item);
 			$result['register'][] = $this->sanitizeItem($item);
 		}
@@ -298,8 +298,8 @@ class AdminPagesNeonDef extends NeonDef
 	{
 		$result = $data;
 
-		$defaults = $data['defaults'] ?? [];
-		$register = $data['register'] ?? [];
+		$defaults = isset($data['defaults']) ? $data['defaults'] : [];
+		$register = isset($data['register']) ? $data['register'] : [];
 
 		$result['register'] = [];
 
@@ -314,11 +314,11 @@ class AdminPagesNeonDef extends NeonDef
 				continue;
 			}
 
-			$item['id'] = $item['id'] ?? $key;
-			$item['menu_title'] = $item['menu_title'] ?? $item['title'] ?? $item['id'];
+			$item['id'] = isset($item['id']) ? $item['id'] : $key;
+			$item['menu_title'] = isset($item['menu_title']) ? $item['menu_title'] : (isset($item['title']) ? $item['title'] : $item['id']);
 
-			$item['style'] = $item['style'] ?? 'no-boxes';
-			$item['columns'] = $item['columns'] ?? 1;
+			$item['style'] = isset($item['style']) ? $item['style'] : 'no-boxes';
+			$item['columns'] = isset($item['columns']) ? $item['columns'] : 1;
 
 			$item = array_merge($defaults, $item);
 
@@ -345,7 +345,7 @@ class AdminPagesNeonDef extends NeonDef
 
 	public function flush(array $data)
 	{
-		$register = $data['register'] ?? [];
+		$register = isset($data['register']) ? $data['register'] : [];
 
 		$mbSettings = array_filter($register, function ($item) {
 			return empty($item['component']) && empty($item['render']) && empty($item['latte']);
@@ -371,7 +371,7 @@ class AdminPagesNeonDef extends NeonDef
 
 		add_filter('mb_settings_pages', function ($meta_boxes) use ($mbSettings) {
 			foreach ($mbSettings as $page) {
-				$page['option_name'] = $page['option_name'] ?? null;
+				$page['option_name'] = isset($page['option_name']) ? $page['option_name'] : null;
 				$meta_boxes[] = $page;
 			}
 
@@ -384,19 +384,19 @@ class AdminPagesNeonDef extends NeonDef
 					return nestedEval($page['render']);
 				};
 				if (isset($page['parent'])) {
-					add_submenu_page($page['parent'], $page['title'], $page['menu_title'], $page['capability'] ?? 'manage_options', $page['menu_slug'] ?? $page['id'], $fn);
+					add_submenu_page($page['parent'], $page['title'], $page['menu_title'], isset($page['capability']) ? $page['capability'] : 'manage_options', isset($page['menu_slug']) ? $page['menu_slug'] : $page['id'], $fn);
 				} else {
-					add_menu_page($page['title'], $page['menu_title'], $page['capability'] ?? 'manage_options', $page['menu_slug'] ?? $page['id'], $fn, $page['icon_url'], $page['position'] ?? null);
+					add_menu_page($page['title'], $page['menu_title'], isset($page['capability']) ? $page['capability'] : 'manage_options', isset($page['menu_slug']) ? $page['menu_slug'] : $page['id'], $fn, $page['icon_url'], isset($page['position']) ? $page['position'] : null);
 				}
 			}
 			foreach ($lattePages as $page) {
 				$fn = function () use ($page) {
-					view($page['latte'], nestedInterpolate(array_merge(['title' => $page['title']], $page['props'] ?? [])));
+					view($page['latte'], nestedInterpolate(array_merge(['title' => $page['title']], isset($page['props']) ? $page['props'] : [])));
 				};
 				if (isset($page['parent'])) {
-					add_submenu_page($page['parent'], $page['title'], $page['menu_title'], $page['capability'] ?? 'manage_options', $page['menu_slug'] ?? $page['id'], $fn);
+					add_submenu_page($page['parent'], $page['title'], $page['menu_title'], isset($page['capability']) ? $page['capability'] : 'manage_options', isset($page['menu_slug']) ? $page['menu_slug'] : $page['id'], $fn);
 				} else {
-					add_menu_page($page['title'], $page['menu_title'], $page['capability'] ?? 'manage_options', $page['menu_slug'] ?? $page['id'], $fn, $page['icon_url'], $page['position'] ?? null);
+					add_menu_page($page['title'], $page['menu_title'], isset($page['capability']) ? $page['capability'] : 'manage_options', isset($page['menu_slug']) ? $page['menu_slug'] : $page['id'], $fn, $page['icon_url'], isset($page['position']) ? $page['position'] : null);
 				}
 			}
 		});
@@ -405,13 +405,13 @@ class AdminPagesNeonDef extends NeonDef
 			foreach ($componentPages as $page) {
 				$render = function () use ($page) {
 					$component = $page['component'];
-					$data = nestedEval($page['data'] ?? $page['props'] ?? []);
+					$data = nestedEval(isset($page['data']) ? $page['data'] : (isset($page['props']) ? $page['props'] : []));
 					$data['component'] = ['id' => $page['id']];
 					$id = $page['id'];
 					renderAdminComponent($id, $component, $data);
 				};
 
-				add_menu_page($page['title'], $page['menu_title'], $page['capability'] ?? 'manage_options', $page['menu_slug'] ?? $page['id'], $render, $page['icon_url'], $page['position'] ?? null);
+				add_menu_page($page['title'], $page['menu_title'], isset($page['capability']) ? $page['capability'] : 'manage_options', isset($page['menu_slug']) ? $page['menu_slug'] : $page['id'], $render, $page['icon_url'], isset($page['position']) ? $page['position'] : null);
 			}
 		});
 
@@ -437,19 +437,19 @@ class TaxonomiesNeonDef extends NeonDef
 	{
 		$result = $data;
 
-		$defaults = $data['defaults'] ?? [];
-		$register = $data['register'] ?? [];
+		$defaults = isset($data['defaults']) ? $data['defaults'] : [];
+		$register = isset($data['register']) ? $data['register'] : [];
 		$result['register'] = [];
 
 		foreach ($register as $key => $item) {
-			$item['name'] = $item['name'] ?? $key;
+			$item['name'] = isset($item['name']) ? $item['name'] : $key;
 			$item = array_merge($defaults, $item);
 
 			if (!empty($item['isExample']) && !SHOW_EXAMPLES) {
 				continue;
 			}
 
-			$item['post_types'] = $item['post_types'] ?? $item['post_type'] ?? [];
+			$item['post_types'] = isset($item['post_types']) ? $item['post_types'] : (isset($item['post_type']) ? $item['post_type'] : []);
 			if (!is_array($item['post_types'])) {
 				$item['post_types'] = [$item['post_types']];
 			}
@@ -479,17 +479,17 @@ class ThemeNeonDef extends NeonDef
 	{
 		$result = $data;
 
-		$result['support'] = $data['support'] ?? $data['supports'] ?? [];
-		$result['hide'] = $data['hide'] ?? [];
+		$result['support'] = isset($data['support']) ? $data['support'] : (isset($data['supports']) ? $data['supports'] : []);
+		$result['hide'] = isset($data['hide']) ? $data['hide'] : [];
 
-		$result['hide']['editor'] = $data['hide']['editor'] ?? [];
-		$result['hide']['thumbnail'] = $data['hide']['thumbnail'] ?? [];
+		$result['hide']['editor'] = isset($data['hide']['editor']) ? $data['hide']['editor'] : [];
+		$result['hide']['thumbnail'] = isset($data['hide']['thumbnail']) ? $data['hide']['thumbnail'] : [];
 
-		$result['hide']['editor']['templates'] = $data['hide']['editor']['templates'] ?? $data['hide']['editor']['template'] ?? [];
-		$result['hide']['thumbnail']['templates'] = $data['hide']['thumbnail']['templates'] ?? $data['hide']['thumbnail']['template'] ?? [];
+		$result['hide']['editor']['templates'] = isset($data['hide']['editor']['templates']) ? $data['hide']['editor']['templates'] : (isset($data['hide']['editor']['template']) ? $data['hide']['editor']['template'] : []);
+		$result['hide']['thumbnail']['templates'] = isset($data['hide']['thumbnail']['templates']) ? $data['hide']['thumbnail']['templates'] : (isset($data['hide']['thumbnail']['template']) ? $data['hide']['thumbnail']['template'] : []);
 
-		$result['hide']['editor']['post_types'] = $data['hide']['editor']['post_types'] ?? $data['hide']['editor']['post_type'] ?? [];
-		$result['hide']['thumbnail']['post_types'] = $data['hide']['thumbnail']['post_types'] ?? $data['hide']['thumbnail']['post_type'] ?? [];
+		$result['hide']['editor']['post_types'] = isset($data['hide']['editor']['post_types']) ? $data['hide']['editor']['post_types'] : (isset($data['hide']['editor']['post_type']) ? $data['hide']['editor']['post_type'] : []);
+		$result['hide']['thumbnail']['post_types'] = isset($data['hide']['thumbnail']['post_types']) ? $data['hide']['thumbnail']['post_types'] : (isset($data['hide']['thumbnail']['post_type']) ? $data['hide']['thumbnail']['post_type'] : []);
 
 		return $result;
 	}
@@ -509,7 +509,7 @@ class ThemeNeonDef extends NeonDef
 
 		$post_id = getCurrentPostId();
 		$template_name = $post_id ? str_replace('.php', '', get_post_meta($post_id, '_wp_page_template', true)) : null;
-		$post_type = $post_id ? get_post_type($post_id) : ($_GET['post_type'] ?? 'post');
+		$post_type = $post_id ? get_post_type($post_id) : (isset($_GET['post_type']) ? $_GET['post_type'] : 'post');
 
 		add_action('admin_init', function () use ($data, $template_name, $post_type) {
 			foreach ($data['hide'] as $name => $hide) {
@@ -548,19 +548,19 @@ class MetaFieldsNeonDef extends NeonDef
 	{
 		$result = $data;
 
-		$register = $data['register'] ?? [];
+		$register = isset($data['register']) ? $data['register'] : [];
 
 		$result['register'] = [];
 
-		$mixins = $data['mixins'] ?? [];
+		$mixins = isset($data['mixins']) ? $data['mixins'] : [];
 
 		$mid = 1;
 		foreach ($register as $key => $metabox) {
 			if (!is_array($metabox)) {
 				continue;
 			}
-			$metabox['id'] = $metabox['id'] ?? $key;
-			$metabox['title'] = $metabox['title'] ?? 'Untitled metabox #' . $mid++;
+			$metabox['id'] = isset($metabox['id']) ? $metabox['id'] : $key;
+			$metabox['title'] = isset($metabox['title']) ? $metabox['title'] : 'Untitled metabox #' . $mid++;
 
 			if (!empty($metabox['isExample']) && !SHOW_EXAMPLES) {
 				continue;
@@ -576,7 +576,7 @@ class MetaFieldsNeonDef extends NeonDef
 			}
 
 			foreach (['post_types' => 'post_type', 'templates' => 'template', 'not_templates' => 'not_template', 'admin_pages' => 'admin_page', 'taxonomies' => 'taxonomy'] as $plural => $singular) {
-				$metabox[$plural] = $metabox[$plural] ?? $metabox[$singular] ?? null;
+				$metabox[$plural] = isset($metabox[$plural]) ? $metabox[$plural] : (isset($metabox[$singular]) ? $metabox[$singular] : null);
 				if ($metabox[$plural] && !is_array($metabox[$plural])) {
 					$metabox[$plural] = [$metabox[$plural]];
 				}
@@ -590,7 +590,7 @@ class MetaFieldsNeonDef extends NeonDef
 				}
 			}
 
-			$metabox['fields'] = $metabox['fields'] ?? [];
+			$metabox['fields'] = isset($metabox['fields']) ? $metabox['fields'] : [];
 			$metabox['fields'] = $this->sanitizeFields($metabox['fields'], [], $mixins);
 
 			if (!empty($metabox['seamless'])) {
@@ -644,7 +644,7 @@ class MetaFieldsNeonDef extends NeonDef
 				throw new \Exception('Invalid field definition for field ' . $key);
 			}
 
-			$val['id'] = $val['id'] ?? $key;
+			$val['id'] = isset($val['id']) ? $val['id'] : $key;
 
 			$this->keys[$val['id']] = true;
 
@@ -676,7 +676,7 @@ class MetaFieldsNeonDef extends NeonDef
 					$val['type'] = 'wysiwyg';
 				} elseif ('small_editor' === $val['type']) {
 					$val['type'] = 'wysiwyg';
-					$val['options'] = $val['options'] ?? [];
+					$val['options'] = isset($val['options']) ? $val['options'] : [];
 					$val['options']['teeny'] = true;
 					$val['options']['editor_height'] = 100;
 				} elseif ('html' === $val['type']) {
@@ -822,7 +822,7 @@ class MetaFieldsNeonDef extends NeonDef
 					$template_name = $this->getTemplateName($post_id);
 					if (in_array($template_name, $metabox['templates'], true)) {
 						$post = get_post($post_id);
-						$metabox['post_types'] = $metabox['post_types'] ?? [];
+						$metabox['post_types'] = isset($metabox['post_types']) ? $metabox['post_types'] : [];
 						$metabox['post_types'][] = $post->post_type;
 						$metabox['post_types'] = array_unique($metabox['post_types']);
 					}
@@ -847,9 +847,9 @@ class MetaFieldsNeonDef extends NeonDef
 						$post_id = $post ? $post->ID : null;
 						$vars = $this->getVars(['post_id' => $post_id, 'name' => $metabox['id']]);
 						if (!empty($metabox['data']) || !empty($metabox['props'])) {
-							$data = nestedEval($metabox['data'] ?? $metabox['props'] ?? [], $vars);
+							$data = nestedEval(isset($metabox['data']) ? $metabox['data'] : (isset($metabox['props']) ? $metabox['props'] : []), $vars);
 						} else {
-							$name = $metabox['name'] ?? $metabox['id'];
+							$name = isset($metabox['name']) ? $metabox['name'] : $metabox['id'];
 							$data = [
 								'name' => $name,
 								'value' => get_post_meta($post_id, $name, true),
@@ -867,10 +867,10 @@ class MetaFieldsNeonDef extends NeonDef
 
 					$id = $metabox['id'];
 					$title = $metabox['title'];
-					$position = $metabox['context'] ?? 'normal';
-					$priority = $metabox['priority'] ?? 'high';
+					$position = isset($metabox['context']) ? $metabox['context'] : 'normal';
+					$priority = isset($metabox['priority']) ? $metabox['priority'] : 'high';
 					$post_types = $metabox['post_types'];
-					$seamless = ($metabox['style'] ?? null) === 'seamless';
+					$seamless = (isset($metabox['style']) ? $metabox['style'] : null) === 'seamless';
 
 					add_action('add_meta_boxes', function () use ($id, $post_types, $title, $position, $priority, $fn, $seamless) {
 						$post_types = (array) $post_types;
@@ -901,23 +901,23 @@ class MetaFieldsNeonDef extends NeonDef
 						$view = $metabox['latte'];
 
 						$fn = function ($post) use ($view, $metabox) {
-							$props = $metabox['props'] ?? [];
+							$props = isset($metabox['props']) ? $metabox['props'] : [];
 
 							return view($view, $this->getVars(array_merge($props, ['post_id' => $post ? $post->ID : null, 'name' => $metabox['id']])));
 						};
 					} elseif (isset($metabox['render'])) {
 						$fn = function ($post) use ($metabox) {
-							$props = $metabox['props'] ?? [];
+							$props = isset($metabox['props']) ? $metabox['props'] : [];
 
 							return nestedEval($metabox['render'], $this->getVars(array_merge($props, ['post_id' => $post ? $post->ID : null, 'name' => $metabox['id']])));
 						};
 					}
 
 					$title = $metabox['title'];
-					$position = $metabox['context'] ?? 'normal';
-					$priority = $metabox['priority'] ?? 'high';
+					$position = isset($metabox['context']) ? $metabox['context'] : 'normal';
+					$priority = isset($metabox['priority']) ? $metabox['priority'] : 'high';
 					$post_types = $metabox['post_types'];
-					$seamless = ($metabox['style'] ?? null) === 'seamless';
+					$seamless = (isset($metabox['style']) ? $metabox['style'] : null) === 'seamless';
 
 					add_action('add_meta_boxes', function () use ($post_types, $title, $position, $priority, $fn, $seamless) {
 						$post_types = (array) $post_types;
