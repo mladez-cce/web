@@ -142,7 +142,7 @@
 		}
 
 		a {
-			font-size: 1.25rem;
+			font-size: 1.15rem;
 			font-weight: 500;
 			color: black;
 			line-height: 1.2;
@@ -237,6 +237,7 @@
 			display: block;
 			color: black;
 			padding: $spacer;
+			font-size: 0.9rem;
 			font-weight: 300;
 			outline: 0;
 			border-radius: $button-border-radius;
@@ -400,9 +401,9 @@
 		//
 
 		& > &__items-container > ul > li > &__items-container {
-			font-size: 0.9rem;
 
 			a {
+				font-size: 0.8rem;
 				padding: 13px;
 			}
 
@@ -467,6 +468,8 @@
 			display: flex;
 			border-radius: $button-border-radius;
 			overflow: hidden;
+			font-size: 0.9rem;
+			line-height: 1.5;
 
 			@include for-tablets-and-smaller() {
 				width: 100%;
