@@ -33,5 +33,5 @@ function get_localized_option($group, $field = null, $lang = null)
 		}
 		return $result;
 	}
-	return isset($settings[$group][$field.$postfix]) ? $settings[$group][$field.$postfix] : isset($settings[$group][$field]) ? $settings[$group][$field] : null;
+	return isset($settings[$group][$field.$postfix]) ? $settings[$group][$field.$postfix] : (isset($settings[$group][$field]) ? $settings[$group][$field] : null);
 }

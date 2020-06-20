@@ -14,7 +14,7 @@ $initTheme[] = function ($dir) {
 			if (!empty($result['render'])) {
 				wp_add_dashboard_widget(
 								basename($filepath, '.php'),
-isset(								$result['name']) ? 								$result['name'] : isset($result['title']) ? $result['title'] : '',
+isset(								$result['name']) ? 								$result['name'] : (isset($result['title']) ? $result['title'] : ''),
 								$result['render'],
 isset(								$result['renderControl']) ? 								$result['renderControl'] : null
 							);
@@ -23,12 +23,12 @@ isset(								$result['renderControl']) ? 								$result['renderControl'] : nul
 			if (!empty($result['latte'])) {
 				wp_add_dashboard_widget(
 					basename($filepath, '.php'),
-isset(					$result['name']) ? 					$result['name'] : isset($result['title']) ? $result['title'] : '',
+isset(					$result['name']) ? 					$result['name'] : (isset($result['title']) ? $result['title'] : ''),
 					function () use ($result) {
-						view($result['latte'], isset($result['data']) ? $result['data'] : isset($result['props']) ? $result['props'] : []);
+						view($result['latte'], isset($result['data']) ? $result['data'] : (isset($result['props']) ? $result['props'] : []));
 					},
 					empty($result['latteControl']) ? null : function () use ($result) {
-						view($result['latteControl'], isset($result['data']) ? $result['data'] : isset($result['props']) ? $result['props'] : []);
+						view($result['latteControl'], isset($result['data']) ? $result['data'] : (isset($result['props']) ? $result['props'] : []));
 					}
 				);
 			}
@@ -36,12 +36,12 @@ isset(					$result['name']) ? 					$result['name'] : isset($result['title']) ? $
 			if (!empty($result['component'])) {
 				wp_add_dashboard_widget(
 					basename($filepath, '.php'),
-isset(					$result['name']) ? 					$result['name'] : isset($result['title']) ? $result['title'] : '',
+isset(					$result['name']) ? 					$result['name'] : (isset($result['title']) ? $result['title'] : ''),
 					function () use ($filepath, $result) {
-						Mangoweb\renderAdminComponent(basename($filepath, '.php'), $result['component'], isset($result['data']) ? $result['data'] : isset($result['props']) ? $result['props'] : []);
+						Mangoweb\renderAdminComponent(basename($filepath, '.php'), $result['component'], isset($result['data']) ? $result['data'] : (isset($result['props']) ? $result['props'] : []));
 					},
 					empty($result['componentControl']) ? null : function () use ($filepath, $result) {
-						Mangoweb\renderAdminComponent(basename($filepath, '.php'), $result['componentControl'], isset($result['data']) ? $result['data'] : isset($result['props']) ? $result['props'] : []);
+						Mangoweb\renderAdminComponent(basename($filepath, '.php'), $result['componentControl'], isset($result['data']) ? $result['data'] : (isset($result['props']) ? $result['props'] : []));
 					}
 				);
 			}
