@@ -1,12 +1,4 @@
 <?php
-define(
-	"CZ_SHORT_MONTH_NAME",
-	["led", "úno", "bře", "dub", "kvě", "čvn", "čvc", "srp", "zář", "říj", "lis", "pro"]);
-
-define(
-	"CZ_MONTH_NAME_FOR_DATE",
-	["ledna", "února", "března", "dubna", "května", "června", "července", "srpna", "září", "října", "listopadu", "prosince"]);
-
 /**
  * Converts time input into a valid DateTime object. The input time can be
  * represented as UNIX timestamp, string or already a DateTime object.
@@ -44,7 +36,8 @@ function wml_to_datetime($input) {
  * @return string
  */
 function wml_get_short_month_cz_name($datetime) {
-	return CZ_SHORT_MONTH_NAME[intval($datetime->format("n")) - 1];
+	$czShortMonthName = ["led", "úno", "bře", "dub", "kvě", "čvn", "čvc", "srp", "zář", "říj", "lis", "pro"];
+	return $czShortMonthName[intval($datetime->format("n")) - 1];
 }
 
 /**
@@ -54,7 +47,8 @@ function wml_get_short_month_cz_name($datetime) {
  * @return string
  */
 function wml_get_month_cz_name_for_date($datetime) {
-	return CZ_MONTH_NAME_FOR_DATE[intval($datetime->format("n")) - 1];
+	$czMonthNameForDate = ["ledna", "února", "března", "dubna", "května", "června", "července", "srpna", "září", "října", "listopadu", "prosince"];
+	return $czMonthNameForDate[intval($datetime->format("n")) - 1];
 }
 
 /**
