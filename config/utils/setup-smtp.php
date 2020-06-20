@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php
 
 $initTheme[] = function () {
 	add_action('phpmailer_init', function (PHPMailer $mailer) {

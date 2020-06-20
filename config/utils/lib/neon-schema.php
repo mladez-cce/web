@@ -22,7 +22,7 @@ function getCurrentPostId()
 	return is_scalar($post_id) ? $post_id : null;
 }
 
-function sanitizeIconKey($item, string $key = 'menu_icon')
+function sanitizeIconKey($item, $key = 'menu_icon')
 {
 	$item[$key] = isset($item[$key]) ? $item[$key] : (isset($item['icon']) ? $item['icon'] : null);
 	$item[$key] = $item[$key] ? 'dashicons-'.$item[$key] : null;
@@ -74,7 +74,7 @@ function nestedEval($root, array $vars = null)
 	return nestedInterpolate($root, $vars);
 }
 
-function interpolateVars(string $str, array $vars)
+function interpolateVars($str, array $vars)
 {
 	return Strings::replace($str, '~%([a-z0-9_-]+)%~', function ($str) use ($vars) {
 		if (isset($vars[$str[1]])) {
@@ -171,12 +171,12 @@ abstract class NeonDef
 
 	private $finished = false;
 
-	public function __construct(string $dir)
+	public function __construct($dir)
 	{
 		$this->dir = $dir;
 	}
 
-	public function load(string $filename = null)
+	public function load($filename = null)
 	{
 		$filename = isset($filename) ? $filename : $this->defaultFilename;
 		$filepath = $this->dir.'/'.$filename;
@@ -199,7 +199,7 @@ abstract class NeonDef
 		return false;
 	}
 
-	public function preRun(string $filename = null)
+	public function preRun($filename = null)
 	{
 		if ($this->finished) {
 			return $this->last;
@@ -215,7 +215,7 @@ abstract class NeonDef
 		return $data;
 	}
 
-	public function run(string $filename = null)
+	public function run($filename = null)
 	{
 		if (!$this->finished) {
 			$data = $this->preRun($filename);
@@ -537,7 +537,7 @@ class MetaFieldsNeonDef extends NeonDef
 
 	private $keys = [];
 
-	public function __construct(string $dir, array $vars = [])
+	public function __construct($dir, array $vars = [])
 	{
 		parent::__construct($dir, $vars);
 		$post_id = getCurrentPostId();

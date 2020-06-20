@@ -7,7 +7,7 @@ function is_not_null($value)
 	return !is_null($value);
 }
 
-function createInitComponent($name, $argsOrHandler = null, string $handler = 'initComponents')
+function createInitComponent($name, $argsOrHandler = null, $handler = 'initComponents')
 {
 	if (is_string($argsOrHandler)) {
 		$args = [];

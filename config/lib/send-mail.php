@@ -1,13 +1,13 @@
-<?php declare(strict_types = 1);
+<?php
 
 
-function set_html_content_type(): string
+function set_html_content_type()
 {
 	return 'text/html';
 }
 
 
-function send_mail(string $email, string $subject, string $view, array $parameters = []): void
+function send_mail($email, $subject, $view, $parameters = [])
 {
 	$content = viewString($view, $parameters);
 	add_filter('wp_mail_content_type', 'set_html_content_type');

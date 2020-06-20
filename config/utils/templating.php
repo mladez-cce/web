@@ -81,7 +81,7 @@ class InvalidLattePropException extends \Exception
 {
 	public $template;
 
-	public function __construct(string $message, $template)
+	public function __construct($message, $template)
 	{
 		parent::__construct($message);
 		$this->template = $template;
@@ -121,7 +121,7 @@ function buildTemplateReferenceString($template)
 	return $items;
 }
 
-function runtimeCheckLatteDeclaration($template, string $serializedDeclaration, bool $assert = false, $runtimeValue = null)
+function runtimeCheckLatteDeclaration($template, $serializedDeclaration, $assert = false, $runtimeValue = null)
 {
 	global $latteDeclarations;
 	$templateName = $template->getName();
@@ -145,7 +145,7 @@ function runtimeCheckLatteDeclaration($template, string $serializedDeclaration, 
 	$latteDeclarations[$templateName][$declaration['varName']] = $declaration;
 }
 
-function globallyDeclare(string $templateName, array $declaration, bool $assert = false)
+function globallyDeclare($templateName, array $declaration, $assert = false)
 {
 	global $latteDeclarations;
 	$latteDeclarations = isset($latteDeclarations) ? $latteDeclarations : [];
@@ -176,7 +176,7 @@ function globallyDeclare(string $templateName, array $declaration, bool $assert 
 global $_DURING_DECLARATION;
 $_DURING_DECLARATION = false;
 
-function getGloballyDeclared(string $templateName)
+function getGloballyDeclared($templateName)
 {
 	global $latteDeclarations;
 	global $_DURING_DECLARATION;
