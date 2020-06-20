@@ -53,7 +53,7 @@ MangoFilters::$set["wp_excerpt"] = function ($post) {
 /**
  * Returns the date on which the post was written.
  *
- * Usage: {$post|wp_modified_date}
+ * Usage: {$post|wp_date}
  *
  * @param int|WP_Post $post
  * @return string|void
