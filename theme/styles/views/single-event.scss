@@ -10,7 +10,7 @@
 		// the header.
 		overflow: hidden;
 		max-height: 600px;
-		transition: all 0.5s;
+		transition: max-height 0.5s;
 
 		// For desktops, which are typically in the landscape mode, limit the height
 		// even more so that more of the page is visible to the visitor.
@@ -26,7 +26,7 @@
 			border-radius: 15px;
 			margin: 0 auto;
 			cursor: pointer;
-			transition: all 0.5s;
+			transition: box-shadow 0.5s;
 
 			img {
 				width: 100%;

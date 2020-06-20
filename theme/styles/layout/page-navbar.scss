@@ -100,7 +100,8 @@
 		transform-origin: top;
 		max-height: 0;
 		overflow: hidden;
-		transition: all 0.2s;
+		transition-duration: 0.2s;
+		transition-property: opacity, transform, max-height;
 	}
 
 	// Expands the top sheet with an animation.
