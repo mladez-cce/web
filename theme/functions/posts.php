@@ -9,3 +9,12 @@
 add_filter("excerpt_more", function () {
 	return "<span class='wp-excerpt-more'>...</span>";
 });
+
+// Ignore "sticky posts", i.e., highlighted posts that will remain at the top
+// regardless of their publish date. Given the structure of the site (we have
+// events and news), this feature doesn't make that much sense.
+add_action("pre_get_posts", function ($query) {
+	if ($query->is_main_query()) {
+		$query->set("ignore_sticky_posts", true);
+	}
+});
