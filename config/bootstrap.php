@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__.'/../vendor_manual/load.php';
 
 define('PROJECT_ROOT_DIR', realpath(__DIR__.'/..'));
 define('LOG_DIR', __DIR__.'/../log');
