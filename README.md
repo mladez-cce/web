@@ -95,6 +95,13 @@ $ vendor/bin/wp plugin install meta-box --path=public
 $ vendor/bin/wp plugin activate meta-box --path=public
 ```
 
+Optionally, install the Czech language pack and enable it in the settings (this
+affects not only the admin interface but also the date format):
+
+```
+$ vendor/bin/wp language core install cs_CZ --path=public
+```
+
 Clear cache to avoid potential permission problems:
 
 ```
