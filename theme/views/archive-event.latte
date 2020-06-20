@@ -20,8 +20,8 @@
 		{/each}
 
 		<div class="pagination">
-			<div class="pagination__prev" n:if="$previous_events_link">{$previous_events_link|noescape}</div>
-			<div class="pagination__next" n:if="$next_events_link">{$next_events_link|noescape}</div>
+			<div class="pagination__prev" n:if="!empty($previous_events_link)">{$previous_events_link|noescape}</div>
+			<div class="pagination__next" n:if="!empty($next_events_link)">{$next_events_link|noescape}</div>
 		</div>
 	</div>
 </div>

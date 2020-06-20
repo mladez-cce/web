@@ -58,7 +58,7 @@
 				<a n:attr="href => $Post->register_url" target="_blank" class="single-event__register-button" title="Online přihlašování" target="_blank">Přihlásit se na akci</a>
 			{/if}
 
-			<div n:if="$relatedPosts" class="single-event__related-posts">
+			<div n:if="!empty($relatedPosts)" class="single-event__related-posts">
 				<h2>Související aktuality</h2>
 
 				<ul>
