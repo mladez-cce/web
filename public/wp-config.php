@@ -35,8 +35,8 @@ define('NONCE_SALT', $wpParams['NONCE_SALT'] ?? 'put your unique phrase here');
 
 $table_prefix = 'wp_';
 
-define('WP_DEBUG', true);
-define('SCRIPT_DEBUG', true);
+define('WP_DEBUG', $App->parameters['debug']);
+define('SCRIPT_DEBUG', $App->parameters['debug']);
 
 if (!defined('ABSPATH')) {
 	define('ABSPATH', dirname(__FILE__) . '/public/');

@@ -2,6 +2,8 @@ tracy:
 	strictMode: true
 
 parameters:
+	debug: off
+
 	livereload: off
 
 	database:
