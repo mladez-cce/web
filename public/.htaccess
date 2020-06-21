@@ -1,6 +1,16 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
+
+# Enforce HTTPS (except for localhost)
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} !=localhost
+RewriteCond %{HTTP_HOST} !=127.0.0.1
+RewriteCond %{REMOTE_ADDR} !=127.0.0.1
+RewriteCond %{REMOTE_ADDR} !=::1
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Pretty URLs for WordPress
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
