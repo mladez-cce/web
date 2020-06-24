@@ -43,6 +43,13 @@
 		margin-bottom: 1rem;
 	}
 
+	// Allow adding a manual space to the end of a list item in Gutenberg (useful
+	// for long items with a lot of text).
+	li > br:last-child {
+		display: block;
+		margin-bottom: $spacer;
+	}
+
 	figure.wp-block-image, .wp-block-image figure {
 		margin: $spacer * 2 0;
 
