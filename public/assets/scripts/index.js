@@ -53,7 +53,7 @@ addParallaxEffect(
 addParallaxEffect(
 	".front-page__header__boat",
 	function (style, offset) {
-		const SCROLL_SPEED = 0.12;
+		const SCROLL_SPEED = 0.05;
 		const FADE_SPEED = 0.002;
 
 		style.transform = "translateY(" + offset * SCROLL_SPEED + "px)";

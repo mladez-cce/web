@@ -24,7 +24,7 @@
 			text-align: center;
 			line-height: 1;
 			margin: 0;
-			padding-top: 50px;
+			padding-top: 30px;
 		}
 
 		&__title {
@@ -56,7 +56,7 @@
 			position: relative; // To position the boat absolutely
 
 			h1 {
-				padding-top: 30px;
+				padding-top: 10px;
 
 				// Align the text to the right with center line.
 				padding-right: 50%;
@@ -82,7 +82,7 @@
 			&__boat {
 				width: 100%;
 				position: absolute;
-				top: 200px;
+				top: 180px;
 				// Move the boat off-center to the right.
 				background-position: calc(50% + 220px) 50%;
 				z-index: $boat-z-index;
