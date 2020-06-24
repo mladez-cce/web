@@ -1,4 +1,5 @@
 @import "common-mixins";
+@import "config";
 @import "font-roboto";
 @import "font-amatic-sc";
 
@@ -40,5 +41,15 @@
 
 	p {
 		margin-bottom: 1rem;
+	}
+
+	figure.wp-block-image {
+		margin: $spacer * 2 0;
+
+		figcaption {
+			text-align: center;
+			color: $secondary-text-color;
+			margin: $spacer 0;
+		}
 	}
 }
