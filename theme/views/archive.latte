@@ -3,7 +3,9 @@
 <div n:block="page-content" class="archive">
 	{each}
 		<div class="archive__post">
-			<h2><a href="{$Post|wp_permalink}">{$Post|wp_title}</a></h2>
+			<h2 class="archive__post__headline">
+				<a href="{$Post|wp_permalink}">{$Post|wp_title}</a>
+			</h2>
 			<p class="publish-info">{$Post|wp_date}</p>
 
 			{include "shared/post-body.latte", post => $Post}

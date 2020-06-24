@@ -4,8 +4,8 @@
 	&__post {
 		margin-bottom: $component-spacer;
 
-		h2 a {
-			color: $primary-text-color;
+		&__headline {
+			font-size: 2.1rem;
 		}
 	}
 }
