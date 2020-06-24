@@ -43,7 +43,7 @@
 		margin-bottom: 1rem;
 	}
 
-	figure.wp-block-image {
+	figure.wp-block-image, .wp-block-image figure {
 		margin: $spacer * 2 0;
 
 		figcaption {
