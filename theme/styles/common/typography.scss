@@ -53,6 +53,10 @@
 	figure.wp-block-image, .wp-block-image figure {
 		margin: $spacer * 2 0;
 
+		img {
+			border-radius: $figure-border-radius;
+		}
+
 		figcaption {
 			text-align: center;
 			color: $secondary-text-color;
