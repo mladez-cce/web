@@ -70,22 +70,24 @@
 
 		li {
 			list-style-type: none;
-			margin-bottom: $spacer / 2;
+			margin-bottom: $spacer;
+			position: relative;
+			padding-left: 2.1rem;
+			line-height: 1.4;
 
 			// Display an icon for each list element.
 			&:before {
 				content: "";
-				display: inline-block;
 				width: 1.5rem;
 				height: 1.5rem;
 				background-size: cover;
-				margin-right: 0.5rem;
 				opacity: 0.4;
 
 				// Some magic to align the icon vertically with the text.
 				vertical-align: middle;
-				position: relative;
+				position: absolute;
 				top: -0.1rem;
+				left: 0;
 			}
 		}
 
